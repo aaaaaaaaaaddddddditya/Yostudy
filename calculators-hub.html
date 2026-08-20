@@ -313,7 +313,6 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="study.html">Study</a></li>
-                <li><a href="ai-tutor.html">AI Tutor</a></li>
                 <li><a href="calculators-hub.html">Calculators</a></li>
                 <li><a href="formulas.html">Formulas</a></li>
                 <li><a href="science.html">Science</a></li>
@@ -1054,7 +1053,6 @@
                 <h3>📖 Resources</h3>
                 <ul>
                     <li><a href="study.html">Study Notes</a></li>
-                    <li><a href="ai-tutor.html">AI Tutor</a></li>
                     <li><a href="formulas.html">Formulas</a></li>
                     <li><a href="calculators-hub.html">Calculators</a></li>
                 </ul>
@@ -1118,6 +1116,29 @@
                     <button class="calc-button" onclick="calculateScientific()">Calculate</button>
                 `
             },
+            'basic': {
+                title: '🧮 Basic Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>First Number</label>
+                        <input type="number" id="basic_num1" placeholder="Enter number" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>Operation</label>
+                        <select id="basic_op">
+                            <option>+</option>
+                            <option>-</option>
+                            <option>×</option>
+                            <option>÷</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Second Number</label>
+                        <input type="number" id="basic_num2" placeholder="Enter number" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateBasic()">Calculate</button>
+                `
+            },
             'percentage': {
                 title: '% Percentage Calculator',
                 html: `
@@ -1130,53 +1151,80 @@
                         <input type="number" id="percValue" placeholder="Enter percentage" step="any">
                     </div>
                     <button class="calc-button" onclick="calculatePercentage()">Calculate Percentage</button>
-                    <button class="calc-button" onclick="calculatePercentageOf()">Calculate % Of</button>
                 `
             },
-            'simple_interest': {
-                title: '💵 Simple Interest Calculator',
+            'modulo': {
+                title: '÷ Modulo Calculator',
                 html: `
                     <div class="input-group">
-                        <label>Principal (P) - ₹</label>
-                        <input type="number" id="principal" placeholder="Enter principal amount" step="any">
+                        <label>Dividend (Number 1)</label>
+                        <input type="number" id="mod_num1" placeholder="Enter dividend" step="1">
                     </div>
                     <div class="input-group">
-                        <label>Rate (R) - % per annum</label>
-                        <input type="number" id="rate" placeholder="Enter interest rate" step="any">
+                        <label>Divisor (Number 2)</label>
+                        <input type="number" id="mod_num2" placeholder="Enter divisor" step="1">
                     </div>
-                    <div class="input-group">
-                        <label>Time (T) - Years</label>
-                        <input type="number" id="time" placeholder="Enter time period" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateSimpleInterest()">Calculate</button>
+                    <button class="calc-button" onclick="calculateModulo()">Calculate Remainder</button>
                 `
             },
-            'compound_interest': {
-                title: '📈 Compound Interest Calculator',
+            'linear': {
+                title: '📈 Linear Equation Solver',
                 html: `
                     <div class="input-group">
-                        <label>Principal (P) - ₹</label>
-                        <input type="number" id="compound_principal" placeholder="Enter principal" step="any">
+                        <label>Coefficient A (ax)</label>
+                        <input type="number" id="lin_a" placeholder="Enter a" step="any">
                     </div>
                     <div class="input-group">
-                        <label>Rate (R) - % per annum</label>
-                        <input type="number" id="compound_rate" placeholder="Enter rate" step="any">
+                        <label>Constant B (b)</label>
+                        <input type="number" id="lin_b" placeholder="Enter b" step="any">
+                    </div>
+                    <button class="calc-button" onclick="solveLinear()">Solve ax + b = 0</button>
+                `
+            },
+            'exponent': {
+                title: '⚡ Exponent Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Base Number</label>
+                        <input type="number" id="exp_base" placeholder="Enter base" step="any">
                     </div>
                     <div class="input-group">
-                        <label>Time (T) - Years</label>
-                        <input type="number" id="compound_time" placeholder="Enter time" step="any">
+                        <label>Exponent (Power)</label>
+                        <input type="number" id="exp_power" placeholder="Enter power" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateExponent()">Calculate</button>
+                `
+            },
+            'logarithm': {
+                title: '📊 Logarithm Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Number</label>
+                        <input type="number" id="log_num" placeholder="Enter number" step="any" min="0.001">
                     </div>
                     <div class="input-group">
-                        <label>Compounds Per Year</label>
-                        <select id="compound_freq">
-                            <option value="1">Annually</option>
-                            <option value="2">Semi-Annually</option>
-                            <option value="4">Quarterly</option>
-                            <option value="12" selected>Monthly</option>
-                            <option value="365">Daily</option>
+                        <label>Logarithm Type</label>
+                        <select id="log_type">
+                            <option value="log10">Log base 10</option>
+                            <option value="ln">Natural Log (ln)</option>
+                            <option value="log2">Log base 2</option>
                         </select>
                     </div>
-                    <button class="calc-button" onclick="calculateCompoundInterest()">Calculate</button>
+                    <button class="calc-button" onclick="calculateLogarithm()">Calculate</button>
+                `
+            },
+            'gcd': {
+                title: '🔗 GCD/LCM Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>First Number</label>
+                        <input type="number" id="gcd_num1" placeholder="Enter number 1" step="1">
+                    </div>
+                    <div class="input-group">
+                        <label>Second Number</label>
+                        <input type="number" id="gcd_num2" placeholder="Enter number 2" step="1">
+                    </div>
+                    <button class="calc-button" onclick="calculateGCDLCM()">Calculate GCD & LCM</button>
                 `
             },
             'quadratic': {
@@ -1202,7 +1250,7 @@
                 html: `
                     <div class="input-group">
                         <label>Radius (r)</label>
-                        <input type="number" id="circle_radius" placeholder="Enter radius" step="any">
+                        <input type="number" id="circle_radius" placeholder="Enter radius" step="any" min="0">
                     </div>
                     <button class="calc-button" onclick="calculateCircle()">Calculate Area & Circumference</button>
                 `
@@ -1212,11 +1260,11 @@
                 html: `
                     <div class="input-group">
                         <label>Base (b)</label>
-                        <input type="number" id="tri_base" placeholder="Enter base" step="any">
+                        <input type="number" id="tri_base" placeholder="Enter base" step="any" min="0">
                     </div>
                     <div class="input-group">
                         <label>Height (h)</label>
-                        <input type="number" id="tri_height" placeholder="Enter height" step="any">
+                        <input type="number" id="tri_height" placeholder="Enter height" step="any" min="0">
                     </div>
                     <button class="calc-button" onclick="calculateTriangle()">Calculate Area</button>
                 `
@@ -1226,13 +1274,197 @@
                 html: `
                     <div class="input-group">
                         <label>Length (l)</label>
-                        <input type="number" id="rect_length" placeholder="Enter length" step="any">
+                        <input type="number" id="rect_length" placeholder="Enter length" step="any" min="0">
                     </div>
                     <div class="input-group">
                         <label>Width (w)</label>
-                        <input type="number" id="rect_width" placeholder="Enter width" step="any">
+                        <input type="number" id="rect_width" placeholder="Enter width" step="any" min="0">
                     </div>
                     <button class="calc-button" onclick="calculateRectangle()">Calculate Area & Perimeter</button>
+                `
+            },
+            'square': {
+                title: '▢ Square Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Side Length (s)</label>
+                        <input type="number" id="sq_side" placeholder="Enter side" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateSquare()">Calculate Area & Perimeter</button>
+                `
+            },
+            'trapezoid': {
+                title: '◷ Trapezoid Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Base 1 (b₁)</label>
+                        <input type="number" id="trap_b1" placeholder="Enter base 1" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Base 2 (b₂)</label>
+                        <input type="number" id="trap_b2" placeholder="Enter base 2" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="trap_h" placeholder="Enter height" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateTrapezoid()">Calculate Area</button>
+                `
+            },
+            'cylinder': {
+                title: '🔴 Cylinder Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Radius (r)</label>
+                        <input type="number" id="cyl_r" placeholder="Enter radius" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="cyl_h" placeholder="Enter height" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateCylinder()">Calculate Volume & Surface Area</button>
+                `
+            },
+            'sphere': {
+                title: '🔵 Sphere Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Radius (r)</label>
+                        <input type="number" id="sphere_r" placeholder="Enter radius" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateSphere()">Calculate Volume & Surface Area</button>
+                `
+            },
+            'cone': {
+                title: '🍦 Cone Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Radius (r)</label>
+                        <input type="number" id="cone_r" placeholder="Enter radius" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="cone_h" placeholder="Enter height" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateCone()">Calculate Volume & Surface Area</button>
+                `
+            },
+            'cube': {
+                title: '🧊 Cube Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Side Length (s)</label>
+                        <input type="number" id="cube_s" placeholder="Enter side" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateCube()">Calculate Volume & Surface Area</button>
+                `
+            },
+            'ellipse': {
+                title: '⬭ Ellipse Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Semi-Major Axis (a)</label>
+                        <input type="number" id="ellipse_a" placeholder="Enter semi-major axis" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Semi-Minor Axis (b)</label>
+                        <input type="number" id="ellipse_b" placeholder="Enter semi-minor axis" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateEllipse()">Calculate Area</button>
+                `
+            },
+            'pyramid': {
+                title: '🔺 Pyramid Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Base Area</label>
+                        <input type="number" id="pyr_base" placeholder="Enter base area" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="pyr_h" placeholder="Enter height" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculatePyramid()">Calculate Volume</button>
+                `
+            },
+            'prism': {
+                title: '█ Prism Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Base Area</label>
+                        <input type="number" id="prism_base" placeholder="Enter base area" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (h)</label>
+                        <input type="number" id="prism_h" placeholder="Enter height" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculatePrism()">Calculate Volume</button>
+                `
+            },
+            'distance': {
+                title: '📍 Distance Formula',
+                html: `
+                    <div class="input-group">
+                        <label>X₁ Coordinate</label>
+                        <input type="number" id="dist_x1" placeholder="Enter x₁" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>Y₁ Coordinate</label>
+                        <input type="number" id="dist_y1" placeholder="Enter y₁" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>X₂ Coordinate</label>
+                        <input type="number" id="dist_x2" placeholder="Enter x₂" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>Y₂ Coordinate</label>
+                        <input type="number" id="dist_y2" placeholder="Enter y₂" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateDistance()">Calculate Distance</button>
+                `
+            },
+            'midpoint': {
+                title: '◆ Midpoint Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>X₁ Coordinate</label>
+                        <input type="number" id="mid_x1" placeholder="Enter x₁" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>Y₁ Coordinate</label>
+                        <input type="number" id="mid_y1" placeholder="Enter y₁" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>X₂ Coordinate</label>
+                        <input type="number" id="mid_x2" placeholder="Enter x₂" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>Y₂ Coordinate</label>
+                        <input type="number" id="mid_y2" placeholder="Enter y₂" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateMidpoint()">Calculate Midpoint</button>
+                `
+            },
+            'slope': {
+                title: '↗ Slope Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Y₁ Coordinate</label>
+                        <input type="number" id="slope_y1" placeholder="Enter y₁" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>Y₂ Coordinate</label>
+                        <input type="number" id="slope_y2" placeholder="Enter y₂" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>X₁ Coordinate</label>
+                        <input type="number" id="slope_x1" placeholder="Enter x₁" step="any">
+                    </div>
+                    <div class="input-group">
+                        <label>X₂ Coordinate</label>
+                        <input type="number" id="slope_x2" placeholder="Enter x₂" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateSlope()">Calculate Slope</button>
                 `
             },
             'sqrt': {
@@ -1240,7 +1472,7 @@
                 html: `
                     <div class="input-group">
                         <label>Number</label>
-                        <input type="number" id="sqrt_num" placeholder="Enter number" step="any">
+                        <input type="number" id="sqrt_num" placeholder="Enter number" step="any" min="0">
                     </div>
                     <button class="calc-button" onclick="calculateSquareRoot()">Calculate √</button>
                 `
@@ -1260,11 +1492,11 @@
                 html: `
                     <div class="input-group">
                         <label>Side A</label>
-                        <input type="number" id="pyth_a" placeholder="Enter side a" step="any">
+                        <input type="number" id="pyth_a" placeholder="Enter side a" step="any" min="0">
                     </div>
                     <div class="input-group">
                         <label>Side B</label>
-                        <input type="number" id="pyth_b" placeholder="Enter side b" step="any">
+                        <input type="number" id="pyth_b" placeholder="Enter side b" step="any" min="0">
                     </div>
                     <button class="calc-button" onclick="calculatePythagorean()">Calculate Hypotenuse (c)</button>
                 `
@@ -1305,6 +1537,238 @@
                         <input type="number" id="comb_r" placeholder="Enter r" min="0" step="1">
                     </div>
                     <button class="calc-button" onclick="calculateCombination()">Calculate nCr</button>
+                `
+            },
+            'sine': {
+                title: 'sin Sine Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Angle (in degrees)</label>
+                        <input type="number" id="sin_angle" placeholder="Enter angle" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateSine()">Calculate sin(θ)</button>
+                `
+            },
+            'cosine': {
+                title: 'cos Cosine Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Angle (in degrees)</label>
+                        <input type="number" id="cos_angle" placeholder="Enter angle" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateCosine()">Calculate cos(θ)</button>
+                `
+            },
+            'tangent': {
+                title: 'tan Tangent Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Angle (in degrees)</label>
+                        <input type="number" id="tan_angle" placeholder="Enter angle" step="any">
+                    </div>
+                    <button class="calc-button" onclick="calculateTangent()">Calculate tan(θ)</button>
+                `
+            },
+            'mean': {
+                title: 'μ Mean Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Enter Numbers (separated by commas)</label>
+                        <textarea id="mean_numbers" placeholder="e.g., 10, 20, 30, 40, 50" style="width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 2px solid #e0e0e0;"></textarea>
+                    </div>
+                    <button class="calc-button" onclick="calculateMean()">Calculate Mean</button>
+                `
+            },
+            'median': {
+                title: '~ Median Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Enter Numbers (separated by commas)</label>
+                        <textarea id="median_numbers" placeholder="e.g., 10, 20, 30, 40, 50" style="width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 2px solid #e0e0e0;"></textarea>
+                    </div>
+                    <button class="calc-button" onclick="calculateMedian()">Calculate Median</button>
+                `
+            },
+            'mode': {
+                title: '◉ Mode Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Enter Numbers (separated by commas)</label>
+                        <textarea id="mode_numbers" placeholder="e.g., 10, 20, 20, 30, 30, 30" style="width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 2px solid #e0e0e0;"></textarea>
+                    </div>
+                    <button class="calc-button" onclick="calculateMode()">Calculate Mode</button>
+                `
+            },
+            'std_dev': {
+                title: 'σ Standard Deviation',
+                html: `
+                    <div class="input-group">
+                        <label>Enter Numbers (separated by commas)</label>
+                        <textarea id="std_numbers" placeholder="e.g., 10, 20, 30, 40, 50" style="width: 100%; height: 80px; padding: 10px; border-radius: 8px; border: 2px solid #e0e0e0;"></textarea>
+                    </div>
+                    <button class="calc-button" onclick="calculateStdDev()">Calculate Standard Deviation</button>
+                `
+            },
+            'simple_interest': {
+                title: '💵 Simple Interest Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Principal (P) - ₹</label>
+                        <input type="number" id="principal" placeholder="Enter principal amount" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Rate (R) - % per annum</label>
+                        <input type="number" id="rate" placeholder="Enter interest rate" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Time (T) - Years</label>
+                        <input type="number" id="time" placeholder="Enter time period" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateSimpleInterest()">Calculate</button>
+                `
+            },
+            'compound_interest': {
+                title: '📈 Compound Interest Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Principal (P) - ₹</label>
+                        <input type="number" id="compound_principal" placeholder="Enter principal" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Rate (R) - % per annum</label>
+                        <input type="number" id="compound_rate" placeholder="Enter rate" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Time (T) - Years</label>
+                        <input type="number" id="compound_time" placeholder="Enter time" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Compounds Per Year</label>
+                        <select id="compound_freq">
+                            <option value="1">Annually</option>
+                            <option value="2">Semi-Annually</option>
+                            <option value="4">Quarterly</option>
+                            <option value="12" selected>Monthly</option>
+                            <option value="365">Daily</option>
+                        </select>
+                    </div>
+                    <button class="calc-button" onclick="calculateCompoundInterest()">Calculate</button>
+                `
+            },
+            'emi': {
+                title: '🏦 EMI Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Loan Amount (P) - ₹</label>
+                        <input type="number" id="emi_principal" placeholder="Enter loan amount" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Annual Interest Rate (R) - %</label>
+                        <input type="number" id="emi_rate" placeholder="Enter rate" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Loan Tenure (T) - Months</label>
+                        <input type="number" id="emi_time" placeholder="Enter months" step="1" min="1">
+                    </div>
+                    <button class="calc-button" onclick="calculateEMI()">Calculate EMI</button>
+                `
+            },
+            'discount': {
+                title: '🏷️ Discount Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Original Price</label>
+                        <input type="number" id="disc_original" placeholder="Enter original price" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Discount Percentage (%)</label>
+                        <input type="number" id="disc_percent" placeholder="Enter discount %" step="any" min="0" max="100">
+                    </div>
+                    <button class="calc-button" onclick="calculateDiscount()">Calculate Sale Price</button>
+                `
+            },
+            'velocity': {
+                title: '→ Velocity Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Distance (m)</label>
+                        <input type="number" id="vel_dist" placeholder="Enter distance" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Time (s)</label>
+                        <input type="number" id="vel_time" placeholder="Enter time" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateVelocity()">Calculate Velocity (v = d/t)</button>
+                `
+            },
+            'force': {
+                title: '💪 Force Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Mass (kg)</label>
+                        <input type="number" id="force_mass" placeholder="Enter mass" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Acceleration (m/s²)</label>
+                        <input type="number" id="force_acc" placeholder="Enter acceleration" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateForce()">Calculate Force (F = ma)</button>
+                `
+            },
+            'kinetic_energy': {
+                title: '⚡ Kinetic Energy',
+                html: `
+                    <div class="input-group">
+                        <label>Mass (kg)</label>
+                        <input type="number" id="ke_mass" placeholder="Enter mass" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Velocity (m/s)</label>
+                        <input type="number" id="ke_vel" placeholder="Enter velocity" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateKE()">Calculate KE (½mv²)</button>
+                `
+            },
+            'potential_energy': {
+                title: '⬆️ Potential Energy',
+                html: `
+                    <div class="input-group">
+                        <label>Mass (kg)</label>
+                        <input type="number" id="pe_mass" placeholder="Enter mass" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Gravity (m/s²)</label>
+                        <input type="number" id="pe_g" placeholder="Enter gravity" step="any" value="9.8">
+                    </div>
+                    <div class="input-group">
+                        <label>Height (m)</label>
+                        <input type="number" id="pe_h" placeholder="Enter height" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculatePE()">Calculate PE (mgh)</button>
+                `
+            },
+            'ph': {
+                title: '🧫 pH Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>H+ Concentration (mol/L)</label>
+                        <input type="number" id="ph_conc" placeholder="Enter concentration" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculatePH()">Calculate pH (-log[H+])</button>
+                `
+            },
+            'molarity': {
+                title: 'M Molarity Calculator',
+                html: `
+                    <div class="input-group">
+                        <label>Moles of Solute</label>
+                        <input type="number" id="mol_moles" placeholder="Enter moles" step="any" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label>Volume (Liters)</label>
+                        <input type="number" id="mol_volume" placeholder="Enter volume" step="any" min="0">
+                    </div>
+                    <button class="calc-button" onclick="calculateMolarity()">Calculate Molarity (mol/L)</button>
                 `
             }
         };
@@ -1632,19 +2096,455 @@
             });
         }
 
+        // ========== ALL CALCULATOR FUNCTIONS ==========
+
+        function calculateBasic() {
+            const num1 = parseFloat(document.getElementById('basic_num1').value);
+            const num2 = parseFloat(document.getElementById('basic_num2').value);
+            const op = document.getElementById('basic_op').value;
+            if (isNaN(num1) || isNaN(num2)) { alert('Enter valid numbers'); return; }
+            let result;
+            if (op === '+') result = num1 + num2;
+            else if (op === '-') result = num1 - num2;
+            else if (op === '×') result = num1 * num2;
+            else if (op === '÷') { if (num2 === 0) { alert('Cannot divide by zero'); return; } result = num1 / num2; }
+            showResult(result);
+        }
+
+        function calculateScientific() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const operation = document.getElementById('operation').value;
+            let result;
+            if (operation === '+' || operation === '-' || operation === '×' || operation === '÷') {
+                const num2 = parseFloat(document.getElementById('num2').value);
+                if (isNaN(num1) || isNaN(num2)) { alert('Enter valid numbers'); return; }
+                if (operation === '+') result = num1 + num2;
+                else if (operation === '-') result = num1 - num2;
+                else if (operation === '×') result = num1 * num2;
+                else if (operation === '÷') { if (num2 === 0) { alert('Cannot divide by zero'); return; } result = num1 / num2; }
+            } else {
+                if (isNaN(num1)) { alert('Enter valid number'); return; }
+                const rad = (num1 * Math.PI) / 180;
+                if (operation === 'sin') result = Math.sin(rad);
+                else if (operation === 'cos') result = Math.cos(rad);
+                else if (operation === 'tan') result = Math.tan(rad);
+                else if (operation === '√') { if (num1 < 0) { alert('Cannot sqrt negative'); return; } result = Math.sqrt(num1); }
+                else if (operation === 'x²') result = num1 * num1;
+                else if (operation === 'x³') result = num1 * num1 * num1;
+                else if (operation === 'log') { if (num1 <= 0) { alert('Log undefined'); return; } result = Math.log10(num1); }
+                else if (operation === 'ln') { if (num1 <= 0) { alert('Ln undefined'); return; } result = Math.log(num1); }
+            }
+            showResult(result);
+        }
+
+        function calculatePercentage() {
+            const num = parseFloat(document.getElementById('percNum').value);
+            const perc = parseFloat(document.getElementById('percValue').value);
+            if (isNaN(num) || isNaN(perc)) { alert('Enter valid numbers'); return; }
+            const result = (num * perc) / 100;
+            showResult(`${perc}% of ${num} = ${result.toFixed(2)}`);
+        }
+
+        function calculateModulo() {
+            const num1 = parseInt(document.getElementById('mod_num1').value);
+            const num2 = parseInt(document.getElementById('mod_num2').value);
+            if (isNaN(num1) || isNaN(num2)) { alert('Enter valid numbers'); return; }
+            if (num2 === 0) { alert('Divisor cannot be zero'); return; }
+            const result = num1 % num2;
+            showResult(`${num1} mod ${num2} = ${result}`);
+        }
+
+        function solveLinear() {
+            const a = parseFloat(document.getElementById('lin_a').value);
+            const b = parseFloat(document.getElementById('lin_b').value);
+            if (isNaN(a) || isNaN(b)) { alert('Enter valid numbers'); return; }
+            if (a === 0) { alert('Coefficient a cannot be zero'); return; }
+            const x = -b / a;
+            showResult(`x = ${x.toFixed(6)}`);
+        }
+
+        function calculateExponent() {
+            const base = parseFloat(document.getElementById('exp_base').value);
+            const power = parseFloat(document.getElementById('exp_power').value);
+            if (isNaN(base) || isNaN(power)) { alert('Enter valid numbers'); return; }
+            const result = Math.pow(base, power);
+            showResult(`${base}^${power} = ${result.toFixed(6)}`);
+        }
+
+        function calculateLogarithm() {
+            const num = parseFloat(document.getElementById('log_num').value);
+            const type = document.getElementById('log_type').value;
+            if (isNaN(num) || num <= 0) { alert('Enter positive number'); return; }
+            let result;
+            if (type === 'log10') result = Math.log10(num);
+            else if (type === 'ln') result = Math.log(num);
+            else if (type === 'log2') result = Math.log2(num);
+            showResult(result.toFixed(6));
+        }
+
+        function calculateGCDLCM() {
+            const a = Math.abs(parseInt(document.getElementById('gcd_num1').value));
+            const b = Math.abs(parseInt(document.getElementById('gcd_num2').value));
+            if (isNaN(a) || isNaN(b)) { alert('Enter valid numbers'); return; }
+            const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
+            const lcm = (a, b) => (a * b) / gcd(a, b);
+            showResult(`GCD: ${gcd(a, b)} | LCM: ${lcm(a, b)}`);
+        }
+
+        function solveQuadratic() {
+            const a = parseFloat(document.getElementById('quad_a').value);
+            const b = parseFloat(document.getElementById('quad_b').value);
+            const c = parseFloat(document.getElementById('quad_c').value);
+            if (isNaN(a) || isNaN(b) || isNaN(c)) { alert('Enter valid numbers'); return; }
+            if (a === 0) { alert('a cannot be zero'); return; }
+            const disc = b * b - 4 * a * c;
+            if (disc < 0) showResult('No real roots');
+            else if (disc === 0) showResult(`x = ${(-b / (2 * a)).toFixed(6)}`);
+            else showResult(`x₁ = ${((-b + Math.sqrt(disc)) / (2 * a)).toFixed(6)} | x₂ = ${((-b - Math.sqrt(disc)) / (2 * a)).toFixed(6)}`);
+        }
+
+        function calculateCircle() {
+            const r = parseFloat(document.getElementById('circle_radius').value);
+            if (isNaN(r) || r < 0) { alert('Enter positive radius'); return; }
+            const area = Math.PI * r * r;
+            const circ = 2 * Math.PI * r;
+            showResult(`Area: ${area.toFixed(4)} | Circumference: ${circ.toFixed(4)}`);
+        }
+
+        function calculateTriangle() {
+            const base = parseFloat(document.getElementById('tri_base').value);
+            const height = parseFloat(document.getElementById('tri_height').value);
+            if (isNaN(base) || isNaN(height)) { alert('Enter valid numbers'); return; }
+            const area = (base * height) / 2;
+            showResult(`Area: ${area.toFixed(4)}`);
+        }
+
+        function calculateRectangle() {
+            const l = parseFloat(document.getElementById('rect_length').value);
+            const w = parseFloat(document.getElementById('rect_width').value);
+            if (isNaN(l) || isNaN(w)) { alert('Enter valid numbers'); return; }
+            const area = l * w;
+            const perim = 2 * (l + w);
+            showResult(`Area: ${area.toFixed(4)} | Perimeter: ${perim.toFixed(4)}`);
+        }
+
+        function calculateSquare() {
+            const s = parseFloat(document.getElementById('sq_side').value);
+            if (isNaN(s) || s < 0) { alert('Enter positive side'); return; }
+            const area = s * s;
+            const perim = 4 * s;
+            showResult(`Area: ${area.toFixed(4)} | Perimeter: ${perim.toFixed(4)}`);
+        }
+
+        function calculateTrapezoid() {
+            const b1 = parseFloat(document.getElementById('trap_b1').value);
+            const b2 = parseFloat(document.getElementById('trap_b2').value);
+            const h = parseFloat(document.getElementById('trap_h').value);
+            if (isNaN(b1) || isNaN(b2) || isNaN(h)) { alert('Enter valid numbers'); return; }
+            const area = ((b1 + b2) / 2) * h;
+            showResult(`Area: ${area.toFixed(4)}`);
+        }
+
+        function calculateCylinder() {
+            const r = parseFloat(document.getElementById('cyl_r').value);
+            const h = parseFloat(document.getElementById('cyl_h').value);
+            if (isNaN(r) || isNaN(h)) { alert('Enter valid numbers'); return; }
+            const vol = Math.PI * r * r * h;
+            const sa = 2 * Math.PI * r * (r + h);
+            showResult(`Volume: ${vol.toFixed(4)} | Surface Area: ${sa.toFixed(4)}`);
+        }
+
+        function calculateSphere() {
+            const r = parseFloat(document.getElementById('sphere_r').value);
+            if (isNaN(r) || r < 0) { alert('Enter positive radius'); return; }
+            const vol = (4/3) * Math.PI * r * r * r;
+            const sa = 4 * Math.PI * r * r;
+            showResult(`Volume: ${vol.toFixed(4)} | Surface Area: ${sa.toFixed(4)}`);
+        }
+
+        function calculateCone() {
+            const r = parseFloat(document.getElementById('cone_r').value);
+            const h = parseFloat(document.getElementById('cone_h').value);
+            if (isNaN(r) || isNaN(h)) { alert('Enter valid numbers'); return; }
+            const vol = (1/3) * Math.PI * r * r * h;
+            const sa = Math.PI * r * (r + Math.sqrt(r*r + h*h));
+            showResult(`Volume: ${vol.toFixed(4)} | Surface Area: ${sa.toFixed(4)}`);
+        }
+
+        function calculateCube() {
+            const s = parseFloat(document.getElementById('cube_s').value);
+            if (isNaN(s) || s < 0) { alert('Enter positive side'); return; }
+            const vol = s * s * s;
+            const sa = 6 * s * s;
+            showResult(`Volume: ${vol.toFixed(4)} | Surface Area: ${sa.toFixed(4)}`);
+        }
+
+        function calculateEllipse() {
+            const a = parseFloat(document.getElementById('ellipse_a').value);
+            const b = parseFloat(document.getElementById('ellipse_b').value);
+            if (isNaN(a) || isNaN(b)) { alert('Enter valid numbers'); return; }
+            const area = Math.PI * a * b;
+            showResult(`Area: ${area.toFixed(4)}`);
+        }
+
+        function calculatePyramid() {
+            const base = parseFloat(document.getElementById('pyr_base').value);
+            const h = parseFloat(document.getElementById('pyr_h').value);
+            if (isNaN(base) || isNaN(h)) { alert('Enter valid numbers'); return; }
+            const vol = (1/3) * base * h;
+            showResult(`Volume: ${vol.toFixed(4)}`);
+        }
+
+        function calculatePrism() {
+            const base = parseFloat(document.getElementById('prism_base').value);
+            const h = parseFloat(document.getElementById('prism_h').value);
+            if (isNaN(base) || isNaN(h)) { alert('Enter valid numbers'); return; }
+            const vol = base * h;
+            showResult(`Volume: ${vol.toFixed(4)}`);
+        }
+
+        function calculateDistance() {
+            const x1 = parseFloat(document.getElementById('dist_x1').value);
+            const y1 = parseFloat(document.getElementById('dist_y1').value);
+            const x2 = parseFloat(document.getElementById('dist_x2').value);
+            const y2 = parseFloat(document.getElementById('dist_y2').value);
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) { alert('Enter valid numbers'); return; }
+            const dist = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+            showResult(dist.toFixed(6));
+        }
+
+        function calculateMidpoint() {
+            const x1 = parseFloat(document.getElementById('mid_x1').value);
+            const y1 = parseFloat(document.getElementById('mid_y1').value);
+            const x2 = parseFloat(document.getElementById('mid_x2').value);
+            const y2 = parseFloat(document.getElementById('mid_y2').value);
+            if (isNaN(x1) || isNaN(y1) || isNaN(x2) || isNaN(y2)) { alert('Enter valid numbers'); return; }
+            const mx = ((x1 + x2) / 2).toFixed(6);
+            const my = ((y1 + y2) / 2).toFixed(6);
+            showResult(`Midpoint: (${mx}, ${my})`);
+        }
+
+        function calculateSlope() {
+            const y1 = parseFloat(document.getElementById('slope_y1').value);
+            const y2 = parseFloat(document.getElementById('slope_y2').value);
+            const x1 = parseFloat(document.getElementById('slope_x1').value);
+            const x2 = parseFloat(document.getElementById('slope_x2').value);
+            if (isNaN(y1) || isNaN(y2) || isNaN(x1) || isNaN(x2)) { alert('Enter valid numbers'); return; }
+            if (x2 === x1) { alert('Undefined slope (vertical line)'); return; }
+            const slope = (y2 - y1) / (x2 - x1);
+            showResult(slope.toFixed(6));
+        }
+
+        function calculateSquareRoot() {
+            const num = parseFloat(document.getElementById('sqrt_num').value);
+            if (isNaN(num) || num < 0) { alert('Enter non-negative number'); return; }
+            const result = Math.sqrt(num);
+            showResult(result.toFixed(6));
+        }
+
+        function calculateCubeRoot() {
+            const num = parseFloat(document.getElementById('cbrt_num').value);
+            if (isNaN(num)) { alert('Enter valid number'); return; }
+            const result = Math.cbrt(num);
+            showResult(result.toFixed(6));
+        }
+
+        function calculatePythagorean() {
+            const a = parseFloat(document.getElementById('pyth_a').value);
+            const b = parseFloat(document.getElementById('pyth_b').value);
+            if (isNaN(a) || isNaN(b)) { alert('Enter valid numbers'); return; }
+            const c = Math.sqrt(a*a + b*b);
+            showResult(`c = ${c.toFixed(6)}`);
+        }
+
+        function calculateFactorial() {
+            const num = parseInt(document.getElementById('fact_num').value);
+            if (isNaN(num) || num < 0 || num > 170) { alert('Enter 0-170'); return; }
+            let result = 1;
+            for (let i = 2; i <= num; i++) result *= i;
+            showResult(result);
+        }
+
+        function calculatePermutation() {
+            const n = parseInt(document.getElementById('perm_n').value);
+            const r = parseInt(document.getElementById('perm_r').value);
+            if (isNaN(n) || isNaN(r) || n < r) { alert('n ≥ r'); return; }
+            let result = 1;
+            for (let i = 0; i < r; i++) result *= (n - i);
+            showResult(result);
+        }
+
+        function calculateCombination() {
+            const n = parseInt(document.getElementById('comb_n').value);
+            const r = parseInt(document.getElementById('comb_r').value);
+            if (isNaN(n) || isNaN(r) || n < r) { alert('n ≥ r'); return; }
+            let num = 1, den = 1;
+            for (let i = 0; i < r; i++) { num *= (n - i); den *= (i + 1); }
+            showResult((num / den).toFixed(0));
+        }
+
+        function calculateSine() {
+            const angle = parseFloat(document.getElementById('sin_angle').value);
+            if (isNaN(angle)) { alert('Enter valid angle'); return; }
+            const rad = (angle * Math.PI) / 180;
+            showResult(Math.sin(rad).toFixed(6));
+        }
+
+        function calculateCosine() {
+            const angle = parseFloat(document.getElementById('cos_angle').value);
+            if (isNaN(angle)) { alert('Enter valid angle'); return; }
+            const rad = (angle * Math.PI) / 180;
+            showResult(Math.cos(rad).toFixed(6));
+        }
+
+        function calculateTangent() {
+            const angle = parseFloat(document.getElementById('tan_angle').value);
+            if (isNaN(angle)) { alert('Enter valid angle'); return; }
+            const rad = (angle * Math.PI) / 180;
+            showResult(Math.tan(rad).toFixed(6));
+        }
+
+        function calculateMean() {
+            const input = document.getElementById('mean_numbers').value;
+            if (!input.trim()) { alert('Enter numbers'); return; }
+            const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+            if (nums.length === 0) { alert('Invalid numbers'); return; }
+            const mean = nums.reduce((a, b) => a + b) / nums.length;
+            showResult(mean.toFixed(4));
+        }
+
+        function calculateMedian() {
+            const input = document.getElementById('median_numbers').value;
+            if (!input.trim()) { alert('Enter numbers'); return; }
+            const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+            if (nums.length === 0) { alert('Invalid numbers'); return; }
+            nums.sort((a, b) => a - b);
+            const med = nums.length % 2 === 0 ? (nums[nums.length/2-1] + nums[nums.length/2])/2 : nums[Math.floor(nums.length/2)];
+            showResult(med.toFixed(4));
+        }
+
+        function calculateMode() {
+            const input = document.getElementById('mode_numbers').value;
+            if (!input.trim()) { alert('Enter numbers'); return; }
+            const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+            if (nums.length === 0) { alert('Invalid numbers'); return; }
+            const freq = {};
+            nums.forEach(n => freq[n] = (freq[n] || 0) + 1);
+            const mode = Object.keys(freq).reduce((a, b) => freq[a] > freq[b] ? a : b);
+            showResult(`${mode} (appears ${freq[mode]} times)`);
+        }
+
+        function calculateStdDev() {
+            const input = document.getElementById('std_numbers').value;
+            if (!input.trim()) { alert('Enter numbers'); return; }
+            const nums = input.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+            if (nums.length < 2) { alert('Need at least 2 numbers'); return; }
+            const mean = nums.reduce((a, b) => a + b) / nums.length;
+            const sq = nums.map(n => Math.pow(n - mean, 2));
+            const variance = sq.reduce((a, b) => a + b) / (nums.length - 1);
+            const stdDev = Math.sqrt(variance);
+            showResult(stdDev.toFixed(6));
+        }
+
+        function calculateSimpleInterest() {
+            const p = parseFloat(document.getElementById('principal').value);
+            const r = parseFloat(document.getElementById('rate').value);
+            const t = parseFloat(document.getElementById('time').value);
+            if (isNaN(p) || isNaN(r) || isNaN(t)) { alert('Enter valid numbers'); return; }
+            const interest = (p * r * t) / 100;
+            const amount = p + interest;
+            showResult(`Interest: ₹${interest.toFixed(2)} | Amount: ₹${amount.toFixed(2)}`);
+        }
+
+        function calculateCompoundInterest() {
+            const p = parseFloat(document.getElementById('compound_principal').value);
+            const r = parseFloat(document.getElementById('compound_rate').value);
+            const t = parseFloat(document.getElementById('compound_time').value);
+            const n = parseFloat(document.getElementById('compound_freq').value);
+            if (isNaN(p) || isNaN(r) || isNaN(t)) { alert('Enter valid numbers'); return; }
+            const amount = p * Math.pow(1 + (r/100)/n, n*t);
+            const interest = amount - p;
+            showResult(`Interest: ₹${interest.toFixed(2)} | Amount: ₹${amount.toFixed(2)}`);
+        }
+
+        function calculateEMI() {
+            const p = parseFloat(document.getElementById('emi_principal').value);
+            const r = parseFloat(document.getElementById('emi_rate').value);
+            const t = parseFloat(document.getElementById('emi_time').value);
+            if (isNaN(p) || isNaN(r) || isNaN(t)) { alert('Enter valid numbers'); return; }
+            const m = r / 100 / 12;
+            const emi = (p * m * Math.pow(1 + m, t)) / (Math.pow(1 + m, t) - 1);
+            const total = emi * t;
+            showResult(`EMI: ₹${emi.toFixed(2)} | Total: ₹${total.toFixed(2)}`);
+        }
+
+        function calculateDiscount() {
+            const orig = parseFloat(document.getElementById('disc_original').value);
+            const perc = parseFloat(document.getElementById('disc_percent').value);
+            if (isNaN(orig) || isNaN(perc)) { alert('Enter valid numbers'); return; }
+            const discount = (orig * perc) / 100;
+            const sale = orig - discount;
+            showResult(`Discount: ₹${discount.toFixed(2)} | Sale Price: ₹${sale.toFixed(2)}`);
+        }
+
+        function calculateVelocity() {
+            const dist = parseFloat(document.getElementById('vel_dist').value);
+            const time = parseFloat(document.getElementById('vel_time').value);
+            if (isNaN(dist) || isNaN(time)) { alert('Enter valid numbers'); return; }
+            if (time === 0) { alert('Time cannot be zero'); return; }
+            const vel = dist / time;
+            showResult(`v = ${vel.toFixed(4)} m/s`);
+        }
+
+        function calculateForce() {
+            const mass = parseFloat(document.getElementById('force_mass').value);
+            const acc = parseFloat(document.getElementById('force_acc').value);
+            if (isNaN(mass) || isNaN(acc)) { alert('Enter valid numbers'); return; }
+            const force = mass * acc;
+            showResult(`F = ${force.toFixed(4)} N`);
+        }
+
+        function calculateKE() {
+            const mass = parseFloat(document.getElementById('ke_mass').value);
+            const vel = parseFloat(document.getElementById('ke_vel').value);
+            if (isNaN(mass) || isNaN(vel)) { alert('Enter valid numbers'); return; }
+            const ke = 0.5 * mass * vel * vel;
+            showResult(`KE = ${ke.toFixed(4)} J`);
+        }
+
+        function calculatePE() {
+            const mass = parseFloat(document.getElementById('pe_mass').value);
+            const g = parseFloat(document.getElementById('pe_g').value);
+            const h = parseFloat(document.getElementById('pe_h').value);
+            if (isNaN(mass) || isNaN(g) || isNaN(h)) { alert('Enter valid numbers'); return; }
+            const pe = mass * g * h;
+            showResult(`PE = ${pe.toFixed(4)} J`);
+        }
+
+        function calculatePH() {
+            const conc = parseFloat(document.getElementById('ph_conc').value);
+            if (isNaN(conc) || conc <= 0) { alert('Enter positive concentration'); return; }
+            const ph = -Math.log10(conc);
+            showResult(`pH = ${ph.toFixed(2)}`);
+        }
+
+        function calculateMolarity() {
+            const moles = parseFloat(document.getElementById('mol_moles').value);
+            const vol = parseFloat(document.getElementById('mol_volume').value);
+            if (isNaN(moles) || isNaN(vol)) { alert('Enter valid numbers'); return; }
+            if (vol === 0) { alert('Volume cannot be zero'); return; }
+            const mol = moles / vol;
+            showResult(`Molarity = ${mol.toFixed(4)} mol/L`);
+        }
+
         // Close modal on outside click
         document.getElementById('calcModal').addEventListener('click', (e) => {
-            if (e.target.id === 'calcModal') {
-                closeCalculator();
-            }
+            if (e.target.id === 'calcModal') closeCalculator();
         });
 
         // Close modal on Escape key
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeCalculator();
-            }
+            if (e.key === 'Escape') closeCalculator();
         });
-    </script>
 </body>
 </html>

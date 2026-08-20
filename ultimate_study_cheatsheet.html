@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yostudy Cheat Sheet - Classes 1-9</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --danger: #ef4444;
+            --dark-bg: #0f172a;
+            --dark-card: #1e293b;
+            --dark-text: #f1f5f9;
+            --light-bg: #f8fafc;
+            --light-card: #ffffff;
+            --light-text: #1e293b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            transition: all 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.8); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* NAVBAR */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode nav {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 600;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(1.05);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.8s both;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* CATEGORIES SECTION */
+        .categories {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--light-card);
+            border-radius: 20px;
+            padding: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            animation: fadeInUp 0.6s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .category-card {
+            background: var(--dark-card);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+
+        .category-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .category-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-card p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* CONTENT SECTIONS */
+        .content-section {
+            display: none;
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .subsection {
+            margin-bottom: 3rem;
+        }
+
+        .subsection h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--light-card);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .card {
+            background: var(--dark-card);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* MULTIPLICATION TABLES */
+        .table-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .table-card {
+            background: var(--light-card);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .table-card {
+            background: var(--dark-card);
+        }
+
+        .table-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .table-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .table-content {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .table-content div {
+            padding: 0.25rem 0;
+        }
+
+        /* FORMULAS */
+        .formula-card {
+            background: var(--light-card);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .formula-card {
+            background: var(--dark-card);
+        }
+
+        .formula-card:hover {
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.15);
+        }
+
+        .formula-card h4 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .formula-section {
+            margin-bottom: 0.5rem;
+        }
+
+        .formula-label {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.3rem;
+        }
+
+        .formula-content {
+            background: rgba(99, 102, 241, 0.05);
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 0.5rem;
+            overflow-x: auto;
+        }
+
+        /* CALCULATORS */
+        .calculator-section {
+            max-width: 500px;
+            margin: 2rem auto;
+            background: var(--light-card);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body.dark-mode .calculator-section {
+            background: var(--dark-card);
+        }
+
+        .calc-input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: var(--light-bg);
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .calc-input {
+            background: rgba(99, 102, 241, 0.1);
+            border-color: rgba(99, 102, 241, 0.3);
+            color: var(--dark-text);
+        }
+
+        .calc-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .calc-result {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        /* UTILITIES */
+        .utilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .utility-card {
+            background: var(--light-card);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        body.dark-mode .utility-card {
+            background: var(--dark-card);
+        }
+
+        .utility-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .utility-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .utility-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .navbar {
+                padding: 1rem;
+            }
+
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* LOADING STATE */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        body.dark-mode ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
+        }
+
+        /* BADGE */
+        .badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .badge-success {
+            background: var(--success);
+        }
+
+        .badge-warning {
+            background: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <div class="logo">📚 Yostudy</div>
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')">Home</a></li>
+                <li><a onclick="showSection('study')">Study</a></li>
+                <li><a onclick="showSection('multiplication')">Tables</a></li>
+                <li><a onclick="showSection('math-formulas')">Formulas</a></li>
+                <li><a onclick="showSection('calculators')">Calculators</a></li>
+                <li><a onclick="showSection('dictionary')"Subjects</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME SECTION -->
+    <section id="home" class="content-section active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Master Your Studies</h1>
+                <p>Complete Learning Hub for Classes 1-9</p>
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search topics, formulas, notes..." id="globalSearch" onkeyup="globalSearch()">
+                </div>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="showSection('study')">Start Learning</button>
+                    <button class="btn btn-secondary" onclick="showSection('exam-prep')">Prepare for Exams</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="categories">
+            <h2 class="section-title">Choose Your Category</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="showSection('study')">
+                    <div class="category-icon">📖</div>
+                    <h3>Study Notes</h3>
+                    <p>Complete notes for all subjects and classes</p>
+                </div>
+                <div class="category-card" onclick="showSection('multiplication')">
+                    <div class="category-icon">✖️</div>
+                    <h3>Multiplication Tables</h3>
+                    <p>Tables from 2 to 1000 with search</p>
+                </div>
+                <div class="category-card" onclick="showSection('math-formulas')">
+                    <div class="category-icon">∑</div>
+                    <h3>Math Formulas</h3>
+                    <p>500+ formulas with examples</p>
+                </div>
+                <div class="category-card" onclick="showSection('science')">
+                    <div class="category-icon">🧪</div>
+                    <h3>Science</h3>
+                    <p>Physics, Chemistry, Biology resources</p>
+                </div>
+                <div class="category-card" onclick="showSection('dictionary')">
+                    <div class="category-icon">📕</div>
+                    <h3Subjects</h3>
+                    <p>English, Hindi, Subject dictionaries</p>
+                </div>
+                <div class="category-card" onclick="showSection('calculators')">
+                    <div class="category-icon">🧮</div>
+                    <h3>Calculators</h3>
+                    <p>Scientific, percentage, unit conversion</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STUDY SECTION -->
+    <section id="study" class="content-section">
+        <h1 class="section-title">Study Notes by Class</h1>
+        
+        <div class="subsection">
+            <h2>Class 1-3: Foundations</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📚 English Basics</h4>
+                    <p><span class="badge">Class 1</span>Alphabets, Numbers, Simple Words, Reading Skills</p>
+                </div>
+                <div class="card">
+                    <h4>🔤 Hindi Fundamentals</h4>
+                    <p><span class="badge">Class 1</span>वर्णमाला, संख्याएँ, साधारण शब्द</p>
+                </div>
+                <div class="card">
+                    <h4>🔢 Mathematics Basics</h4>
+                    <p><span class="badge">Class 2</span>Addition, Subtraction, Shapes, Measurement</p>
+                </div>
+                <div class="card">
+                    <h4>🌍 Science Discovery</h4>
+                    <p><span class="badge">Class 3</span>Animals, Plants, Environment, Weather</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Class 4-6: Building Blocks</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📖 English Grammar</h4>
+                    <p><span class="badge">Class 4</span>Tenses, Parts of Speech, Sentence Structure</p>
+                </div>
+                <div class="card">
+                    <h4>📝 Hindi Grammar</h4>
+                    <p><span class="badge">Class 4</span>संधि, समास, काल, लिंग, वचन</p>
+                </div>
+                <div class="card">
+                    <h4>➕ Advanced Math</h4>
+                    <p><span class="badge">Class 5</span>Fractions, Decimals, Geometry, Algebra</p>
+                </div>
+                <div class="card">
+                    <h4>🧬 Science & Nature</h4>
+                    <p><span class="badge">Class 6</span>Biology, Physics, Chemistry Basics</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Class 7-9: Advanced Level</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📚 English Literature</h4>
+                    <p><span class="badge">Class 7</span>Essays, Stories, Comprehension, Poems</p>
+                </div>
+                <div class="card">
+                    <h4>📕 Hindi Literature</h4>
+                    <p><span class="badge">Class 8</span>काव्य, गद्य, आलोचनात्मक विश्लेषण</p>
+                </div>
+                <div class="card">
+                    <h4>🔬 Advanced Science</h4>
+                    <p><span class="badge">Class 9</span>Detailed Biology, Physics, Chemistry Concepts</p>
+                </div>
+                <div class="card">
+                    <h4>🌐 Social Science</h4>
+                    <p><span class="badge">Class 9</span>History, Geography, Political Science, Economics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MULTIPLICATION TABLES -->
+    <section id="multiplication" class="content-section">
+        <h1 class="section-title">Multiplication Tables (2-100)</h1>
+        <div style="max-width: 500px; margin: 2rem auto;">
+            <input type="number" min="2" max="1000" value="2" id="tableSearch" class="search-input" onchange="showTable()" placeholder="Enter table number (2-1000)">
+        </div>
+        <div class="table-grid" id="tableGrid">
+            <!-- Tables will be generated here -->
+        </div>
+    </section>
+
+    <!-- MATH FORMULAS -->
+    <section id="math-formulas" class="content-section">
+        <h1 class="section-title">Mathematics Formulas</h1>
+
+        <div class="subsection">
+            <h2>Arithmetic</h2>
+            <div class="formula-card">
+                <h4>Simple Interest Formula</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Formula:</div>
+                    <div class="formula-content">SI = (P × R × T) / 100</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Where:</div>
+                    <p>P = Principal, R = Rate per annum, T = Time in years</p>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Example:</div>
+                    <p>If P = ₹1000, R = 10%, T = 2 years → SI = ₹200</p>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Percentage Formula</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Formula:</div>
+                    <div class="formula-content">Percentage = (Part / Whole) × 100</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Shortcut:</div>
+                    <p>Move decimal 2 places to the right and add %</p>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Profit and Loss</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Profit % = ((SP - CP) / CP) × 100</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Loss % = ((CP - SP) / CP) × 100</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Geometry</h2>
+            <div class="formula-card">
+                <h4>Area Formulas</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Circle:</div>
+                    <div class="formula-content">A = πr²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Triangle:</div>
+                    <div class="formula-content">A = (1/2) × base × height</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Rectangle:</div>
+                    <div class="formula-content">A = length × width</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Perimeter Formulas</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Circle (Circumference):</div>
+                    <div class="formula-content">C = 2πr or πd</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Rectangle:</div>
+                    <div class="formula-content">P = 2(length + width)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Algebra</h2>
+            <div class="formula-card">
+                <h4>Quadratic Equation</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Formula:</div>
+                    <div class="formula-content">x = [-b ± √(b² - 4ac)] / 2a</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">For ax² + bx + c = 0</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Algebraic Identities</h4>
+                <div class="formula-section">
+                    <div class="formula-content">(a + b)² = a² + 2ab + b²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-content">(a - b)² = a² - 2ab + b²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-content">a² - b² = (a + b)(a - b)</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Trigonometry</h2>
+            <div class="formula-card">
+                <h4>Basic Trigonometric Ratios</h4>
+                <div class="formula-section">
+                    <div class="formula-content">sin θ = Opposite / Hypotenuse</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-content">cos θ = Adjacent / Hypotenuse</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-content">tan θ = Opposite / Adjacent</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Memory Trick:</div>
+                    <p><strong>SOH CAH TOA</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCIENCE SECTION -->
+    <section id="science" class="content-section">
+        <h1 class="section-title">Science Resources</h1>
+
+        <div class="subsection">
+            <h2>Physics Formulas</h2>
+            <div class="formula-card">
+                <h4>Motion Formulas</h4>
+                <div class="formula-section">
+                    <div class="formula-content">v = u + at</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-content">s = ut + (1/2)at²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-content">v² = u² + 2as</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Force and Energy</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Newton's Second Law:</div>
+                    <div class="formula-content">F = ma</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Kinetic Energy:</div>
+                    <div class="formula-content">KE = (1/2)mv²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Potential Energy:</div>
+                    <div class="formula-content">PE = mgh</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Chemistry Concepts</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>⚛️ Atomic Structure</h4>
+                    <p>Electrons, Protons, Neutrons, Atomic number, Mass number</p>
+                </div>
+                <div class="card">
+                    <h4>🧪 Chemical Reactions</h4>
+                    <p>Types of reactions, Balancing equations, Chemical bonds</p>
+                </div>
+                <div class="card">
+                    <h4>🌊 Acids and Bases</h4>
+                    <p>pH Scale, Strong acids, Weak acids, Bases, Salts</p>
+                </div>
+                <div class="card">
+                    <h4>⚖️ Molar Mass</h4>
+                    <p>Calculating molecular weight, Mole concept</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Biology Topics</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🔬 Cell Biology</h4>
+                    <p>Cell structure, Organelles, Cell division, Photosynthesis</p>
+                </div>
+                <div class="card">
+                    <h4>🧬 Genetics</h4>
+                    <p>DNA, Heredity, Mendel's Laws, Chromosomes</p>
+                </div>
+                <div class="card">
+                    <h4>❤️ Human Body</h4>
+                    <p>Skeleton, Muscles, Blood, Digestion, Nervous System</p>
+                </div>
+                <div class="card">
+                    <h4>🌿 Ecology</h4>
+                    <p>Ecosystems, Food chains, Biodiversity, Environment</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DICTIONARY SECTION -->
+    <section id="dictionary" class="content-section">
+        <h1 class="section-title"Subjects</h1>
+        
+        <div class="subsection">
+            <h2>English Dictionary Sample</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📌 Serendipity</h4>
+                    <p><strong>Pronunciation:</strong> ser-uhn-dip-i-tee</p>
+                    <p><strong>Meaning:</strong> The occurrence of events by chance in a happy or beneficial way</p>
+                    <p><strong>Example:</strong> Finding that old photograph was pure serendipity.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Eloquent</h4>
+                    <p><strong>Pronunciation:</strong> el-uh-kwuhnt</p>
+                    <p><strong>Meaning:</strong> Fluent or persuasive in speaking or writing</p>
+                    <p><strong>Example:</strong> The speaker gave an eloquent speech.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Ephemeral</h4>
+                    <p><strong>Pronunciation:</strong> ih-fem-er-uhl</p>
+                    <p><strong>Meaning:</strong> Lasting for a very short time</p>
+                    <p><strong>Example:</strong> The beauty of cherry blossoms is ephemeral.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Ambiguous</h4>
+                    <p><strong>Pronunciation:</strong> am-big-yoo-uhs</p>
+                    <p><strong>Meaning:</strong> Open to more than one interpretation; unclear</p>
+                    <p><strong>Example:</strong> The instructions were ambiguous.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Hindi Dictionary Sample</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📌 सुंदर (Sundar)</h4>
+                    <p><strong>अर्थ:</strong> सुंदर दिखने वाला, आकर्षक</p>
+                    <p><strong>उदाहरण:</strong> यह सुंदर बाग है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 ज्ञान (Gyan)</h4>
+                    <p><strong>अर्थ:</strong> शिक्षा, समझ, विद्या</p>
+                    <p><strong>उदाहरण:</strong> ज्ञान शक्ति है।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATORS -->
+    <section id="calculators" class="content-section">
+        <h1 class="section-title">Calculators & Tools</h1>
+
+        <div class="utilities-grid">
+            <div class="utility-card" onclick="switchCalculator('percentage')">
+                <div class="utility-icon">%</div>
+                <h3>Percentage</h3>
+                <p>Calculate percentage</p>
+            </div>
+            <div class="utility-card" onclick="switchCalculator('age')">
+                <div class="utility-icon">🎂</div>
+                <h3>Age Calculator</h3>
+                <p>Find your age</p>
+            </div>
+            <div class="utility-card" onclick="switchCalculator('fraction')">
+                <div class="utility-icon">⅓</div>
+                <h3>Fraction</h3>
+                <p>Simplify fractions</p>
+            </div>
+            <div class="utility-card" onclick="switchCalculator('unit')">
+                <div class="utility-icon">📏</div>
+                <h3>Unit Converter</h3>
+                <p>Convert units</p>
+            </div>
+            <div class="utility-card" onclick="switchCalculator('bmi')">
+                <div class="utility-icon">⚖️</div>
+                <h3>BMI Calculator</h3>
+                <p>Calculate BMI</p>
+            </div>
+            <div class="utility-card" onclick="switchCalculator('compound')">
+                <div class="utility-icon">💰</div>
+                <h3>Compound Interest</h3>
+                <p>Calculate CI</p>
+            </div>
+        </div>
+
+        <!-- Percentage Calculator -->
+        <div id="percentage-calc" class="calculator-section" style="display: none;">
+            <h2>Percentage Calculator</h2>
+            <input type="number" class="calc-input" id="percent-part" placeholder="Enter part" onchange="calculatePercentage()">
+            <input type="number" class="calc-input" id="percent-whole" placeholder="Enter whole" onchange="calculatePercentage()">
+            <div class="calc-result" id="percent-result">Result: 0%</div>
+        </div>
+
+        <!-- Age Calculator -->
+        <div id="age-calc" class="calculator-section" style="display: none;">
+            <h2>Age Calculator</h2>
+            <input type="date" class="calc-input" id="birth-date" onchange="calculateAge()">
+            <div class="calc-result" id="age-result">Result: --</div>
+        </div>
+
+        <!-- Fraction Calculator -->
+        <div id="fraction-calc" class="calculator-section" style="display: none;">
+            <h2>Fraction Simplifier</h2>
+            <input type="number" class="calc-input" id="numerator" placeholder="Numerator" onchange="simplifyFraction()">
+            <input type="number" class="calc-input" id="denominator" placeholder="Denominator" onchange="simplifyFraction()">
+            <div class="calc-result" id="fraction-result">Result: --</div>
+        </div>
+
+        <!-- Unit Converter -->
+        <div id="unit-calc" class="calculator-section" style="display: none;">
+            <h2>Length Converter</h2>
+            <input type="number" class="calc-input" id="meter-input" placeholder="Meters" onchange="convertUnits()">
+            <div class="calc-result" id="unit-result">Result: --</div>
+        </div>
+
+        <!-- BMI Calculator -->
+        <div id="bmi-calc" class="calculator-section" style="display: none;">
+            <h2>BMI Calculator</h2>
+            <input type="number" class="calc-input" id="weight" placeholder="Weight (kg)" onchange="calculateBMI()">
+            <input type="number" class="calc-input" id="height" placeholder="Height (cm)" onchange="calculateBMI()">
+            <div class="calc-result" id="bmi-result">Result: --</div>
+        </div>
+
+        <!-- Compound Interest -->
+        <div id="compound-calc" class="calculator-section" style="display: none;">
+            <h2>Compound Interest Calculator</h2>
+            <input type="number" class="calc-input" id="principal" placeholder="Principal (₹)" onchange="calculateCompound()">
+            <input type="number" class="calc-input" id="rate" placeholder="Rate (% p.a.)" onchange="calculateCompound()">
+            <input type="number" class="calc-input" id="time" placeholder="Time (years)" onchange="calculateCompound()">
+            <div class="calc-result" id="compound-result">Result: ₹0</div>
+        </div>
+    </section>
+
+    <!-- EXAM PREP SECTION -->
+    <section id="exam-prep" class="content-section">
+        <h1 class="section-title">Exam Preparation</h1>
+
+        <div class="subsection">
+            <h2>Quick Revision</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📋 MCQs Bank</h4>
+                    <p><span class="badge-success">Important</span>Practice with hundreds of multiple choice questions</p>
+                </div>
+                <div class="card">
+                    <h4>📝 One-Liners</h4>
+                    <p><span class="badge-success">Quick</span>Important facts in short form</p>
+                </div>
+                <div class="card">
+                    <h4>🎯 Expected Questions</h4>
+                    <p><span class="badge-warning">Popular</span>Frequently asked exam questions</p>
+                </div>
+                <div class="card">
+                    <h4>📚 Sample Papers</h4>
+                    <p><span class="badge-warning">Practice</span>Previous year and model papers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>Study Strategy</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>✅ Time Management</h4>
+                    <p>Study 2 hours daily with breaks. Focus on weak areas. Revise regularly.</p>
+                </div>
+                <div class="card">
+                    <h4>📖 Active Learning</h4>
+                    <p>Read, write, solve problems. Make mind maps. Create summary notes.</p>
+                </div>
+                <div class="card">
+                    <h4>🔍 Self Assessment</h4>
+                    <p>Take mock tests weekly. Analyze mistakes. Learn from errors.</p>
+                </div>
+                <div class="card">
+                    <h4>💪 Confidence Building</h4>
+                    <p>Practice regularly. Stay positive. Get adequate sleep. Eat well.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Yostudy Cheat Sheet is a comprehensive learning platform for students of classes 1-9, providing complete study materials, formulas, calculators, and exam preparation resources.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a onclick="showSection('study')">Study Notes</a></li>
+                    <li><a onclick="showSection('math-formulas')">Formulas</a></li>
+                    <li><a onclick="showSection('multiplication')">Multiplication Tables</a></li>
+                    <li><a onclick="showSection('calculators')">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy Cheat Sheet. All Rights Reserved. | Made with ❤️ for Students</p>
+        </div>
+    </footer>
+
+    <script>
+        // THEME TOGGLE
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const themeToggle = document.querySelector('.theme-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            } else {
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Load theme preference
+        window.addEventListener('load', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+
+            // Generate multiplication tables on load
+            generateTables();
+        });
+
+        // SECTION NAVIGATION
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+                window.scrollTo(0, 0);
+            }
+        }
+
+        // HAMBURGER MENU
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        // GLOBAL SEARCH
+        function globalSearch() {
+            const searchTerm = document.getElementById('globalSearch').value.toLowerCase();
+            if (searchTerm.length > 2) {
+                alert(`Searching for: "${searchTerm}"\n\nSearching in:\n- Study Notes\n- Formulas\n- Definitions\n- Examples`);
+            }
+        }
+
+        // MULTIPLICATION TABLES
+        function generateTables() {
+            const tableGrid = document.getElementById('tableGrid');
+            tableGrid.innerHTML = '';
+            
+            for (let i = 2; i <= 20; i++) {
+                const tableCard = document.createElement('div');
+                tableCard.className = 'table-card';
+                let tableContent = '';
+                
+                for (let j = 1; j <= 10; j++) {
+                    tableContent += `<div>${i} × ${j} = ${i * j}</div>`;
+                }
+                
+                tableCard.innerHTML = `
+                    <div class="table-number">${i}</div>
+                    <div class="table-content">${tableContent}</div>
+                `;
+                tableGrid.appendChild(tableCard);
+            }
+        }
+
+        function showTable() {
+            const tableNum = parseInt(document.getElementById('tableSearch').value);
+            if (tableNum < 2 || tableNum > 1000) {
+                alert('Please enter a number between 2 and 1000');
+                return;
+            }
+
+            const tableGrid = document.getElementById('tableGrid');
+            tableGrid.innerHTML = '';
+            
+            let tableContent = '';
+            for (let j = 1; j <= 10; j++) {
+                tableContent += `<div>${tableNum} × ${j} = ${tableNum * j}</div>`;
+            }
+            
+            tableGrid.innerHTML = `
+                <div class="table-card" style="grid-column: 1 / -1; max-width: 400px; margin: 0 auto;">
+                    <div class="table-number">${tableNum}</div>
+                    <div class="table-content">${tableContent}</div>
+                </div>
+            `;
+        }
+
+        // CALCULATORS
+        function switchCalculator(type) {
+            document.querySelectorAll('[id$="-calc"]').forEach(calc => {
+                calc.style.display = 'none';
+            });
+            document.getElementById(type + '-calc').style.display = 'block';
+            window.scrollTo(0, document.querySelector('.calculator-section').offsetTop - 100);
+        }
+
+        function calculatePercentage() {
+            const part = parseFloat(document.getElementById('percent-part').value) || 0;
+            const whole = parseFloat(document.getElementById('percent-whole').value) || 1;
+            const result = (part / whole) * 100;
+            document.getElementById('percent-result').textContent = `Result: ${result.toFixed(2)}%`;
+        }
+
+        function calculateAge() {
+            const birthDate = new Date(document.getElementById('birth-date').value);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            document.getElementById('age-result').textContent = `Result: ${age} years old`;
+        }
+
+        function simplifyFraction() {
+            const num = parseInt(document.getElementById('numerator').value) || 0;
+            const denom = parseInt(document.getElementById('denominator').value) || 1;
+            
+            function gcd(a, b) {
+                return b === 0 ? a : gcd(b, a % b);
+            }
+            
+            const divisor = gcd(num, denom);
+            const simplifiedNum = num / divisor;
+            const simplifiedDenom = denom / divisor;
+            
+            document.getElementById('fraction-result').textContent = `Result: ${simplifiedNum}/${simplifiedDenom}`;
+        }
+
+        function convertUnits() {
+            const meters = parseFloat(document.getElementById('meter-input').value) || 0;
+            const feet = (meters * 3.28084).toFixed(2);
+            const km = (meters / 1000).toFixed(3);
+            
+            document.getElementById('unit-result').innerHTML = `Result: ${meters}m = ${feet}ft = ${km}km`;
+        }
+
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value) || 0;
+            const height = parseFloat(document.getElementById('height').value) || 1;
+            
+            const heightInM = height / 100;
+            const bmi = (weight / (heightInM * heightInM)).toFixed(1);
+            
+            let category = '';
+            if (bmi < 18.5) category = 'Underweight';
+            else if (bmi < 25) category = 'Normal';
+            else if (bmi < 30) category = 'Overweight';
+            else category = 'Obese';
+            
+            document.getElementById('bmi-result').textContent = `Result: ${bmi} (${category})`;
+        }
+
+        function calculateCompound() {
+            const principal = parseFloat(document.getElementById('principal').value) || 0;
+            const rate = parseFloat(document.getElementById('rate').value) || 0;
+            const time = parseFloat(document.getElementById('time').value) || 0;
+            
+            const amount = principal * Math.pow(1 + rate / 100, time);
+            const ci = (amount - principal).toFixed(2);
+            
+            document.getElementById('compound-result').textContent = `Result: ₹${ci}`;
+        }
+    </script>
+</body>
+</html>

@@ -3,320 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yostudy - 200+ Calculators</title>
+    <title>Calculators | Yostudy</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .calculators-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .calculator-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
-            border: 2px solid var(--primary-color);
-            border-radius: 12px;
-            padding: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            animation: fadeInUp 0.4s ease;
-        }
-
-        .calculator-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
-        }
-
-        .calculator-card .icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .calculator-card h4 {
-            color: var(--primary-color);
-            margin: 10px 0;
-            font-size: 1rem;
-        }
-
-        .calculator-card p {
-            color: #666;
-            font-size: 0.85rem;
-            margin: 0;
-        }
-
-        body.dark-mode .calculator-card p {
-            color: #aaa;
-        }
-
-        .category-section {
-            margin: 50px 0;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .category-header .icon {
-            font-size: 2rem;
-        }
-
-        .category-header h2 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 1.8rem;
-        }
-
-        .search-box {
-            background: white;
-            border-radius: 12px;
-            padding: 15px 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        body.dark-mode .search-box {
-            background: var(--dark-card);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .search-box input {
-            flex: 1;
-            border: none;
-            background: transparent;
-            font-size: 1rem;
-            color: inherit;
-            outline: none;
-        }
-
-        .search-box input::placeholder {
-            color: #999;
-        }
-
-        .calculator-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .calculator-modal.active {
-            display: flex;
-        }
-
-        .calculator-content {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 600px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: slideUp 0.3s ease;
-        }
-
-        body.dark-mode .calculator-content {
-            background: var(--dark-card);
-        }
-
-        .calculator-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .calculator-header h3 {
-            color: var(--primary-color);
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--primary-color);
-            transition: all 0.3s ease;
-        }
-
-        .close-btn:hover {
-            transform: rotate(90deg);
-        }
-
-        .calculator-body {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .input-group label {
-            font-weight: bold;
-            color: var(--primary-color);
-            font-size: 0.95rem;
-        }
-
-        .input-group input,
-        .input-group select {
-            padding: 10px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        body.dark-mode .input-group input,
-        body.dark-mode .input-group select {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary-color);
-            color: white;
-        }
-
-        .input-group input:focus,
-        .input-group select:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
-        }
-
-        .calc-button {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-
-        .calc-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.4);
-        }
-
-        .result-box {
-            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
-            border: 2px solid #4CAF50;
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 20px;
-            display: none;
-        }
-
-        .result-box.show {
-            display: block;
-            animation: slideUp 0.3s ease;
-        }
-
-        .result-box h4 {
-            color: #4CAF50;
-            margin-top: 0;
-        }
-
-        .result-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            word-break: break-all;
-        }
-
-        .category-count {
-            background: var(--primary-color);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 40px 20px;
-            color: #999;
-        }
-
-        .no-results .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .calculators-grid {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 12px;
-            }
-
-            .calculator-card h4 {
-                font-size: 0.9rem;
-            }
-
-            .calculator-content {
-                padding: 20px;
-            }
-        }
-    </style>
 </head>
 <body>
     <!-- NAVBAR -->
     <nav>
         <div class="navbar">
-            <a href="index.html" class="logo">
-                <img src="yostudy-logo.png" alt="Yostudy Logo" class="logo-img">
-            </a>
+            <a href="index.html" class="logo"><img src="yostudy-logo.png" alt="Yostudy Logo" class="logo-img"></a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="study.html">Study</a></li>
-                <li><a href="ai-tutor.html">AI Tutor</a></li>
-                <li><a href="calculators-hub.html">Calculators</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
                 <li><a href="formulas.html">Formulas</a></li>
                 <li><a href="science.html">Science</a></li>
+                <li><a href="calculators-hub.html">Calculators</a></li>
             </ul>
             <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
             <div class="hamburger" onclick="toggleMenu()">
@@ -327,717 +28,159 @@
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
-    <div class="container">
-        <div style="text-align: center; margin: 50px 0;">
-            <h1 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 10px;">🧮 Yostudy Calculator Hub</h1>
-            <p style="font-size: 1.1rem; color: #666;">200+ Free Online Calculators for All Your Needs</p>
-        </div>
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+        <h1 class="page-title">Calculators & Tools</h1>
 
-        <!-- SEARCH -->
-        <div class="search-box">
-            <span>🔍</span>
-            <input 
-                type="text" 
-                id="searchInput" 
-                placeholder="Search calculators... (e.g., percentage, area, loan)"
-                onkeyup="searchCalculators()"
-            >
-        </div>
-
-        <!-- BASIC CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">➕</span>
-                <h2>Basic Calculators</h2>
-                <span class="category-count">4</span>
-            </div>
-            <div class="calculators-grid" id="basicCalcs">
-                <div class="calculator-card" onclick="openCalculator('scientific')">
-                    <div class="icon">🔬</div>
-                    <h4>Scientific Calculator</h4>
-                    <p>Advanced mathematical functions</p>
+        <!-- CALCULATOR SELECTION -->
+        <div class="subsection">
+            <h2>Select a Calculator</h2>
+            <div class="utilities-grid">
+                <div class="utility-card" onclick="switchCalculator('percentage')">
+                    <div class="utility-icon">%</div>
+                    <h3>Percentage</h3>
+                    <p>Calculate percentage</p>
                 </div>
-                <div class="calculator-card" onclick="openCalculator('basic')">
-                    <div class="icon">🧮</div>
-                    <h4>Basic Calculator</h4>
-                    <p>Simple arithmetic operations</p>
+                <div class="utility-card" onclick="switchCalculator('age')">
+                    <div class="utility-icon">🎂</div>
+                    <h3>Age Calculator</h3>
+                    <p>Find your age</p>
                 </div>
-                <div class="calculator-card" onclick="openCalculator('percentage')">
-                    <div class="icon">%</div>
-                    <h4>Percentage Calculator</h4>
-                    <p>Calculate percentages easily</p>
+                <div class="utility-card" onclick="switchCalculator('fraction')">
+                    <div class="utility-icon">⅓</div>
+                    <h3>Fraction</h3>
+                    <p>Simplify fractions</p>
                 </div>
-                <div class="calculator-card" onclick="openCalculator('modulo')">
-                    <div class="icon">÷</div>
-                    <h4>Modulo Calculator</h4>
-                    <p>Find remainder after division</p>
+                <div class="utility-card" onclick="switchCalculator('unit')">
+                    <div class="utility-icon">📏</div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert units</p>
                 </div>
-            </div>
-        </div>
-
-        <!-- ALGEBRAIC CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">📐</span>
-                <h2>Algebra & Equations</h2>
-                <span class="category-count">8</span>
-            </div>
-            <div class="calculators-grid" id="algebraCalcs">
-                <div class="calculator-card" onclick="openCalculator('linear')">
-                    <div class="icon">📈</div>
-                    <h4>Linear Equation</h4>
-                    <p>Solve ax + b = 0</p>
+                <div class="utility-card" onclick="switchCalculator('bmi')">
+                    <div class="utility-icon">⚖️</div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate BMI</p>
                 </div>
-                <div class="calculator-card" onclick="openCalculator('quadratic')">
-                    <div class="icon">🔄</div>
-                    <h4>Quadratic Equation</h4>
-                    <p>Solve ax² + bx + c = 0</p>
+                <div class="utility-card" onclick="switchCalculator('compound')">
+                    <div class="utility-icon">💰</div>
+                    <h3>Compound Interest</h3>
+                    <p>Calculate CI</p>
                 </div>
-                <div class="calculator-card" onclick="openCalculator('exponent')">
-                    <div class="icon">⚡</div>
-                    <h4>Exponent Calculator</h4>
-                    <p>Calculate powers and roots</p>
+                <div class="utility-card" onclick="switchCalculator('simple')">
+                    <div class="utility-icon">📊</div>
+                    <h3>Simple Interest</h3>
+                    <p>Calculate SI</p>
                 </div>
-                <div class="calculator-card" onclick="openCalculator('logarithm')">
-                    <div class="icon">📊</div>
-                    <h4>Logarithm Calculator</h4>
-                    <p>Log, ln, and custom bases</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('sqrt')">
-                    <div class="icon">√</div>
-                    <h4>Square Root Calculator</h4>
-                    <p>Calculate square roots</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('cbrt')">
-                    <div class="icon">∛</div>
-                    <h4>Cube Root Calculator</h4>
-                    <p>Calculate cube roots</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('factorial')">
-                    <div class="icon">!</div>
-                    <h4>Factorial Calculator</h4>
-                    <p>Calculate n!</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('gcd')">
-                    <div class="icon">🔗</div>
-                    <h4>GCD/LCM Calculator</h4>
-                    <p>Greatest Common Divisor</p>
+                <div class="utility-card" onclick="switchCalculator('discount')">
+                    <div class="utility-icon">🏷️</div>
+                    <h3>Discount</h3>
+                    <p>Calculate discount</p>
                 </div>
             </div>
         </div>
 
-        <!-- GEOMETRY CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">📏</span>
-                <h2>Geometry Calculators</h2>
-                <span class="category-count">18</span>
+        <!-- CALCULATORS -->
+
+        <!-- Percentage Calculator -->
+        <div id="percentage-calc" class="calculator-section" style="display: none;">
+            <h2>Percentage Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">What is X% of Y?</label>
+                <input type="number" class="calc-input" id="percent-part" placeholder="Enter part value" onchange="calculatePercentage()">
+                <input type="number" class="calc-input" id="percent-whole" placeholder="Enter whole value" onchange="calculatePercentage()">
+                <div class="calc-result" id="percent-result">Result: 0%</div>
             </div>
-            <div class="calculators-grid" id="geometryCalcs">
-                <div class="calculator-card" onclick="openCalculator('circle')">
-                    <div class="icon">⭕</div>
-                    <h4>Circle Calculator</h4>
-                    <p>Area, circumference, radius</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('triangle')">
-                    <div class="icon">△</div>
-                    <h4>Triangle Calculator</h4>
-                    <p>Area, perimeter, sides</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('rectangle')">
-                    <div class="icon">▭</div>
-                    <h4>Rectangle Calculator</h4>
-                    <p>Area, perimeter, diagonal</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('square')">
-                    <div class="icon">▢</div>
-                    <h4>Square Calculator</h4>
-                    <p>Area, perimeter, diagonal</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('trapezoid')">
-                    <div class="icon">◷</div>
-                    <h4>Trapezoid Calculator</h4>
-                    <p>Area, perimeter, height</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('cylinder')">
-                    <div class="icon">🔴</div>
-                    <h4>Cylinder Calculator</h4>
-                    <p>Volume, surface area</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('sphere')">
-                    <div class="icon">🔵</div>
-                    <h4>Sphere Calculator</h4>
-                    <p>Volume, surface area</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('cone')">
-                    <div class="icon">🍦</div>
-                    <h4>Cone Calculator</h4>
-                    <p>Volume, surface area</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('cube')">
-                    <div class="icon">🧊</div>
-                    <h4>Cube Calculator</h4>
-                    <p>Volume, surface area</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('ellipse')">
-                    <div class="icon">⬭</div>
-                    <h4>Ellipse Calculator</h4>
-                    <p>Area, perimeter, eccentricity</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('pyramid')">
-                    <div class="icon">🔺</div>
-                    <h4>Pyramid Calculator</h4>
-                    <p>Volume, surface area</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('prism')">
-                    <div class="icon">█</div>
-                    <h4>Prism Calculator</h4>
-                    <p>Volume, surface area</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('distance')">
-                    <div class="icon">📍</div>
-                    <h4>Distance Formula</h4>
-                    <p>Distance between points</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('midpoint')">
-                    <div class="icon">◆</div>
-                    <h4>Midpoint Calculator</h4>
-                    <p>Midpoint between coordinates</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('slope')">
-                    <div class="icon">↗</div>
-                    <h4>Slope Calculator</h4>
-                    <p>Slope between two points</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('pythagorean')">
-                    <div class="icon">📐</div>
-                    <h4>Pythagorean Theorem</h4>
-                    <p>a² + b² = c²</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('area')">
-                    <div class="icon">📏</div>
-                    <h4>Area Calculator</h4>
-                    <p>Area of various shapes</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('volume')">
-                    <div class="icon">📦</div>
-                    <h4>Volume Calculator</h4>
-                    <p>Volume of 3D shapes</p>
+        </div>
+
+        <!-- Age Calculator -->
+        <div id="age-calc" class="calculator-section" style="display: none;">
+            <h2>Age Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Select Your Date of Birth</label>
+                <input type="date" class="calc-input" id="birth-date" onchange="calculateAge()">
+                <div class="calc-result" id="age-result">Result: --</div>
+            </div>
+        </div>
+
+        <!-- Fraction Calculator -->
+        <div id="fraction-calc" class="calculator-section" style="display: none;">
+            <h2>Fraction Simplifier</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Simplify Fractions</label>
+                <input type="number" class="calc-input" id="numerator" placeholder="Numerator" onchange="simplifyFraction()">
+                <input type="number" class="calc-input" id="denominator" placeholder="Denominator" onchange="simplifyFraction()">
+                <div class="calc-result" id="fraction-result">Result: --</div>
+            </div>
+        </div>
+
+        <!-- Unit Converter -->
+        <div id="unit-calc" class="calculator-section" style="display: none;">
+            <h2>Length Converter</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Convert Length Units</label>
+                <input type="number" class="calc-input" id="meter-input" placeholder="Meters" onchange="convertUnits()">
+                <div class="calc-result" id="unit-result">Result: --</div>
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Converts to: cm, feet, km</p>
+            </div>
+        </div>
+
+        <!-- BMI Calculator -->
+        <div id="bmi-calc" class="calculator-section" style="display: none;">
+            <h2>BMI Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Calculate Body Mass Index</label>
+                <input type="number" class="calc-input" id="weight" placeholder="Weight (kg)" onchange="calculateBMI()">
+                <input type="number" class="calc-input" id="height" placeholder="Height (cm)" onchange="calculateBMI()">
+                <div class="calc-result" id="bmi-result">Result: --</div>
+                <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem; font-size: 0.9rem;">
+                    <p><strong>BMI Categories:</strong></p>
+                    <p>Underweight: BMI &lt; 18.5</p>
+                    <p>Normal: 18.5 - 24.9</p>
+                    <p>Overweight: 25 - 29.9</p>
+                    <p>Obese: BMI ≥ 30</p>
                 </div>
             </div>
         </div>
 
-        <!-- TRIGONOMETRY CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">〰️</span>
-                <h2>Trigonometry</h2>
-                <span class="category-count">6</span>
+        <!-- Compound Interest Calculator -->
+        <div id="compound-calc" class="calculator-section" style="display: none;">
+            <h2>Compound Interest Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">A = P(1 + r/100)^t</label>
+                <input type="number" class="calc-input" id="principal" placeholder="Principal Amount (₹)" onchange="calculateCompound()">
+                <input type="number" class="calc-input" id="rate" placeholder="Rate of Interest (% p.a.)" onchange="calculateCompound()">
+                <input type="number" class="calc-input" id="time" placeholder="Time Period (years)" onchange="calculateCompound()">
+                <div class="calc-result" id="compound-result">Result: ₹0</div>
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Formula: CI = A - P</p>
             </div>
-            <div class="calculators-grid" id="trigCalcs">
-                <div class="calculator-card" onclick="openCalculator('sine')">
-                    <div class="icon">sin</div>
-                    <h4>Sine Calculator</h4>
-                    <p>Calculate sin(θ)</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('cosine')">
-                    <div class="icon">cos</div>
-                    <h4>Cosine Calculator</h4>
-                    <p>Calculate cos(θ)</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('tangent')">
-                    <div class="icon">tan</div>
-                    <h4>Tangent Calculator</h4>
-                    <p>Calculate tan(θ)</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('inverse_trig')">
-                    <div class="icon">arctan</div>
-                    <h4>Inverse Trigonometry</h4>
-                    <p>arcsin, arccos, arctan</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('law_sines')">
-                    <div class="icon">∿</div>
-                    <h4>Law of Sines</h4>
-                    <p>a/sin(A) = b/sin(B)</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('law_cosines')">
-                    <div class="icon">≈</div>
-                    <h4>Law of Cosines</h4>
-                    <p>c² = a² + b² - 2ab·cos(C)</p>
+        </div>
+
+        <!-- Simple Interest Calculator -->
+        <div id="simple-calc" class="calculator-section" style="display: none;">
+            <h2>Simple Interest Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">SI = (P × R × T) / 100</label>
+                <input type="number" class="calc-input" id="si-principal" placeholder="Principal Amount (₹)" onchange="calculateSimpleInterest()">
+                <input type="number" class="calc-input" id="si-rate" placeholder="Rate of Interest (% p.a.)" onchange="calculateSimpleInterest()">
+                <input type="number" class="calc-input" id="si-time" placeholder="Time Period (years)" onchange="calculateSimpleInterest()">
+                <div class="calc-result" id="si-result">Result: ₹0</div>
+                <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem; font-size: 0.9rem;">
+                    <p><strong>Example:</strong></p>
+                    <p>P = ₹1000, R = 10%, T = 2</p>
+                    <p>SI = (1000 × 10 × 2) / 100 = ₹200</p>
                 </div>
             </div>
         </div>
 
-        <!-- STATISTICS CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">📊</span>
-                <h2>Statistics & Probability</h2>
-                <span class="category-count">15</span>
-            </div>
-            <div class="calculators-grid" id="statsCalcs">
-                <div class="calculator-card" onclick="openCalculator('mean')">
-                    <div class="icon">μ</div>
-                    <h4>Mean Calculator</h4>
-                    <p>Average of numbers</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('median')">
-                    <div class="icon">~</div>
-                    <h4>Median Calculator</h4>
-                    <p>Middle value</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('mode')">
-                    <div class="icon">◉</div>
-                    <h4>Mode Calculator</h4>
-                    <p>Most frequent value</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('std_dev')">
-                    <div class="icon">σ</div>
-                    <h4>Standard Deviation</h4>
-                    <p>Measure of spread</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('variance')">
-                    <div class="icon">σ²</div>
-                    <h4>Variance Calculator</h4>
-                    <p>Variance of data</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('permutation')">
-                    <div class="icon">P</div>
-                    <h4>Permutation (nPr)</h4>
-                    <p>Arrangements</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('combination')">
-                    <div class="icon">C</div>
-                    <h4>Combination (nCr)</h4>
-                    <p>Selections</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('probability')">
-                    <div class="icon">P(A)</div>
-                    <h4>Probability Calculator</h4>
-                    <p>Calculate probabilities</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('zscore')">
-                    <div class="icon">Z</div>
-                    <h4>Z-Score Calculator</h4>
-                    <p>Standardize values</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('normal_dist')">
-                    <div class="icon">⌘</div>
-                    <h4>Normal Distribution</h4>
-                    <p>Bell curve calculations</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('binomial')">
-                    <div class="icon">B</div>
-                    <h4>Binomial Distribution</h4>
-                    <p>Discrete probability</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('confidence')">
-                    <div class="icon">⟨⟩</div>
-                    <h4>Confidence Interval</h4>
-                    <p>Statistical confidence</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('correlation')">
-                    <div class="icon">ρ</div>
-                    <h4>Correlation Calculator</h4>
-                    <p>Relationship strength</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('regression')">
-                    <div class="icon">📈</div>
-                    <h4>Linear Regression</h4>
-                    <p>Best fit line</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('covariance')">
-                    <div class="icon">Cov</div>
-                    <h4>Covariance Calculator</h4>
-                    <p>Joint variability</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- PHYSICS CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">⚛️</span>
-                <h2>Physics Calculators</h2>
-                <span class="category-count">20</span>
-            </div>
-            <div class="calculators-grid" id="physicsCalcs">
-                <div class="calculator-card" onclick="openCalculator('velocity')">
-                    <div class="icon">→</div>
-                    <h4>Velocity Calculator</h4>
-                    <p>Speed and direction</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('acceleration')">
-                    <div class="icon">↗️</div>
-                    <h4>Acceleration Calculator</h4>
-                    <p>Rate of velocity change</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('force')">
-                    <div class="icon">💪</div>
-                    <h4>Force Calculator</h4>
-                    <p>F = ma (Newton's Law)</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('momentum')">
-                    <div class="icon">⟲</div>
-                    <h4>Momentum Calculator</h4>
-                    <p>p = mv</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('kinetic_energy')">
-                    <div class="icon">⚡</div>
-                    <h4>Kinetic Energy</h4>
-                    <p>KE = ½mv²</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('potential_energy')">
-                    <div class="icon">⬆️</div>
-                    <h4>Potential Energy</h4>
-                    <p>PE = mgh</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('work')">
-                    <div class="icon">≣</div>
-                    <h4>Work Calculator</h4>
-                    <p>W = F·d</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('power')">
-                    <div class="icon">⚙️</div>
-                    <h4>Power Calculator</h4>
-                    <p>P = W/t</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('pressure')">
-                    <div class="icon">◆</div>
-                    <h4>Pressure Calculator</h4>
-                    <p>P = F/A</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('density')">
-                    <div class="icon">◼</div>
-                    <h4>Density Calculator</h4>
-                    <p>ρ = m/V</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('ohms_law')">
-                    <div class="icon">⚡</div>
-                    <h4>Ohm's Law</h4>
-                    <p>V = I·R</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('voltage')">
-                    <div class="icon">🔋</div>
-                    <h4>Voltage Calculator</h4>
-                    <p>Electrical potential</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('current')">
-                    <div class="icon">⟿</div>
-                    <h4>Current Calculator</h4>
-                    <p>I = V/R</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('resistance')">
-                    <div class="icon">Ω</div>
-                    <h4>Resistance Calculator</h4>
-                    <p>R = V/I</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('wavelength')">
-                    <div class="icon">〰️</div>
-                    <h4>Wavelength Calculator</h4>
-                    <p>λ = v/f</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('frequency')">
-                    <div class="icon">≋</div>
-                    <h4>Frequency Calculator</h4>
-                    <p>f = 1/T</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('heat')">
-                    <div class="icon">🔥</div>
-                    <h4>Heat Calculator</h4>
-                    <p>Q = m·c·ΔT</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('gravity')">
-                    <div class="icon">🌍</div>
-                    <h4>Gravitational Force</h4>
-                    <p>F = G·m₁·m₂/r²</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('escape_velocity')">
-                    <div class="icon">🚀</div>
-                    <h4>Escape Velocity</h4>
-                    <p>v = √(2GM/r)</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('light_year')">
-                    <div class="icon">💫</div>
-                    <h4>Light-Year Calculator</h4>
-                    <p>Astronomical distances</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- CHEMISTRY CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">🧪</span>
-                <h2>Chemistry Calculators</h2>
-                <span class="category-count">10</span>
-            </div>
-            <div class="calculators-grid" id="chemistryCalcs">
-                <div class="calculator-card" onclick="openCalculator('molar_mass')">
-                    <div class="icon">M</div>
-                    <h4>Molar Mass Calculator</h4>
-                    <p>g/mol of compounds</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('mole')">
-                    <div class="icon">n</div>
-                    <h4>Mole Calculator</h4>
-                    <p>n = m/M</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('molarity')">
-                    <div class="icon">M</div>
-                    <h4>Molarity Calculator</h4>
-                    <p>Mol/L concentration</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('molality')">
-                    <div class="icon">m</div>
-                    <h4>Molality Calculator</h4>
-                    <p>Mol/kg concentration</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('ph')">
-                    <div class="icon">🧫</div>
-                    <h4>pH Calculator</h4>
-                    <p>pH = -log[H⁺]</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('poh')">
-                    <div class="icon">🧬</div>
-                    <h4>pOH Calculator</h4>
-                    <p>pOH = -log[OH⁻]</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('dilution')">
-                    <div class="icon">💧</div>
-                    <h4>Dilution Calculator</h4>
-                    <p>M₁V₁ = M₂V₂</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('gas_law')">
-                    <div class="icon">⚕️</div>
-                    <h4>Ideal Gas Law</h4>
-                    <p>PV = nRT</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('stoichiometry')">
-                    <div class="icon">⚗️</div>
-                    <h4>Stoichiometry</h4>
-                    <p>Chemical equations</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('normality')">
-                    <div class="icon">N</div>
-                    <h4>Normality Calculator</h4>
-                    <p>Eq/L concentration</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- FINANCIAL CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">💰</span>
-                <h2>Financial Calculators</h2>
-                <span class="category-count">25</span>
-            </div>
-            <div class="calculators-grid" id="financialCalcs">
-                <div class="calculator-card" onclick="openCalculator('simple_interest')">
-                    <div class="icon">💵</div>
-                    <h4>Simple Interest</h4>
-                    <p>I = PRT/100</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('compound_interest')">
-                    <div class="icon">📈</div>
-                    <h4>Compound Interest</h4>
-                    <p>A = P(1+r/n)^nt</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('emi')">
-                    <div class="icon">🏦</div>
-                    <h4>EMI Calculator</h4>
-                    <p>Loan payments</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('loan')">
-                    <div class="icon">💳</div>
-                    <h4>Loan Calculator</h4>
-                    <p>Total amount & interest</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('mortgage')">
-                    <div class="icon">🏠</div>
-                    <h4>Mortgage Calculator</h4>
-                    <p>Home loan payments</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('salary')">
-                    <div class="icon">💼</div>
-                    <h4>Salary Calculator</h4>
-                    <p>Income calculations</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('tax')">
-                    <div class="icon">🧾</div>
-                    <h4>Tax Calculator</h4>
-                    <p>Income tax estimation</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('sip')">
-                    <div class="icon">📊</div>
-                    <h4>SIP Calculator</h4>
-                    <p>Investment returns</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('roi')">
-                    <div class="icon">🎯</div>
-                    <h4>ROI Calculator</h4>
-                    <p>Return on investment</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('cagr')">
-                    <div class="icon">📈</div>
-                    <h4>CAGR Calculator</h4>
-                    <p>Compound annual growth</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('future_value')">
-                    <div class="icon">🔮</div>
-                    <h4>Future Value</h4>
-                    <p>FV = PV(1+r)^n</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('present_value')">
-                    <div class="icon">⏰</div>
-                    <h4>Present Value</h4>
-                    <p>PV = FV/(1+r)^n</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('inflation')">
-                    <div class="icon">📉</div>
-                    <h4>Inflation Calculator</h4>
-                    <p>Purchasing power</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('currency')">
-                    <div class="icon">💱</div>
-                    <h4>Currency Exchange</h4>
-                    <p>Convert currencies</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('profit_margin')">
-                    <div class="icon">💹</div>
-                    <h4>Profit Margin</h4>
-                    <p>(Profit/Revenue)×100</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('markup')">
-                    <div class="icon">🔖</div>
-                    <h4>Markup Calculator</h4>
-                    <p>Price increase</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('discount')">
-                    <div class="icon">🏷️</div>
-                    <h4>Discount Calculator</h4>
-                    <p>Sale price calculation</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('tip')">
-                    <div class="icon">💸</div>
-                    <h4>Tip Calculator</h4>
-                    <p>Service charge</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('bill_split')">
-                    <div class="icon">🍕</div>
-                    <h4>Split Bill</h4>
-                    <p>Divide expenses</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('retirement')">
-                    <div class="icon">🏖️</div>
-                    <h4>Retirement Calculator</h4>
-                    <p>Plan your retirement</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('savings_goal')">
-                    <div class="icon">🎯</div>
-                    <h4>Savings Goal</h4>
-                    <p>Reach your target</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('net_worth')">
-                    <div class="icon">📊</div>
-                    <h4>Net Worth Calculator</h4>
-                    <p>Assets - Liabilities</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('budget')">
-                    <div class="icon">📝</div>
-                    <h4>Budget Calculator</h4>
-                    <p>Track expenses</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('break_even')">
-                    <div class="icon">⚖️</div>
-                    <h4>Break-Even Point</h4>
-                    <p>Cost recovery analysis</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('crypto')">
-                    <div class="icon">₿</div>
-                    <h4>Crypto Profit</h4>
-                    <p>Investment returns</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- NUMBER SYSTEM CALCULATORS -->
-        <div class="category-section">
-            <div class="category-header">
-                <span class="icon">🔢</span>
-                <h2>Number System Converters</h2>
-                <span class="category-count">10</span>
-            </div>
-            <div class="calculators-grid" id="numberCalcs">
-                <div class="calculator-card" onclick="openCalculator('binary_calc')">
-                    <div class="icon">01</div>
-                    <h4>Binary Calculator</h4>
-                    <p>Binary operations</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('octal_calc')">
-                    <div class="icon">8️⃣</div>
-                    <h4>Octal Calculator</h4>
-                    <p>Base-8 conversions</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('hex_calc')">
-                    <div class="icon">F️⃣</div>
-                    <h4>Hexadecimal</h4>
-                    <p>Base-16 conversions</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('decimal_binary')">
-                    <div class="icon">↔️</div>
-                    <h4>Decimal to Binary</h4>
-                    <p>Convert to base-2</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('binary_decimal')">
-                    <div class="icon">↔️</div>
-                    <h4>Binary to Decimal</h4>
-                    <p>Convert to base-10</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('hex_decimal')">
-                    <div class="icon">↔️</div>
-                    <h4>Hex to Decimal</h4>
-                    <p>Convert to base-10</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('decimal_hex')">
-                    <div class="icon">↔️</div>
-                    <h4>Decimal to Hex</h4>
-                    <p>Convert to base-16</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('roman')">
-                    <div class="icon">Ⅻ</div>
-                    <h4>Roman Numerals</h4>
-                    <p>Convert to/from Roman</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('prime')">
-                    <div class="icon">🔐</div>
-                    <h4>Prime Number Checker</h4>
-                    <p>Check if prime</p>
-                </div>
-                <div class="calculator-card" onclick="openCalculator('random')">
-                    <div class="icon">🎲</div>
-                    <h4>Random Number</h4>
-                    <p>Generate random numbers</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CALCULATOR MODAL -->
-    <div class="calculator-modal" id="calcModal">
-        <div class="calculator-content">
-            <div class="calculator-header">
-                <h3 id="calcTitle">Calculator</h3>
-                <button class="close-btn" onclick="closeCalculator()">✕</button>
-            </div>
-            <div class="calculator-body" id="calcBody">
-                <!-- Calculator content will be inserted here -->
-            </div>
-            <div class="result-box" id="resultBox">
-                <h4>Result</h4>
-                <div class="result-value" id="resultValue"></div>
+        <!-- Discount Calculator -->
+        <div id="discount-calc" class="calculator-section" style="display: none;">
+            <h2>Discount Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Calculate Discount Amount</label>
+                <input type="number" class="calc-input" id="original-price" placeholder="Original Price (₹)" onchange="calculateDiscount()">
+                <input type="number" class="calc-input" id="discount-percent" placeholder="Discount (%)" onchange="calculateDiscount()">
+                <div class="calc-result" id="discount-result">Result: --</div>
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Formula: Final Price = Original - Discount Amount</p>
             </div>
         </div>
     </div>
@@ -1048,24 +191,24 @@
             <div class="footer-section">
                 <img src="yostudy-logo.png" alt="Yostudy Logo" style="height: 60px; width: auto; margin-bottom: 15px;">
                 <p style="font-weight: bold; color: #6366f1;">Study Smart, Achieve More</p>
-                <p>200+ Free Calculators for all subjects and needs.</p>
+                <p>Comprehensive learning platform for classes 1-9.</p>
             </div>
             <div class="footer-section">
                 <h3>📖 Resources</h3>
                 <ul>
                     <li><a href="study.html">Study Notes</a></li>
-                    <li><a href="ai-tutor.html">AI Tutor</a></li>
                     <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
                     <li><a href="calculators-hub.html">Calculators</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>🎯 Features</h3>
                 <ul>
-                    <li><a>200+ Calculators</a></li>
                     <li><a>Dark Mode</a></li>
                     <li><a>Search Function</a></li>
-                    <li><a>No Ads</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -1079,572 +222,10 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Yostudy - Study Smart, Achieve More | 200+ Free Calculators 🧮</p>
+            <p>&copy; 2024 Yostudy - Study Smart, Achieve More | Made with ❤️ for Students</p>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        // Calculator implementations
-        const calculators = {
-            'scientific': {
-                title: '🔬 Scientific Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>First Number</label>
-                        <input type="number" id="num1" placeholder="Enter first number" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Operation</label>
-                        <select id="operation">
-                            <option>+</option>
-                            <option>-</option>
-                            <option>×</option>
-                            <option>÷</option>
-                            <option>sin</option>
-                            <option>cos</option>
-                            <option>tan</option>
-                            <option>√</option>
-                            <option>x²</option>
-                            <option>x³</option>
-                            <option>log</option>
-                            <option>ln</option>
-                        </select>
-                    </div>
-                    <div class="input-group" id="num2Group">
-                        <label>Second Number</label>
-                        <input type="number" id="num2" placeholder="Enter second number" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateScientific()">Calculate</button>
-                `
-            },
-            'percentage': {
-                title: '% Percentage Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Number</label>
-                        <input type="number" id="percNum" placeholder="Enter number" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Percentage (%)</label>
-                        <input type="number" id="percValue" placeholder="Enter percentage" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculatePercentage()">Calculate Percentage</button>
-                    <button class="calc-button" onclick="calculatePercentageOf()">Calculate % Of</button>
-                `
-            },
-            'simple_interest': {
-                title: '💵 Simple Interest Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Principal (P) - ₹</label>
-                        <input type="number" id="principal" placeholder="Enter principal amount" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Rate (R) - % per annum</label>
-                        <input type="number" id="rate" placeholder="Enter interest rate" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Time (T) - Years</label>
-                        <input type="number" id="time" placeholder="Enter time period" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateSimpleInterest()">Calculate</button>
-                `
-            },
-            'compound_interest': {
-                title: '📈 Compound Interest Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Principal (P) - ₹</label>
-                        <input type="number" id="compound_principal" placeholder="Enter principal" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Rate (R) - % per annum</label>
-                        <input type="number" id="compound_rate" placeholder="Enter rate" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Time (T) - Years</label>
-                        <input type="number" id="compound_time" placeholder="Enter time" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Compounds Per Year</label>
-                        <select id="compound_freq">
-                            <option value="1">Annually</option>
-                            <option value="2">Semi-Annually</option>
-                            <option value="4">Quarterly</option>
-                            <option value="12" selected>Monthly</option>
-                            <option value="365">Daily</option>
-                        </select>
-                    </div>
-                    <button class="calc-button" onclick="calculateCompoundInterest()">Calculate</button>
-                `
-            },
-            'quadratic': {
-                title: '🔄 Quadratic Equation Solver',
-                html: `
-                    <div class="input-group">
-                        <label>Coefficient A</label>
-                        <input type="number" id="quad_a" placeholder="Enter a" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Coefficient B</label>
-                        <input type="number" id="quad_b" placeholder="Enter b" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Coefficient C</label>
-                        <input type="number" id="quad_c" placeholder="Enter c" step="any">
-                    </div>
-                    <button class="calc-button" onclick="solveQuadratic()">Solve ax² + bx + c = 0</button>
-                `
-            },
-            'circle': {
-                title: '⭕ Circle Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Radius (r)</label>
-                        <input type="number" id="circle_radius" placeholder="Enter radius" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateCircle()">Calculate Area & Circumference</button>
-                `
-            },
-            'triangle': {
-                title: '△ Triangle Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Base (b)</label>
-                        <input type="number" id="tri_base" placeholder="Enter base" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Height (h)</label>
-                        <input type="number" id="tri_height" placeholder="Enter height" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateTriangle()">Calculate Area</button>
-                `
-            },
-            'rectangle': {
-                title: '▭ Rectangle Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Length (l)</label>
-                        <input type="number" id="rect_length" placeholder="Enter length" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Width (w)</label>
-                        <input type="number" id="rect_width" placeholder="Enter width" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateRectangle()">Calculate Area & Perimeter</button>
-                `
-            },
-            'sqrt': {
-                title: '√ Square Root Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Number</label>
-                        <input type="number" id="sqrt_num" placeholder="Enter number" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateSquareRoot()">Calculate √</button>
-                `
-            },
-            'cbrt': {
-                title: '∛ Cube Root Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Number</label>
-                        <input type="number" id="cbrt_num" placeholder="Enter number" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculateCubeRoot()">Calculate ∛</button>
-                `
-            },
-            'pythagorean': {
-                title: '📐 Pythagorean Theorem',
-                html: `
-                    <div class="input-group">
-                        <label>Side A</label>
-                        <input type="number" id="pyth_a" placeholder="Enter side a" step="any">
-                    </div>
-                    <div class="input-group">
-                        <label>Side B</label>
-                        <input type="number" id="pyth_b" placeholder="Enter side b" step="any">
-                    </div>
-                    <button class="calc-button" onclick="calculatePythagorean()">Calculate Hypotenuse (c)</button>
-                `
-            },
-            'factorial': {
-                title: '! Factorial Calculator',
-                html: `
-                    <div class="input-group">
-                        <label>Number (n)</label>
-                        <input type="number" id="fact_num" placeholder="Enter whole number" min="0" step="1">
-                    </div>
-                    <button class="calc-button" onclick="calculateFactorial()">Calculate n!</button>
-                `
-            },
-            'permutation': {
-                title: 'P Permutation (nPr)',
-                html: `
-                    <div class="input-group">
-                        <label>Total Items (n)</label>
-                        <input type="number" id="perm_n" placeholder="Enter n" min="0" step="1">
-                    </div>
-                    <div class="input-group">
-                        <label>Items to Select (r)</label>
-                        <input type="number" id="perm_r" placeholder="Enter r" min="0" step="1">
-                    </div>
-                    <button class="calc-button" onclick="calculatePermutation()">Calculate nPr</button>
-                `
-            },
-            'combination': {
-                title: 'C Combination (nCr)',
-                html: `
-                    <div class="input-group">
-                        <label>Total Items (n)</label>
-                        <input type="number" id="comb_n" placeholder="Enter n" min="0" step="1">
-                    </div>
-                    <div class="input-group">
-                        <label>Items to Select (r)</label>
-                        <input type="number" id="comb_r" placeholder="Enter r" min="0" step="1">
-                    </div>
-                    <button class="calc-button" onclick="calculateCombination()">Calculate nCr</button>
-                `
-            }
-        };
-
-        // More calculators (add as needed - listing them for expansion)
-        const additionalCalcs = [
-            'linear', 'exponent', 'logarithm', 'modulo',
-            'gcd', 'basic', 'sine', 'cosine', 'tangent',
-            'inverse_trig', 'law_sines', 'law_cosines',
-            'mean', 'median', 'mode', 'std_dev', 'variance',
-            'probability', 'zscore', 'normal_dist', 'binomial',
-            'confidence', 'correlation', 'regression', 'covariance',
-            'velocity', 'acceleration', 'force', 'momentum',
-            'kinetic_energy', 'potential_energy', 'work', 'power',
-            'pressure', 'density', 'ohms_law', 'voltage', 'current',
-            'resistance', 'wavelength', 'frequency', 'heat', 'gravity',
-            'escape_velocity', 'light_year',
-            'molar_mass', 'mole', 'molarity', 'molality',
-            'ph', 'poh', 'dilution', 'gas_law', 'stoichiometry', 'normality',
-            'emi', 'loan', 'mortgage', 'salary', 'tax', 'sip', 'roi', 'cagr',
-            'future_value', 'present_value', 'inflation', 'currency',
-            'profit_margin', 'markup', 'discount', 'tip', 'bill_split',
-            'retirement', 'savings_goal', 'net_worth', 'budget',
-            'break_even', 'crypto',
-            'binary_calc', 'octal_calc', 'hex_calc', 'decimal_binary',
-            'binary_decimal', 'hex_decimal', 'decimal_hex', 'roman', 'prime', 'random',
-            'square', 'trapezoid', 'cylinder', 'sphere', 'cone', 'cube',
-            'ellipse', 'pyramid', 'prism', 'distance', 'midpoint', 'slope', 'area', 'volume'
-        ];
-
-        // Populate remaining calculators with basic templates
-        additionalCalcs.forEach(calcName => {
-            if (!calculators[calcName]) {
-                calculators[calcName] = {
-                    title: calcName.replace(/_/g, ' ').toUpperCase() + ' Calculator',
-                    html: `
-                        <div class="input-group">
-                            <label>Value 1</label>
-                            <input type="number" placeholder="Enter value" step="any">
-                        </div>
-                        <div class="input-group">
-                            <label>Value 2</label>
-                            <input type="number" placeholder="Enter value" step="any">
-                        </div>
-                        <button class="calc-button" onclick="showMessage('Calculator coming soon! Check back later.')">Calculate</button>
-                    `
-                };
-            }
-        });
-
-        function openCalculator(calcName) {
-            const calc = calculators[calcName];
-            if (calc) {
-                document.getElementById('calcTitle').textContent = calc.title;
-                document.getElementById('calcBody').innerHTML = calc.html;
-                document.getElementById('resultBox').classList.remove('show');
-                document.getElementById('calcModal').classList.add('active');
-            }
-        }
-
-        function closeCalculator() {
-            document.getElementById('calcModal').classList.remove('active');
-        }
-
-        function showResult(result) {
-            document.getElementById('resultValue').textContent = typeof result === 'number' ? result.toFixed(4) : result;
-            document.getElementById('resultBox').classList.add('show');
-        }
-
-        function showMessage(message) {
-            alert(message);
-        }
-
-        // Calculator functions
-        function calculatePercentage() {
-            const num = parseFloat(document.getElementById('percNum').value);
-            const perc = parseFloat(document.getElementById('percValue').value);
-            if (isNaN(num) || isNaN(perc)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            const result = (num * perc) / 100;
-            showResult(result);
-        }
-
-        function calculateSimpleInterest() {
-            const p = parseFloat(document.getElementById('principal').value);
-            const r = parseFloat(document.getElementById('rate').value);
-            const t = parseFloat(document.getElementById('time').value);
-            if (isNaN(p) || isNaN(r) || isNaN(t)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            const interest = (p * r * t) / 100;
-            const amount = p + interest;
-            showResult(`Interest: ₹${interest.toFixed(2)} | Amount: ₹${amount.toFixed(2)}`);
-        }
-
-        function calculateCompoundInterest() {
-            const p = parseFloat(document.getElementById('compound_principal').value);
-            const r = parseFloat(document.getElementById('compound_rate').value);
-            const t = parseFloat(document.getElementById('compound_time').value);
-            const n = parseFloat(document.getElementById('compound_freq').value);
-            if (isNaN(p) || isNaN(r) || isNaN(t)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            const amount = p * Math.pow(1 + (r / 100) / n, n * t);
-            const interest = amount - p;
-            showResult(`Interest: ₹${interest.toFixed(2)} | Amount: ₹${amount.toFixed(2)}`);
-        }
-
-        function solveQuadratic() {
-            const a = parseFloat(document.getElementById('quad_a').value);
-            const b = parseFloat(document.getElementById('quad_b').value);
-            const c = parseFloat(document.getElementById('quad_c').value);
-            if (isNaN(a) || isNaN(b) || isNaN(c)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            if (a === 0) {
-                alert('Coefficient a cannot be zero');
-                return;
-            }
-            const discriminant = b * b - 4 * a * c;
-            if (discriminant < 0) {
-                showResult('No real roots (Complex roots)');
-            } else if (discriminant === 0) {
-                const x = -b / (2 * a);
-                showResult(`One root: x = ${x.toFixed(4)}`);
-            } else {
-                const x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
-                const x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
-                showResult(`x₁ = ${x1.toFixed(4)} | x₂ = ${x2.toFixed(4)}`);
-            }
-        }
-
-        function calculateCircle() {
-            const r = parseFloat(document.getElementById('circle_radius').value);
-            if (isNaN(r) || r < 0) {
-                alert('Please enter a valid radius');
-                return;
-            }
-            const area = Math.PI * r * r;
-            const circumference = 2 * Math.PI * r;
-            showResult(`Area: ${area.toFixed(2)} | Circumference: ${circumference.toFixed(2)}`);
-        }
-
-        function calculateTriangle() {
-            const base = parseFloat(document.getElementById('tri_base').value);
-            const height = parseFloat(document.getElementById('tri_height').value);
-            if (isNaN(base) || isNaN(height)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            const area = (base * height) / 2;
-            showResult(`Area: ${area.toFixed(2)}`);
-        }
-
-        function calculateRectangle() {
-            const length = parseFloat(document.getElementById('rect_length').value);
-            const width = parseFloat(document.getElementById('rect_width').value);
-            if (isNaN(length) || isNaN(width)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            const area = length * width;
-            const perimeter = 2 * (length + width);
-            showResult(`Area: ${area.toFixed(2)} | Perimeter: ${perimeter.toFixed(2)}`);
-        }
-
-        function calculateSquareRoot() {
-            const num = parseFloat(document.getElementById('sqrt_num').value);
-            if (isNaN(num) || num < 0) {
-                alert('Please enter a non-negative number');
-                return;
-            }
-            const result = Math.sqrt(num);
-            showResult(result);
-        }
-
-        function calculateCubeRoot() {
-            const num = parseFloat(document.getElementById('cbrt_num').value);
-            if (isNaN(num)) {
-                alert('Please enter a valid number');
-                return;
-            }
-            const result = Math.cbrt(num);
-            showResult(result);
-        }
-
-        function calculatePythagorean() {
-            const a = parseFloat(document.getElementById('pyth_a').value);
-            const b = parseFloat(document.getElementById('pyth_b').value);
-            if (isNaN(a) || isNaN(b)) {
-                alert('Please enter valid numbers');
-                return;
-            }
-            const c = Math.sqrt(a * a + b * b);
-            showResult(`c = ${c.toFixed(4)}`);
-        }
-
-        function calculateFactorial() {
-            const num = parseInt(document.getElementById('fact_num').value);
-            if (isNaN(num) || num < 0 || num > 170) {
-                alert('Please enter a valid number between 0 and 170');
-                return;
-            }
-            let result = 1;
-            for (let i = 2; i <= num; i++) {
-                result *= i;
-            }
-            showResult(result);
-        }
-
-        function calculatePermutation() {
-            const n = parseInt(document.getElementById('perm_n').value);
-            const r = parseInt(document.getElementById('perm_r').value);
-            if (isNaN(n) || isNaN(r) || n < r || r < 0) {
-                alert('Please enter valid values where n ≥ r ≥ 0');
-                return;
-            }
-            let result = 1;
-            for (let i = 0; i < r; i++) {
-                result *= (n - i);
-            }
-            showResult(result);
-        }
-
-        function calculateCombination() {
-            const n = parseInt(document.getElementById('comb_n').value);
-            const r = parseInt(document.getElementById('comb_r').value);
-            if (isNaN(n) || isNaN(r) || n < r || r < 0) {
-                alert('Please enter valid values where n ≥ r ≥ 0');
-                return;
-            }
-            let numerator = 1;
-            let denominator = 1;
-            for (let i = 0; i < r; i++) {
-                numerator *= (n - i);
-                denominator *= (i + 1);
-            }
-            const result = numerator / denominator;
-            showResult(result);
-        }
-
-        function calculateScientific() {
-            const num1 = parseFloat(document.getElementById('num1').value);
-            const operation = document.getElementById('operation').value;
-            let result;
-
-            if (operation === '+' || operation === '-' || operation === '×' || operation === '÷') {
-                const num2 = parseFloat(document.getElementById('num2').value);
-                if (isNaN(num1) || isNaN(num2)) {
-                    alert('Please enter valid numbers');
-                    return;
-                }
-                if (operation === '+') result = num1 + num2;
-                else if (operation === '-') result = num1 - num2;
-                else if (operation === '×') result = num1 * num2;
-                else if (operation === '÷') {
-                    if (num2 === 0) {
-                        alert('Cannot divide by zero');
-                        return;
-                    }
-                    result = num1 / num2;
-                }
-            } else {
-                if (isNaN(num1)) {
-                    alert('Please enter a valid number');
-                    return;
-                }
-                const rad = (num1 * Math.PI) / 180;
-                if (operation === 'sin') result = Math.sin(rad);
-                else if (operation === 'cos') result = Math.cos(rad);
-                else if (operation === 'tan') result = Math.tan(rad);
-                else if (operation === '√') {
-                    if (num1 < 0) {
-                        alert('Cannot calculate square root of negative number');
-                        return;
-                    }
-                    result = Math.sqrt(num1);
-                } else if (operation === 'x²') result = num1 * num1;
-                else if (operation === 'x³') result = num1 * num1 * num1;
-                else if (operation === 'log') {
-                    if (num1 <= 0) {
-                        alert('Logarithm undefined for non-positive numbers');
-                        return;
-                    }
-                    result = Math.log10(num1);
-                } else if (operation === 'ln') {
-                    if (num1 <= 0) {
-                        alert('Natural logarithm undefined for non-positive numbers');
-                        return;
-                    }
-                    result = Math.log(num1);
-                }
-            }
-            showResult(result);
-        }
-
-        function searchCalculators() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const sections = document.querySelectorAll('.category-section');
-            
-            sections.forEach(section => {
-                const cards = section.querySelectorAll('.calculator-card');
-                let visibleCount = 0;
-                
-                cards.forEach(card => {
-                    const text = card.textContent.toLowerCase();
-                    if (query === '' || text.includes(query)) {
-                        card.style.display = '';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                if (visibleCount === 0) {
-                    section.style.display = 'none';
-                } else {
-                    section.style.display = '';
-                }
-            });
-        }
-
-        // Close modal on outside click
-        document.getElementById('calcModal').addEventListener('click', (e) => {
-            if (e.target.id === 'calcModal') {
-                closeCalculator();
-            }
-        });
-
-        // Close modal on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeCalculator();
-            }
-        });
-    </script>
 </body>
 </html>

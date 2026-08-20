@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary | Ultimate Study</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">📚 UltimateStudy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="dictionary.html">Dictionary</a></li>
+                <li><a href="calculators-hub.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+        <h1 class="page-title">Dictionary</h1>
+
+        <!-- SEARCH SECTION -->
+        <div class="subsection">
+            <h2>Search Dictionary</h2>
+            <div style="max-width: 600px; margin: 2rem auto;">
+                <input type="text" class="search-input" id="dict-search" 
+                       placeholder="Search for words..." 
+                       onkeyup="searchDictionary()">
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="subsection">
+            <div class="grid-2" id="dict-results">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+
+        <!-- ENGLISH DICTIONARY SAMPLE -->
+        <div class="subsection">
+            <h2>English Dictionary Sample</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📌 Serendipity</h4>
+                    <p><strong>Pronunciation:</strong> ser-uhn-dip-i-tee</p>
+                    <p><strong>Meaning:</strong> The occurrence of events by chance in a happy or beneficial way</p>
+                    <p><strong>Example:</strong> Finding that old photograph was pure serendipity.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Eloquent</h4>
+                    <p><strong>Pronunciation:</strong> el-uh-kwuhnt</p>
+                    <p><strong>Meaning:</strong> Fluent or persuasive in speaking or writing</p>
+                    <p><strong>Example:</strong> The speaker gave an eloquent speech.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Ephemeral</h4>
+                    <p><strong>Pronunciation:</strong> ih-fem-er-uhl</p>
+                    <p><strong>Meaning:</strong> Lasting for a very short time</p>
+                    <p><strong>Example:</strong> The beauty of cherry blossoms is ephemeral.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Ambiguous</h4>
+                    <p><strong>Pronunciation:</strong> am-big-yoo-uhs</p>
+                    <p><strong>Meaning:</strong> Open to more than one interpretation; unclear</p>
+                    <p><strong>Example:</strong> The instructions were ambiguous.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Benevolent</h4>
+                    <p><strong>Pronunciation:</strong> buh-nev-uh-lent</p>
+                    <p><strong>Meaning:</strong> Kind and generous</p>
+                    <p><strong>Example:</strong> She is a benevolent person who helps the poor.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Ubiquitous</h4>
+                    <p><strong>Pronunciation:</strong> yoo-bik-wi-tus</p>
+                    <p><strong>Meaning:</strong> Present, appearing, or found everywhere</p>
+                    <p><strong>Example:</strong> Mobile phones are ubiquitous in modern society.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Meticulous</h4>
+                    <p><strong>Pronunciation:</strong> muh-tik-yuh-lus</p>
+                    <p><strong>Meaning:</strong> Showing great attention to detail; very careful and precise</p>
+                    <p><strong>Example:</strong> She is meticulous about her work.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Pragmatic</h4>
+                    <p><strong>Pronunciation:</strong> prag-mat-ik</p>
+                    <p><strong>Meaning:</strong> Dealing with things in a realistic and practical way</p>
+                    <p><strong>Example:</strong> We need a pragmatic approach to this problem.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Diligent</h4>
+                    <p><strong>Pronunciation:</strong> dil-uh-jent</p>
+                    <p><strong>Meaning:</strong> Having or showing care in one's work or duties</p>
+                    <p><strong>Example:</strong> A diligent student always completes assignments on time.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Verbose</h4>
+                    <p><strong>Pronunciation:</strong> ver-bos</p>
+                    <p><strong>Meaning:</strong> Using or containing more words than necessary</p>
+                    <p><strong>Example:</strong> His verbose writing style was difficult to read.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Pragmatic</h4>
+                    <p><strong>Pronunciation:</strong> prag-mat-ik</p>
+                    <p><strong>Meaning:</strong> Concerned with practical consequences rather than theory</p>
+                    <p><strong>Example:</strong> We adopted a pragmatic approach to solving the issue.</p>
+                </div>
+                <div class="card">
+                    <h4>📌 Tenacious</h4>
+                    <p><strong>Pronunciation:</strong> tuh-nay-shus</p>
+                    <p><strong>Meaning:</strong> Holding firmly to something; persistent</p>
+                    <p><strong>Example:</strong> Her tenacious effort helped her win the competition.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- HINDI DICTIONARY SAMPLE -->
+        <div class="subsection">
+            <h2>Hindi Dictionary Sample</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>📌 सुंदर (Sundar)</h4>
+                    <p><strong>अर्थ:</strong> सुंदर दिखने वाला, आकर्षक</p>
+                    <p><strong>उदाहरण:</strong> यह सुंदर बाग है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 ज्ञान (Gyan)</h4>
+                    <p><strong>अर्थ:</strong> शिक्षा, समझ, विद्या</p>
+                    <p><strong>उदाहरण:</strong> ज्ञान शक्ति है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 साहस (Sahas)</h4>
+                    <p><strong>अर्थ:</strong> डर न होना, वीरता</p>
+                    <p><strong>उदाहरण:</strong> उसके साहस की सभी प्रशंसा करते हैं।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 मेहनत (Mehnat)</h4>
+                    <p><strong>अर्थ:</strong> कड़ी परिश्रम, मजदूरी</p>
+                    <p><strong>उदाहरण:</strong> मेहनत का फल हमेशा मीठा होता है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 प्रेम (Prem)</h4>
+                    <p><strong>अर्थ:</strong> प्यार, स्नेह</p>
+                    <p><strong>उदाहरण:</strong> माता का प्रेम अतुलनीय होता है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 परिवार (Parivar)</h4>
+                    <p><strong>अर्थ:</strong> परिजन, घर के सदस्य</p>
+                    <p><strong>उदाहरण:</strong> परिवार ही जीवन का आधार है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 नैतिकता (Naitikata)</h4>
+                    <p><strong>अर्थ:</strong> सदाचार, सही-गलत का ज्ञान</p>
+                    <p><strong>उदाहरण:</strong> नैतिकता सबसे बड़ी शिक्षा है।</p>
+                </div>
+                <div class="card">
+                    <h4>📌 संघर्ष (Sangharsh)</h4>
+                    <p><strong>अर्थ:</strong> कठिनाई, लड़ाई</p>
+                    <p><strong>उदाहरण:</strong> जीवन का संघर्ष हमें मजबूत बनाता है।</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUBJECT DICTIONARY -->
+        <div class="subsection">
+            <h2>Subject Dictionary</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>Mathematics Terms</h4>
+                    <p><strong>Algebra:</strong> Branch of mathematics using symbols</p>
+                    <p><strong>Geometry:</strong> Study of shapes and angles</p>
+                    <p><strong>Calculus:</strong> Study of rates of change</p>
+                </div>
+                <div class="card">
+                    <h4>Science Terms</h4>
+                    <p><strong>Photosynthesis:</strong> Process plants use to make food</p>
+                    <p><strong>Mitosis:</strong> Cell division process</p>
+                    <p><strong>Osmosis:</strong> Movement of water molecules</p>
+                </div>
+                <div class="card">
+                    <h4>History Terms</h4>
+                    <p><strong>Dynasty:</strong> Succession of rulers from same family</p>
+                    <p><strong>Civilization:</strong> Advanced society with culture</p>
+                    <p><strong>Monarch:</strong> A single ruler or king/queen</p>
+                </div>
+                <div class="card">
+                    <h4>Geography Terms</h4>
+                    <p><strong>Latitude:</strong> Distance from equator</p>
+                    <p><strong>Longitude:</strong> Distance from prime meridian</p>
+                    <p><strong>Plateau:</strong> Flat elevated landform</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Complete dictionary with English, Hindi, and subject terms.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
+                    <li><a href="calculators-hub.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ultimate Study Cheat Sheet. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize with empty results
+        document.getElementById('dict-results').innerHTML = '<p style="grid-column: 1/-1; text-align: center;">Type to search for words...</p>';
+    </script>
+</body>
+</html>
