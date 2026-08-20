@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yostudy - Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%236366f1'/><g transform='translate(50, 40)'><path d='M 20 10 L 20 90 L 50 90 L 50 10 Z' fill='%23ffffff' stroke='%23ec4899' stroke-width='2'/><path d='M 50 10 L 50 90 L 80 90 L 80 10 Z' fill='%23ec4899' stroke='%23ffffff' stroke-width='2'/><rect x='48' y='10' width='4' height='80' fill='%23ffffff'/><line x1='25' y1='25' x2='45' y2='25' stroke='%23ec4899' stroke-width='1.5'/><line x1='25' y1='35' x2='45' y2='35' stroke='%23ec4899' stroke-width='1.5'/><line x1='25' y1='45' x2='45' y2='45' stroke='%23ec4899' stroke-width='1.5'/><line x1='55' y1='25' x2='75' y2='25' stroke='%23ffffff' stroke-width='1.5'/><line x1='55' y1='35' x2='75' y2='35' stroke='%23ffffff' stroke-width='1.5'/><line x1='55' y1='45' x2='75' y2='45' stroke='%23ffffff' stroke-width='1.5'/></g><text x='100' y='140' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff' font-family='Arial'>Y</text></svg>" />
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">
+                <img src="yostudy-logo.png" alt="Yostudy Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="admin-panel.html">Admin Panel</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="download-zone.html">Downloads</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="background: linear-gradient(135deg, #6366f1 0%, #ec4899 100%);">
+        <div class="hero-content">
+            <h1>⚙️ Admin Dashboard</h1>
+            <p>Manage News, Downloads, and Platform Content</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <!-- ADMIN TABS -->
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="switchTab('news')">📰 News Management</button>
+            <button class="tab-btn" onclick="switchTab('downloads')">📥 Downloads Management</button>
+            <button class="tab-btn" onclick="switchTab('stats')">📊 Statistics</button>
+        </div>
+
+        <!-- NEWS TAB -->
+        <div id="newsTab" class="tab-content active">
+            <div class="admin-header">
+                <h2>📰 News Management</h2>
+                <button class="btn-primary" onclick="toggleNewsForm()">+ Add New News</button>
+            </div>
+
+            <!-- ADD NEWS FORM -->
+            <div id="newsFormContainer" class="admin-form" style="display: none;">
+                <h3>Add New News Item</h3>
+                <form id="newsForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input type="text" id="newsTitle" placeholder="News title" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="newsCategory" required>
+                                <option value="updates">Updates</option>
+                                <option value="announcements">Announcements</option>
+                                <option value="events">Events</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="newsDescription" placeholder="News description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Image URL</label>
+                            <input type="url" id="newsImage" placeholder="Image URL (optional)">
+                        </div>
+                        <div class="form-group">
+                            <label>Author</label>
+                            <input type="text" id="newsAuthor" placeholder="Author name" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Add News</button>
+                </form>
+            </div>
+
+            <!-- NEWS LIST -->
+            <div class="admin-list">
+                <h3>All News Items</h3>
+                <div id="newsList" class="items-list">
+                    <!-- News will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- DOWNLOADS TAB -->
+        <div id="downloadsTab" class="tab-content" style="display: none;">
+            <div class="admin-header">
+                <h2>📥 Downloads Management</h2>
+                <button class="btn-primary" onclick="toggleDownloadForm()">+ Add New File</button>
+            </div>
+
+            <!-- ADD FILE FORM -->
+            <div id="downloadFormContainer" class="admin-form" style="display: none;">
+                <h3>Add New Download File</h3>
+                <form id="downloadForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>File Name</label>
+                            <input type="text" id="fileName" placeholder="e.g., Physics Chapter 1 Notes" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select id="fileCategory" required>
+                                <option value="notes">📝 Notes</option>
+                                <option value="pdf">📄 PDF</option>
+                                <option value="worksheet">📋 Worksheet</option>
+                                <option value="guide">📖 Guide</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="fileDescription" placeholder="Detailed description of the file" rows="3" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Subject/Class</label>
+                            <input type="text" id="fileSubject" placeholder="e.g., Physics - Class 12" required>
+                        </div>
+                        <div class="form-group">
+                            <label>File Type</label>
+                            <input type="text" id="fileType" placeholder="e.g., PDF, DOC, ZIP" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>File Size (MB)</label>
+                            <input type="number" id="fileSize" placeholder="File size" step="0.1" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Author/Source</label>
+                            <input type="text" id="fileAuthor" placeholder="Author name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Download Link</label>
+                        <input type="url" id="fileUrl" placeholder="Link to download file" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Add File</button>
+                </form>
+            </div>
+
+            <!-- FILES LIST -->
+            <div class="admin-list">
+                <h3>All Download Files</h3>
+                <div id="filesList" class="items-list">
+                    <!-- Files will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- STATISTICS TAB -->
+        <div id="statsTab" class="tab-content" style="display: none;">
+            <h2>📊 Platform Statistics</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📰</div>
+                    <div class="stat-content">
+                        <h3 id="newsCount">0</h3>
+                        <p>Total News Items</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📥</div>
+                    <div class="stat-content">
+                        <h3 id="filesCount">0</h3>
+                        <p>Total Download Files</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🧮</div>
+                    <div class="stat-content">
+                        <h3>200+</h3>
+                        <p>Calculators</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📐</div>
+                    <div class="stat-content">
+                        <h3>500+</h3>
+                        <p>Formulas</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-content">
+                        <h3>Classes 1-9</h3>
+                        <p>Study Materials</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⬇️</div>
+                    <div class="stat-content">
+                        <h3 id="totalDownloads">0</h3>
+                        <p>Total Downloads</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <img src="yostudy-logo.png" style="height: 60px;">
+            <p>Study Smart, Achieve More! 📚✨</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize admin panel
+        function initializeAdmin() {
+            loadNewsInAdmin();
+            loadFilesInAdmin();
+            updateStatistics();
+        }
+
+        // Switch tabs
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(tab + 'Tab').style.display = 'block';
+            event.target.classList.add('active');
+        }
+
+        // Toggle news form
+        function toggleNewsForm() {
+            const form = document.getElementById('newsFormContainer');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Toggle download form
+        function toggleDownloadForm() {
+            const form = document.getElementById('downloadFormContainer');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Load news in admin
+        function loadNewsInAdmin() {
+            const newsData = JSON.parse(localStorage.getItem('yostudy_news') || '[]');
+            const newsList = document.getElementById('newsList');
+            
+            newsList.innerHTML = newsData.length > 0 ? newsData.reverse().map(news => `
+                <div class="item-admin">
+                    <div class="item-info">
+                        <h4>${news.title}</h4>
+                        <p>${news.description.substring(0, 100)}...</p>
+                        <small>By ${news.author} - ${new Date(news.date).toLocaleDateString()}</small>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-small btn-danger" onclick="deleteNews(${news.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('') : '<p>No news added yet</p>';
+        }
+
+        // Load files in admin
+        function loadFilesInAdmin() {
+            const filesData = JSON.parse(localStorage.getItem('yostudy_downloads') || '[]');
+            const filesList = document.getElementById('filesList');
+            
+            const getCategoryIcon = (cat) => {
+                const icons = { notes: '📝', pdf: '📄', worksheet: '📋', guide: '📖' };
+                return icons[cat] || '📄';
+            };
+
+            filesList.innerHTML = filesData.length > 0 ? filesData.reverse().map(file => `
+                <div class="item-admin">
+                    <div class="item-info">
+                        <h4>${getCategoryIcon(file.category)} ${file.name}</h4>
+                        <p>${file.description}</p>
+                        <small>${file.subject} | ${file.size} MB | By ${file.author}</small>
+                    </div>
+                    <div class="item-actions">
+                        <button class="btn-small btn-danger" onclick="deleteFile(${file.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('') : '<p>No files added yet</p>';
+        }
+
+        // Add news
+        document.getElementById('newsForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newsData = JSON.parse(localStorage.getItem('yostudy_news') || '[]');
+            const newNews = {
+                id: Date.now(),
+                title: document.getElementById('newsTitle').value,
+                category: document.getElementById('newsCategory').value,
+                description: document.getElementById('newsDescription').value,
+                image: document.getElementById('newsImage').value || 'https://via.placeholder.com/300x200/6366f1/ffffff?text=News',
+                author: document.getElementById('newsAuthor').value,
+                date: new Date().toISOString()
+            };
+            
+            newsData.push(newNews);
+            localStorage.setItem('yostudy_news', JSON.stringify(newsData));
+            
+            this.reset();
+            alert('News added successfully!');
+            loadNewsInAdmin();
+            updateStatistics();
+        });
+
+        // Add file
+        document.getElementById('downloadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const filesData = JSON.parse(localStorage.getItem('yostudy_downloads') || '[]');
+            const newFile = {
+                id: Date.now(),
+                name: document.getElementById('fileName').value,
+                description: document.getElementById('fileDescription').value,
+                category: document.getElementById('fileCategory').value,
+                subject: document.getElementById('fileSubject').value,
+                type: document.getElementById('fileType').value,
+                size: parseFloat(document.getElementById('fileSize').value),
+                url: document.getElementById('fileUrl').value,
+                author: document.getElementById('fileAuthor').value,
+                downloads: 0,
+                date: new Date().toISOString()
+            };
+            
+            filesData.push(newFile);
+            localStorage.setItem('yostudy_downloads', JSON.stringify(filesData));
+            
+            this.reset();
+            alert('File added successfully!');
+            loadFilesInAdmin();
+            updateStatistics();
+        });
+
+        // Delete news
+        function deleteNews(id) {
+            if (confirm('Are you sure?')) {
+                let newsData = JSON.parse(localStorage.getItem('yostudy_news') || '[]');
+                newsData = newsData.filter(news => news.id !== id);
+                localStorage.setItem('yostudy_news', JSON.stringify(newsData));
+                loadNewsInAdmin();
+                updateStatistics();
+            }
+        }
+
+        // Delete file
+        function deleteFile(id) {
+            if (confirm('Are you sure?')) {
+                let filesData = JSON.parse(localStorage.getItem('yostudy_downloads') || '[]');
+                filesData = filesData.filter(file => file.id !== id);
+                localStorage.setItem('yostudy_downloads', JSON.stringify(filesData));
+                loadFilesInAdmin();
+                updateStatistics();
+            }
+        }
+
+        // Update statistics
+        function updateStatistics() {
+            const newsData = JSON.parse(localStorage.getItem('yostudy_news') || '[]');
+            const filesData = JSON.parse(localStorage.getItem('yostudy_downloads') || '[]');
+            
+            document.getElementById('newsCount').textContent = newsData.length;
+            document.getElementById('filesCount').textContent = filesData.length;
+            document.getElementById('totalDownloads').textContent = filesData.reduce((sum, file) => sum + (file.downloads || 0), 0);
+        }
+
+        // Initialize on page load
+        initializeAdmin();
+    </script>
+
+    <style>
+        .admin-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: var(--light-text);
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
+            font-weight: 600;
+        }
+
+        body.dark-mode .tab-btn {
+            color: var(--dark-text);
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .admin-form {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        body.dark-mode .admin-form {
+            background: var(--dark-bg);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        body.dark-mode .form-group input,
+        body.dark-mode .form-group select,
+        body.dark-mode .form-group textarea {
+            background: var(--dark-card);
+            color: var(--dark-text);
+            border-color: #444;
+        }
+
+        .admin-list {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        body.dark-mode .admin-list {
+            background: var(--dark-bg);
+        }
+
+        .items-list {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .item-admin {
+            background: var(--light-card);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .item-admin {
+            background: var(--dark-card);
+        }
+
+        .item-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary);
+        }
+
+        .item-info p,
+        .item-info small {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .item-info small {
+            color: #999;
+        }
+
+        .item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 4px 15px rgba(99,102,241,0.2);
+        }
+
+        .stat-icon {
+            font-size: 3em;
+        }
+
+        .stat-content h3 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .stat-content p {
+            margin: 5px 0 0 0;
+            opacity: 0.9;
+        }
+
+        .btn-small {
+            padding: 6px 12px;
+            font-size: 0.85em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .item-admin {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .item-actions {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</body>
+</html>

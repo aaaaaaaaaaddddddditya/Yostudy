@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yostudy - Download Zone</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect width='200' height='200' fill='%236366f1'/><g transform='translate(50, 40)'><path d='M 20 10 L 20 90 L 50 90 L 50 10 Z' fill='%23ffffff' stroke='%23ec4899' stroke-width='2'/><path d='M 50 10 L 50 90 L 80 90 L 80 10 Z' fill='%23ec4899' stroke='%23ffffff' stroke-width='2'/><rect x='48' y='10' width='4' height='80' fill='%23ffffff'/><line x1='25' y1='25' x2='45' y2='25' stroke='%23ec4899' stroke-width='1.5'/><line x1='25' y1='35' x2='45' y2='35' stroke='%23ec4899' stroke-width='1.5'/><line x1='25' y1='45' x2='45' y2='45' stroke='%23ec4899' stroke-width='1.5'/><line x1='55' y1='25' x2='75' y2='25' stroke='%23ffffff' stroke-width='1.5'/><line x1='55' y1='35' x2='75' y2='35' stroke='%23ffffff' stroke-width='1.5'/><line x1='55' y1='45' x2='75' y2='45' stroke='%23ffffff' stroke-width='1.5'/></g><text x='100' y='140' font-size='60' font-weight='bold' text-anchor='middle' fill='%23ffffff' font-family='Arial'>Y</text></svg>" />
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">
+                <img src="yostudy-logo.png" alt="Yostudy Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="calculators-hub.html">Calculators</a></li>
+                <li><a href="news.html">News</a></li>
+                <li><a href="download-zone.html">Downloads</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);">
+        <div class="hero-content">
+            <h1>📥 Download Zone</h1>
+            <p>Download study notes, PDFs, resources, and more educational materials</p>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+        <!-- CATEGORY FILTER -->
+        <div class="category-filter">
+            <button class="category-btn active" onclick="filterByCategory('all')">All Files</button>
+            <button class="category-btn" onclick="filterByCategory('notes')">📝 Notes</button>
+            <button class="category-btn" onclick="filterByCategory('pdf')">📄 PDF</button>
+            <button class="category-btn" onclick="filterByCategory('worksheet')">📋 Worksheet</button>
+            <button class="category-btn" onclick="filterByCategory('guide')">📖 Guide</button>
+        </div>
+
+        <!-- SEARCH -->
+        <div class="download-search">
+            <input type="text" id="searchInput" placeholder="Search files..." onkeyup="searchFiles()">
+        </div>
+
+        <!-- FILES GRID -->
+        <div class="files-grid" id="filesGrid">
+            <!-- Files will be loaded here -->
+        </div>
+
+        <!-- ADMIN BUTTON -->
+        <div class="admin-section">
+            <button class="btn-primary" onclick="showAdminPanel()">⚙️ Download Admin Panel</button>
+        </div>
+    </main>
+
+    <!-- ADMIN PANEL MODAL -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content admin-panel">
+            <span class="close" onclick="closeAdminPanel()">&times;</span>
+            <h2>⚙️ Download Zone Management</h2>
+
+            <!-- ADD FILE FORM -->
+            <div class="admin-form">
+                <h3>Add New File</h3>
+                <form id="fileForm">
+                    <div class="form-group">
+                        <label>File Name</label>
+                        <input type="text" id="fileName" placeholder="e.g., Physics Chapter 1 Notes" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="fileDescription" placeholder="Detailed description of the file" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="fileCategory" required>
+                            <option value="notes">📝 Notes</option>
+                            <option value="pdf">📄 PDF</option>
+                            <option value="worksheet">📋 Worksheet</option>
+                            <option value="guide">📖 Guide</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject/Class</label>
+                        <input type="text" id="fileSubject" placeholder="e.g., Physics - Class 12" required>
+                    </div>
+                    <div class="form-group">
+                        <label>File Type</label>
+                        <input type="text" id="fileType" placeholder="e.g., PDF, DOC, ZIP" required>
+                    </div>
+                    <div class="form-group">
+                        <label>File Size (in MB)</label>
+                        <input type="number" id="fileSize" placeholder="File size" step="0.1" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Download Link (URL)</label>
+                        <input type="url" id="fileUrl" placeholder="Link to download file" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Author/Source</label>
+                        <input type="text" id="fileAuthor" placeholder="Author name" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Add File</button>
+                </form>
+            </div>
+
+            <!-- FILES LIST -->
+            <div class="admin-list">
+                <h3>All Files</h3>
+                <div id="filesList" class="files-items-list">
+                    <!-- Files will be listed here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <img src="yostudy-logo.png" style="height: 60px;">
+            <p>Study Smart, Achieve More! 📚✨</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Files data stored in localStorage
+        const FILES_KEY = 'yostudy_downloads';
+        
+        // Initialize files data
+        function initializeFiles() {
+            const existingFiles = localStorage.getItem(FILES_KEY);
+            if (!existingFiles) {
+                const defaultFiles = [
+                    {
+                        id: 1,
+                        name: 'Physics Notes - Chapter 1',
+                        description: 'Complete notes on Motion and Forces. Includes diagrams and examples.',
+                        category: 'notes',
+                        subject: 'Physics - Class 9',
+                        type: 'PDF',
+                        size: 2.5,
+                        url: '#',
+                        author: 'Yostudy Team',
+                        downloads: 234,
+                        date: new Date().toISOString()
+                    },
+                    {
+                        id: 2,
+                        name: 'Mathematics Worksheet - Algebra',
+                        description: 'Practice worksheet with 50 algebra problems for class 8.',
+                        category: 'worksheet',
+                        subject: 'Mathematics - Class 8',
+                        type: 'PDF',
+                        size: 1.2,
+                        url: '#',
+                        author: 'Math Team',
+                        downloads: 156,
+                        date: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem(FILES_KEY, JSON.stringify(defaultFiles));
+            }
+            displayFiles('all');
+        }
+
+        // Display files
+        function displayFiles(filter = 'all') {
+            const filesData = JSON.parse(localStorage.getItem(FILES_KEY) || '[]');
+            const filesGrid = document.getElementById('filesGrid');
+            
+            let filteredFiles = filesData;
+            if (filter !== 'all') {
+                filteredFiles = filesData.filter(file => file.category === filter);
+            }
+
+            const getCategoryIcon = (cat) => {
+                const icons = { notes: '📝', pdf: '📄', worksheet: '📋', guide: '📖' };
+                return icons[cat] || '📄';
+            };
+
+            filesGrid.innerHTML = filteredFiles.length > 0 ? filteredFiles.reverse().map(file => `
+                <div class="file-card">
+                    <div class="file-header">
+                        <span class="file-icon">${getCategoryIcon(file.category)}</span>
+                        <span class="file-type">${file.type}</span>
+                    </div>
+                    <div class="file-info">
+                        <h3>${file.name}</h3>
+                        <p>${file.description}</p>
+                        <div class="file-meta">
+                            <span>📚 ${file.subject}</span>
+                            <span>📊 ${file.size} MB</span>
+                        </div>
+                        <div class="file-stats">
+                            <span>⬇️ ${file.downloads} downloads</span>
+                            <span>👤 By ${file.author}</span>
+                        </div>
+                        <a href="${file.url}" target="_blank" class="btn-download">Download File</a>
+                    </div>
+                </div>
+            `).join('') : '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No files available</p>';
+        }
+
+        // Filter by category
+        function filterByCategory(category) {
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            displayFiles(category);
+        }
+
+        // Search files
+        function searchFiles() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const filesData = JSON.parse(localStorage.getItem(FILES_KEY) || '[]');
+            const filesGrid = document.getElementById('filesGrid');
+            
+            const filteredFiles = filesData.filter(file => 
+                file.name.toLowerCase().includes(searchTerm) ||
+                file.description.toLowerCase().includes(searchTerm) ||
+                file.subject.toLowerCase().includes(searchTerm)
+            );
+
+            const getCategoryIcon = (cat) => {
+                const icons = { notes: '📝', pdf: '📄', worksheet: '📋', guide: '📖' };
+                return icons[cat] || '📄';
+            };
+
+            filesGrid.innerHTML = filteredFiles.length > 0 ? filteredFiles.map(file => `
+                <div class="file-card">
+                    <div class="file-header">
+                        <span class="file-icon">${getCategoryIcon(file.category)}</span>
+                        <span class="file-type">${file.type}</span>
+                    </div>
+                    <div class="file-info">
+                        <h3>${file.name}</h3>
+                        <p>${file.description}</p>
+                        <div class="file-meta">
+                            <span>📚 ${file.subject}</span>
+                            <span>📊 ${file.size} MB</span>
+                        </div>
+                        <div class="file-stats">
+                            <span>⬇️ ${file.downloads} downloads</span>
+                            <span>👤 By ${file.author}</span>
+                        </div>
+                        <a href="${file.url}" target="_blank" class="btn-download">Download File</a>
+                    </div>
+                </div>
+            `).join('') : '<p style="grid-column: 1/-1; text-align: center; padding: 40px;">No files found</p>';
+        }
+
+        // Show admin panel
+        function showAdminPanel() {
+            document.getElementById('adminModal').style.display = 'block';
+            loadFilesListInAdmin();
+        }
+
+        // Close admin panel
+        function closeAdminPanel() {
+            document.getElementById('adminModal').style.display = 'none';
+        }
+
+        // Load files list in admin
+        function loadFilesListInAdmin() {
+            const filesData = JSON.parse(localStorage.getItem(FILES_KEY) || '[]');
+            const filesList = document.getElementById('filesList');
+            
+            const getCategoryIcon = (cat) => {
+                const icons = { notes: '📝', pdf: '📄', worksheet: '📋', guide: '📖' };
+                return icons[cat] || '📄';
+            };
+
+            filesList.innerHTML = filesData.length > 0 ? filesData.reverse().map(file => `
+                <div class="file-item-admin">
+                    <div class="file-item-info">
+                        <h4>${getCategoryIcon(file.category)} ${file.name}</h4>
+                        <p>${file.description}</p>
+                        <small>📚 ${file.subject} | 📊 ${file.size} MB | By ${file.author}</small>
+                    </div>
+                    <div class="file-item-actions">
+                        <button class="btn-small btn-danger" onclick="deleteFile(${file.id})">Delete</button>
+                    </div>
+                </div>
+            `).join('') : '<p>No files added yet</p>';
+        }
+
+        // Add file
+        document.getElementById('fileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const filesData = JSON.parse(localStorage.getItem(FILES_KEY) || '[]');
+            const newFile = {
+                id: Date.now(),
+                name: document.getElementById('fileName').value,
+                description: document.getElementById('fileDescription').value,
+                category: document.getElementById('fileCategory').value,
+                subject: document.getElementById('fileSubject').value,
+                type: document.getElementById('fileType').value,
+                size: parseFloat(document.getElementById('fileSize').value),
+                url: document.getElementById('fileUrl').value,
+                author: document.getElementById('fileAuthor').value,
+                downloads: 0,
+                date: new Date().toISOString()
+            };
+            
+            filesData.push(newFile);
+            localStorage.setItem(FILES_KEY, JSON.stringify(filesData));
+            
+            // Reset form
+            this.reset();
+            alert('File added successfully!');
+            loadFilesListInAdmin();
+            displayFiles('all');
+        });
+
+        // Delete file
+        function deleteFile(id) {
+            if (confirm('Are you sure you want to delete this file?')) {
+                let filesData = JSON.parse(localStorage.getItem(FILES_KEY) || '[]');
+                filesData = filesData.filter(file => file.id !== id);
+                localStorage.setItem(FILES_KEY, JSON.stringify(filesData));
+                loadFilesListInAdmin();
+                displayFiles('all');
+            }
+        }
+
+        // Close modal on outside click
+        window.onclick = function(event) {
+            const modal = document.getElementById('adminModal');
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Initialize on page load
+        initializeFiles();
+    </script>
+
+    <style>
+        .category-filter {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            border: 2px solid var(--primary);
+            background: transparent;
+            color: var(--primary);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .category-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .download-search {
+            margin-bottom: 30px;
+        }
+
+        .download-search input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        body.dark-mode .download-search input {
+            background: var(--dark-card);
+            color: var(--dark-text);
+            border-color: #444;
+        }
+
+        .files-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .file-card {
+            background: var(--light-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            animation: fadeInUp 0.5s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark-mode .file-card {
+            background: var(--dark-card);
+        }
+
+        .file-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(99,102,241,0.2);
+        }
+
+        .file-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .file-icon {
+            font-size: 2em;
+        }
+
+        .file-type {
+            background: rgba(255,255,255,0.3);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .file-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .file-info h3 {
+            margin: 0 0 10px 0;
+            color: var(--primary);
+        }
+
+        .file-info p {
+            color: var(--light-text);
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        body.dark-mode .file-info p {
+            color: var(--dark-text);
+        }
+
+        .file-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .file-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 0.85em;
+            color: #999;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .btn-download {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .btn-download:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .file-item-admin {
+            background: var(--light-card);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .file-item-admin {
+            background: var(--dark-card);
+        }
+
+        .file-item-info h4 {
+            margin: 0 0 5px 0;
+            color: var(--primary);
+        }
+
+        .file-item-info p {
+            margin: 5px 0;
+            font-size: 0.9em;
+            color: var(--light-text);
+        }
+
+        body.dark-mode .file-item-info p {
+            color: var(--dark-text);
+        }
+
+        .file-item-info small {
+            color: #999;
+        }
+
+        .file-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+    </style>
+</body>
+</html>
