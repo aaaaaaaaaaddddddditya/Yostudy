@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Tables 1-100 | Yostudy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">📚 Yostudy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="subjects.html"Subjects</a></li>
+                <li><a href="calculators.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+        <h1 class="page-title">Multiplication Tables (1-100)</h1>
+        
+        <div class="subsection">
+            <h2>Search or Jump to Table</h2>
+            <div style="max-width: 500px; margin: 2rem auto; display: flex; gap: 1rem;">
+                <input type="number" min="1" max="1000" value="2" id="tableSearch" 
+                       class="search-input" onchange="showTable()" 
+                       placeholder="Enter table number (1-1000)" style="flex: 1;">
+                <button class="btn btn-primary" onclick="showTable()" style="white-space: nowrap;">Search</button>
+            </div>
+        </div>
+
+        <div class="subsection">
+            <h2>All Tables (1-100)</h2>
+            <div class="table-grid" id="tableGrid">
+                <!-- Tables will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Complete multiplication tables for quick learning and revision.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy Cheat Sheet. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Generate tables 1-100 on page load
+        window.addEventListener('load', () => {
+            generateMultiplicationTables(1, 100);
+        });
+    </script>
+</body>
+</html>

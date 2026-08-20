@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculators | Yostudy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">📚 Yostudy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="subjects.html"Subjects</a></li>
+                <li><a href="calculators.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+        <h1 class="page-title">Calculators & Tools</h1>
+
+        <!-- CALCULATOR SELECTION -->
+        <div class="subsection">
+            <h2>Select a Calculator</h2>
+            <div class="utilities-grid">
+                <div class="utility-card" onclick="switchCalculator('percentage')">
+                    <div class="utility-icon">%</div>
+                    <h3>Percentage</h3>
+                    <p>Calculate percentage</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('age')">
+                    <div class="utility-icon">🎂</div>
+                    <h3>Age Calculator</h3>
+                    <p>Find your age</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('fraction')">
+                    <div class="utility-icon">⅓</div>
+                    <h3>Fraction</h3>
+                    <p>Simplify fractions</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('unit')">
+                    <div class="utility-icon">📏</div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert units</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('bmi')">
+                    <div class="utility-icon">⚖️</div>
+                    <h3>BMI Calculator</h3>
+                    <p>Calculate BMI</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('compound')">
+                    <div class="utility-icon">💰</div>
+                    <h3>Compound Interest</h3>
+                    <p>Calculate CI</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('simple')">
+                    <div class="utility-icon">📊</div>
+                    <h3>Simple Interest</h3>
+                    <p>Calculate SI</p>
+                </div>
+                <div class="utility-card" onclick="switchCalculator('discount')">
+                    <div class="utility-icon">🏷️</div>
+                    <h3>Discount</h3>
+                    <p>Calculate discount</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CALCULATORS -->
+
+        <!-- Percentage Calculator -->
+        <div id="percentage-calc" class="calculator-section" style="display: none;">
+            <h2>Percentage Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">What is X% of Y?</label>
+                <input type="number" class="calc-input" id="percent-part" placeholder="Enter part value" onchange="calculatePercentage()">
+                <input type="number" class="calc-input" id="percent-whole" placeholder="Enter whole value" onchange="calculatePercentage()">
+                <div class="calc-result" id="percent-result">Result: 0%</div>
+            </div>
+        </div>
+
+        <!-- Age Calculator -->
+        <div id="age-calc" class="calculator-section" style="display: none;">
+            <h2>Age Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Select Your Date of Birth</label>
+                <input type="date" class="calc-input" id="birth-date" onchange="calculateAge()">
+                <div class="calc-result" id="age-result">Result: --</div>
+            </div>
+        </div>
+
+        <!-- Fraction Calculator -->
+        <div id="fraction-calc" class="calculator-section" style="display: none;">
+            <h2>Fraction Simplifier</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Simplify Fractions</label>
+                <input type="number" class="calc-input" id="numerator" placeholder="Numerator" onchange="simplifyFraction()">
+                <input type="number" class="calc-input" id="denominator" placeholder="Denominator" onchange="simplifyFraction()">
+                <div class="calc-result" id="fraction-result">Result: --</div>
+            </div>
+        </div>
+
+        <!-- Unit Converter -->
+        <div id="unit-calc" class="calculator-section" style="display: none;">
+            <h2>Length Converter</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Convert Length Units</label>
+                <input type="number" class="calc-input" id="meter-input" placeholder="Meters" onchange="convertUnits()">
+                <div class="calc-result" id="unit-result">Result: --</div>
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Converts to: cm, feet, km</p>
+            </div>
+        </div>
+
+        <!-- BMI Calculator -->
+        <div id="bmi-calc" class="calculator-section" style="display: none;">
+            <h2>BMI Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Calculate Body Mass Index</label>
+                <input type="number" class="calc-input" id="weight" placeholder="Weight (kg)" onchange="calculateBMI()">
+                <input type="number" class="calc-input" id="height" placeholder="Height (cm)" onchange="calculateBMI()">
+                <div class="calc-result" id="bmi-result">Result: --</div>
+                <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem; font-size: 0.9rem;">
+                    <p><strong>BMI Categories:</strong></p>
+                    <p>Underweight: BMI &lt; 18.5</p>
+                    <p>Normal: 18.5 - 24.9</p>
+                    <p>Overweight: 25 - 29.9</p>
+                    <p>Obese: BMI ≥ 30</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compound Interest Calculator -->
+        <div id="compound-calc" class="calculator-section" style="display: none;">
+            <h2>Compound Interest Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">A = P(1 + r/100)^t</label>
+                <input type="number" class="calc-input" id="principal" placeholder="Principal Amount (₹)" onchange="calculateCompound()">
+                <input type="number" class="calc-input" id="rate" placeholder="Rate of Interest (% p.a.)" onchange="calculateCompound()">
+                <input type="number" class="calc-input" id="time" placeholder="Time Period (years)" onchange="calculateCompound()">
+                <div class="calc-result" id="compound-result">Result: ₹0</div>
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Formula: CI = A - P</p>
+            </div>
+        </div>
+
+        <!-- Simple Interest Calculator -->
+        <div id="simple-calc" class="calculator-section" style="display: none;">
+            <h2>Simple Interest Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">SI = (P × R × T) / 100</label>
+                <input type="number" class="calc-input" id="si-principal" placeholder="Principal Amount (₹)" onchange="calculateSimpleInterest()">
+                <input type="number" class="calc-input" id="si-rate" placeholder="Rate of Interest (% p.a.)" onchange="calculateSimpleInterest()">
+                <input type="number" class="calc-input" id="si-time" placeholder="Time Period (years)" onchange="calculateSimpleInterest()">
+                <div class="calc-result" id="si-result">Result: ₹0</div>
+                <div style="background: rgba(99, 102, 241, 0.1); padding: 1rem; border-radius: 10px; margin-top: 1rem; font-size: 0.9rem;">
+                    <p><strong>Example:</strong></p>
+                    <p>P = ₹1000, R = 10%, T = 2</p>
+                    <p>SI = (1000 × 10 × 2) / 100 = ₹200</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Discount Calculator -->
+        <div id="discount-calc" class="calculator-section" style="display: none;">
+            <h2>Discount Calculator</h2>
+            <div>
+                <label style="display: block; margin-bottom: 1rem; font-weight: 600;">Calculate Discount Amount</label>
+                <input type="number" class="calc-input" id="original-price" placeholder="Original Price (₹)" onchange="calculateDiscount()">
+                <input type="number" class="calc-input" id="discount-percent" placeholder="Discount (%)" onchange="calculateDiscount()">
+                <div class="calc-result" id="discount-result">Result: --</div>
+                <p style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">Formula: Final Price = Original - Discount Amount</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Collection of useful calculators for students.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy Cheat Sheet. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

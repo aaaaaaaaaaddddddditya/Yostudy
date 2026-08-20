@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yostudy - Study Notes by Class</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .class-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            border-radius: 15px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .class-btn {
+            padding: 20px;
+            border: 3px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .class-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+        }
+
+        .class-btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 30px rgba(106, 17, 203, 0.8);
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .subject-card {
+            background: linear-gradient(135deg, var(--card-bg), rgba(106, 17, 203, 0.1));
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: slideInUp 0.5s ease;
+        }
+
+        .subject-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(106, 17, 203, 0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .subject-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+
+        .subject-card .class-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .learning-tricks {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 87, 34, 0.1));
+            border: 2px solid var(--warning-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        .learning-tricks h3 {
+            color: var(--warning-color);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .learning-tricks ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .learning-tricks li {
+            padding: 12px;
+            margin: 8px 0;
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid var(--warning-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .learning-tricks li:hover {
+            background: rgba(255, 193, 7, 0.2);
+            transform: translateX(5px);
+        }
+
+        .gadgets-section {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+            border: 2px solid var(--success-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .gadgets-section h3 {
+            color: var(--success-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gadgets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .gadget-card {
+            background: white;
+            border: 2px solid var(--success-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gadget-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .gadget-card .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .gadget-card h4 {
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .gadget-card p {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .gadget-card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background: var(--success-color);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .gadget-card a:hover {
+            background: var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .formulas-section {
+            background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(233, 30, 99, 0.1));
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .formulas-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .formula-box {
+            background: rgba(156, 39, 176, 0.05);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .warning-color {
+            --warning-color: #FFC107;
+        }
+
+        .success-color {
+            --success-color: #4CAF50;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 193, 7, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">📚 Yostudy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="calculators.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- HEADER -->
+        <div class="section-header">
+            <h1>📖 Study Notes</h1>
+            <p>Select your class to view personalized study materials</p>
+        </div>
+
+        <!-- CLASS SELECTOR -->
+        <div class="class-selector">
+            <button class="class-btn active" onclick="selectClass(1)">Class 1</button>
+            <button class="class-btn" onclick="selectClass(2)">Class 2</button>
+            <button class="class-btn" onclick="selectClass(3)">Class 3</button>
+            <button class="class-btn" onclick="selectClass(4)">Class 4</button>
+            <button class="class-btn" onclick="selectClass(5)">Class 5</button>
+            <button class="class-btn" onclick="selectClass(6)">Class 6</button>
+            <button class="class-btn" onclick="selectClass(7)">Class 7</button>
+            <button class="class-btn" onclick="selectClass(8)">Class 8</button>
+            <button class="class-btn" onclick="selectClass(9)">Class 9</button>
+        </div>
+
+        <!-- SUBJECTS SECTION -->
+        <div id="subjectsContainer"></div>
+
+        <!-- LEARNING TRICKS SECTION -->
+        <div class="learning-tricks" id="learningTricksSection">
+            <h3>💡 Learning Tricks & Tips for Class <span id="trickClass">1</span></h3>
+            <ul id="tricksList"></ul>
+        </div>
+
+        <!-- FORMULAS SECTION -->
+        <div class="formulas-section" id="formulasSection">
+            <h3>📐 Important Formulas</h3>
+            <div id="formulasContent"></div>
+        </div>
+
+        <!-- GADGETS SECTION -->
+        <div class="gadgets-section">
+            <h3>🛍️ Recommended Study Gadgets & Tools</h3>
+            <p style="color: #666; margin-bottom: 20px;">Enhance your learning experience with these recommended products from Amazon:</p>
+            <div class="gadgets-grid" id="gadgetsGrid"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Yostudy is a comprehensive learning platform for students of classes 1-9.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy. All Rights Reserved. | Made with ❤️ for Students</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Class-wise subject data with simplified format
+        const classSubjects = {
+            1: [
+                { icon: '📚', name: 'English Basics', class: 'Class 1' },
+                { icon: '🔢', name: 'Math Fundamentals', class: 'Class 1' },
+                { icon: '🌍', name: 'General Knowledge', class: 'Class 1' },
+                { icon: '🎨', name: 'Art & Craft', class: 'Class 1' },
+                { icon: '🏃', name: 'Physical Education', class: 'Class 1' }
+            ],
+            2: [
+                { icon: '📚', name: 'English Grammar', class: 'Class 2' },
+                { icon: '🔢', name: 'Basic Arithmetic', class: 'Class 2' },
+                { icon: '🧪', name: 'Science Basics', class: 'Class 2' },
+                { icon: '🗺️', name: 'Civics', class: 'Class 2' },
+                { icon: '💻', name: 'Computer Basics', class: 'Class 2' }
+            ],
+            3: [
+                { icon: '📚', name: 'English Stories', class: 'Class 3' },
+                { icon: '🔢', name: 'Addition & Subtraction', class: 'Class 3' },
+                { icon: '🧪', name: 'Science Experiments', class: 'Class 3' },
+                { icon: '🗺️', name: 'Geography Basics', class: 'Class 3' },
+                { icon: '🎵', name: 'Music & Dance', class: 'Class 3' }
+            ],
+            4: [
+                { icon: '📚', name: 'English Literature', class: 'Class 4' },
+                { icon: '🔢', name: 'Multiplication & Division', class: 'Class 4' },
+                { icon: '🧪', name: 'Physics Basics', class: 'Class 4' },
+                { icon: '🗺️', name: 'India Geography', class: 'Class 4' },
+                { icon: '📖', name: 'History Tales', class: 'Class 4' }
+            ],
+            5: [
+                { icon: '📚', name: 'English Grammar', class: 'Class 5' },
+                { icon: '🔢', name: 'Fractions & Decimals', class: 'Class 5' },
+                { icon: '🧪', name: 'Chemistry Basics', class: 'Class 5' },
+                { icon: '🗺️', name: 'World Geography', class: 'Class 5' },
+                { icon: '📱', name: 'Science Technology', class: 'Class 5' }
+            ],
+            6: [
+                { icon: '📚', name: 'English Composition', class: 'Class 6' },
+                { icon: '🔢', name: 'Algebra Introduction', class: 'Class 6' },
+                { icon: '🧪', name: 'Periodic Table', class: 'Class 6' },
+                { icon: '🗺️', name: 'Earth & Climate', class: 'Class 6' },
+                { icon: '⚗️', name: 'Biology Basics', class: 'Class 6' }
+            ],
+            7: [
+                { icon: '📚', name: 'English Literature', class: 'Class 7' },
+                { icon: '🔢', name: 'Advanced Algebra', class: 'Class 7' },
+                { icon: '🧪', name: 'Physical Science', class: 'Class 7' },
+                { icon: '🗺️', name: 'Climate & Weather', class: 'Class 7' },
+                { icon: '🔬', name: 'Life Science', class: 'Class 7' }
+            ],
+            8: [
+                { icon: '📚', name: 'English Grammar', class: 'Class 8' },
+                { icon: '🔢', name: 'Geometry', class: 'Class 8' },
+                { icon: '🧪', name: 'Forces & Motion', class: 'Class 8' },
+                { icon: '🗺️', name: 'Resources & Development', class: 'Class 8' },
+                { icon: '🔬', name: 'Cell Biology', class: 'Class 8' }
+            ],
+            9: [
+                { icon: '📚', name: 'English Literature', class: 'Class 9' },
+                { icon: '🔢', name: 'Trigonometry', class: 'Class 9' },
+                { icon: '🧪', name: 'Atoms & Molecules', class: 'Class 9' },
+                { icon: '🗺️', name: 'Population & Development', class: 'Class 9' },
+                { icon: '🔬', name: 'Genetics & Evolution', class: 'Class 9' }
+            ]
+        };
+
+        // Learning tricks for each class
+        const learningTricks = {
+            1: [
+                '🎯 Use colorful flashcards for alphabets and numbers',
+                '🎨 Draw pictures while learning new words',
+                '🔊 Repeat pronunciation 5 times for better learning',
+                '⏰ Study for 20 minutes, break for 5 minutes',
+                '🎮 Turn learning into a fun game'
+            ],
+            2: [
+                '📝 Write answers multiple times for better memory',
+                '🎯 Create mind maps for important topics',
+                '🔢 Use fingers to count and practice math',
+                '🎵 Sing while learning tables and spellings',
+                '👨‍👩‍👧 Teach others to reinforce your learning'
+            ],
+            3: [
+                '📚 Read stories aloud to improve fluency',
+                '✍️ Write summaries of topics you learn',
+                '🎯 Use the Pomodoro technique: 25 min study, 5 min break',
+                '🖼️ Create visual diagrams for science topics',
+                '🗣️ Discuss topics with friends'
+            ],
+            4: [
+                '📊 Create concept maps for complex topics',
+                '🧮 Practice math problems daily - at least 10',
+                '📖 Read at least one chapter per day',
+                '🎓 Use the SQ3R method: Survey, Question, Read, Recite, Review',
+                '💡 Ask "why" for every concept you learn'
+            ],
+            5: [
+                '🔬 Conduct simple experiments at home',
+                '📐 Use geometric shapes in real-world examples',
+                '📝 Maintain a separate notebook for formulas',
+                '🎯 Use mnemonics for memorization',
+                '🧠 Practice active recall while revising'
+            ],
+            6: [
+                '📚 Create a glossary for new terms',
+                '🔍 Research beyond textbooks',
+                '💻 Use educational videos for tough topics',
+                '🎯 Solve previous years exam papers',
+                '📊 Maintain a progress tracker'
+            ],
+            7: [
+                '🧮 Practice derivations step by step',
+                '🔬 Link concepts to real-world applications',
+                '📝 Create summary sheets for quick revision',
+                '🎯 Study in groups for better understanding',
+                '💡 Explain concepts in your own words'
+            ],
+            8: [
+                '📐 Use graph paper for geometry practice',
+                '🧪 Memorize reactions with visual aids',
+                '🎯 Time yourself while solving problems',
+                '📚 Make flashcards for definitions',
+                '🔬 Watch demonstrations for practical concepts'
+            ],
+            9: [
+                '🧮 Practice problems from multiple books',
+                '📝 Create detailed solution sheets',
+                '🎯 Use past 10 years question papers',
+                '🔬 Focus on board exam patterns',
+                '💪 Take mock tests regularly'
+            ]
+        };
+
+        // Class-wise formulas
+        const classFormulas = {
+            1: [
+                '<strong>Simple Addition:</strong> A + B = C<br/>',
+                '<strong>Simple Subtraction:</strong> A - B = C<br/>',
+                '<strong>Basic Multiplication:</strong> A × B = C<br/>',
+                '<strong>Basic Division:</strong> A ÷ B = C<br/>'
+            ],
+            2: [
+                '<strong>Perimeter of Rectangle:</strong> 2(L + B)<br/>',
+                '<strong>Area of Rectangle:</strong> L × B<br/>',
+                '<strong>Perimeter of Square:</strong> 4 × Side<br/>',
+                '<strong>Area of Square:</strong> Side × Side<br/>'
+            ],
+            3: [
+                '<strong>Perimeter of Triangle:</strong> A + B + C<br/>',
+                '<strong>Area of Triangle:</strong> (Base × Height) ÷ 2<br/>',
+                '<strong>Circumference of Circle:</strong> 2πr<br/>',
+                '<strong>Area of Circle:</strong> πr²<br/>'
+            ],
+            4: [
+                '<strong>Profit:</strong> Selling Price - Cost Price<br/>',
+                '<strong>Loss:</strong> Cost Price - Selling Price<br/>',
+                '<strong>Simple Interest:</strong> (P × R × T) ÷ 100<br/>',
+                '<strong>Average:</strong> Sum of all numbers ÷ Count<br/>'
+            ],
+            5: [
+                '<strong>Speed:</strong> Distance ÷ Time<br/>',
+                '<strong>Volume of Cube:</strong> Side³<br/>',
+                '<strong>Volume of Cuboid:</strong> L × B × H<br/>',
+                '<strong>Percentage:</strong> (Part ÷ Whole) × 100<br/>'
+            ],
+            6: [
+                '<strong>Surface Area of Cube:</strong> 6 × Side²<br/>',
+                '<strong>Surface Area of Cuboid:</strong> 2(LB + BH + HL)<br/>',
+                '<strong>Density:</strong> Mass ÷ Volume<br/>',
+                '<strong>Ratio:</strong> A : B = A ÷ B<br/>'
+            ],
+            7: [
+                '<strong>sin θ:</strong> Opposite ÷ Hypotenuse<br/>',
+                '<strong>cos θ:</strong> Adjacent ÷ Hypotenuse<br/>',
+                '<strong>tan θ:</strong> Opposite ÷ Adjacent<br/>',
+                '<strong>Pythagorean Theorem:</strong> a² + b² = c²<br/>'
+            ],
+            8: [
+                '<strong>Quadratic Formula:</strong> x = [-b ± √(b² - 4ac)] ÷ 2a<br/>',
+                '<strong>Distance Formula:</strong> √[(x₂-x₁)² + (y₂-y₁)²]<br/>',
+                '<strong>Resistance:</strong> V = IR (Ohm\'s Law)<br/>',
+                '<strong>Power:</strong> P = VI (Watts)<br/>'
+            ],
+            9: [
+                '<strong>Quadratic Equation:</strong> ax² + bx + c = 0<br/>',
+                '<strong>Arithmetic Progression:</strong> aₙ = a + (n-1)d<br/>',
+                '<strong>Compound Interest:</strong> A = P(1 + r/100)ⁿ<br/>',
+                '<strong>Surface Area of Sphere:</strong> 4πr²<br/>',
+                '<strong>Volume of Sphere:</strong> (4/3)πr³<br/>'
+            ]
+        };
+
+        // Amazon gadgets for learning
+        const gadgetsData = [
+            { icon: '📚', name: 'Study Lamp', desc: 'LED Study Lamp with USB', amazonLink: '#' },
+            { icon: '✏️', name: 'Quality Pens Set', desc: '50 Pens Multi-Color', amazonLink: '#' },
+            { icon: '📓', name: 'Notebook Combo', desc: 'Premium Writing Notebooks', amazonLink: '#' },
+            { icon: '🖍️', name: 'Color Pencil Set', desc: '72 Color Pencils Set', amazonLink: '#' },
+            { icon: '📐', name: 'Geometry Box', desc: 'Complete Geometry Set', amazonLink: '#' },
+            { icon: '🎧', name: 'Learning Headphones', desc: 'Noise Cancelling Headphones', amazonLink: '#' },
+            { icon: '⏰', name: 'Study Timer', desc: 'Digital Study Timer', amazonLink: '#' },
+            { icon: '💻', name: 'Laptop Stand', desc: 'Adjustable Laptop Stand', amazonLink: '#' },
+            { icon: '🖱️', name: 'Wireless Mouse', desc: 'Ergonomic Wireless Mouse', amazonLink: '#' },
+            { icon: '📱', name: 'Tablet Stand', desc: 'Portable Tablet Holder', amazonLink: '#' },
+            { icon: '🔋', name: 'Power Bank', desc: '20000mAh Power Bank', amazonLink: '#' },
+            { icon: '🧮', name: 'Calculator', desc: 'Scientific Calculator', amazonLink: '#' }
+        ];
+
+        function selectClass(classNum) {
+            // Update active button
+            document.querySelectorAll('.class-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Update subjects
+            displaySubjects(classNum);
+
+            // Update learning tricks
+            updateLearningTricks(classNum);
+
+            // Update formulas
+            updateFormulas(classNum);
+
+            // Scroll to subjects
+            document.getElementById('subjectsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function displaySubjects(classNum) {
+            const subjects = classSubjects[classNum] || [];
+            let html = '<div class="subjects-grid">';
+            
+            subjects.forEach(subject => {
+                html += `
+                    <div class="subject-card">
+                        <div style="font-size: 40px; margin-bottom: 10px;">${subject.icon}</div>
+                        <h3>${subject.name}</h3>
+                        <span class="class-badge">${subject.class}</span>
+                        <p style="color: #999; font-size: 13px;">Click to learn more →</p>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            document.getElementById('subjectsContainer').innerHTML = html;
+        }
+
+        function updateLearningTricks(classNum) {
+            document.getElementById('trickClass').textContent = classNum;
+            const tricks = learningTricks[classNum] || [];
+            let html = '';
+            tricks.forEach(trick => {
+                html += `<li>${trick}</li>`;
+            });
+            document.getElementById('tricksList').innerHTML = html;
+        }
+
+        function updateFormulas(classNum) {
+            const formulas = classFormulas[classNum] || [];
+            let html = '';
+            formulas.forEach(formula => {
+                html += `<div class="formula-box">${formula}</div>`;
+            });
+            document.getElementById('formulasContent').innerHTML = html;
+        }
+
+        function displayGadgets() {
+            let html = '';
+            gadgetsData.forEach((gadget, index) => {
+                html += `
+                    <div class="gadget-card">
+                        <div class="icon">${gadget.icon}</div>
+                        <h4>${gadget.name}</h4>
+                        <p>${gadget.desc}</p>
+                        <a href="${gadget.amazonLink}" target="_blank">View on Amazon 🔗</a>
+                    </div>
+                `;
+            });
+            document.getElementById('gadgetsGrid').innerHTML = html;
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            displaySubjects(1);
+            updateLearningTricks(1);
+            updateFormulas(1);
+            displayGadgets();
+        });
+    </script>
+</body>
+</html>

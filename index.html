@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yostudy - Classes 1-9 Complete Learning Hub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">📚 Yostudy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="subjects.html">Subjects</a></li>
+                <li><a href="calculators.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Master Your Studies</h1>
+            <p>Complete Learning Hub for Classes 1-9</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search topics, formulas, notes..." id="globalSearch" onkeyup="globalSearch()">
+            </div>
+            <div class="cta-buttons">
+                <a href="study.html" class="btn btn-primary">Start Learning</a>
+                <a href="formulas.html" class="btn btn-secondary">View Formulas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="categories">
+        <h2 class="section-title">Choose Your Category</h2>
+        <div class="category-grid">
+            <a href="study.html" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="category-icon">📖</div>
+                <h3>Study Notes</h3>
+                <p>Complete notes for all subjects and classes</p>
+            </a>
+            <a href="multiplication.html" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="category-icon">✖️</div>
+                <h3>Multiplication Tables</h3>
+                <p>Tables from 1 to 100 with search</p>
+            </a>
+            <a href="formulas.html" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="category-icon">∑</div>
+                <h3>Math Formulas</h3>
+                <p>500+ formulas with examples</p>
+            </a>
+            <a href="science.html" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="category-icon">🧪</div>
+                <h3>Science</h3>
+                <p>Physics, Chemistry, Biology resources</p>
+            </a>
+            <a href="subjects.html" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="category-icon">📕</div>
+                <h3>Subjects</h3>
+                <p>All subjects for classes 1-9 with details</p>
+            </a>
+            <a href="calculators.html" class="category-card" style="text-decoration: none; color: inherit;">
+                <div class="category-icon">🧮</div>
+                <h3>Calculators</h3>
+                <p>Scientific, percentage, unit conversion</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Yostudy Cheat Sheet is a comprehensive learning platform for students of classes 1-9.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy Cheat Sheet. All Rights Reserved. | Made with ❤️ for Students</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

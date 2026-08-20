@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Resources | Yostudy</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">📚 Yostudy</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="subjects.html"Subjects</a></li>
+                <li><a href="calculators.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <div class="content-wrapper">
+        <h1 class="page-title">Science Resources</h1>
+
+        <!-- PHYSICS -->
+        <div class="subsection">
+            <h2>Physics Formulas</h2>
+            
+            <div class="formula-card">
+                <h4>Motion Equations</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Velocity-Time:</div>
+                    <div class="formula-content">v = u + at</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Displacement:</div>
+                    <div class="formula-content">s = ut + (1/2)at²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Final Velocity:</div>
+                    <div class="formula-content">v² = u² + 2as</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Where:</div>
+                    <p>u = initial velocity, v = final velocity, a = acceleration, t = time, s = displacement</p>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Force and Newton's Laws</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Newton's Second Law:</div>
+                    <div class="formula-content">F = ma</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Weight:</div>
+                    <div class="formula-content">W = mg</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Friction Force:</div>
+                    <div class="formula-content">f = μN</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Energy and Work</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Kinetic Energy:</div>
+                    <div class="formula-content">KE = (1/2)mv²</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Potential Energy:</div>
+                    <div class="formula-content">PE = mgh</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Work Done:</div>
+                    <div class="formula-content">W = F × s × cosθ</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Power:</div>
+                    <div class="formula-content">P = W/t</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Light and Optics</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Speed of Light:</div>
+                    <div class="formula-content">c = λν (speed = wavelength × frequency)</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Lens Formula:</div>
+                    <div class="formula-content">1/f = 1/v + 1/u</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Magnification:</div>
+                    <div class="formula-content">m = v/u</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Electricity</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Ohm's Law:</div>
+                    <div class="formula-content">V = IR</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Electric Power:</div>
+                    <div class="formula-content">P = VI = I²R = V²/R</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Resistance:</div>
+                    <div class="formula-content">R = ρL/A</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHEMISTRY -->
+        <div class="subsection">
+            <h2>Chemistry Concepts</h2>
+            
+            <div class="card">
+                <h4>⚛️ Atomic Structure</h4>
+                <p><strong>Electrons:</strong> Negatively charged particles orbiting nucleus</p>
+                <p><strong>Protons:</strong> Positively charged particles in nucleus</p>
+                <p><strong>Neutrons:</strong> Neutral particles in nucleus</p>
+                <p><strong>Atomic Number:</strong> Number of protons = Number of electrons</p>
+                <p><strong>Mass Number:</strong> Number of protons + Number of neutrons</p>
+            </div>
+
+            <div class="card">
+                <h4>🧪 Chemical Reactions</h4>
+                <p><strong>Combination:</strong> A + B → AB</p>
+                <p><strong>Decomposition:</strong> AB → A + B</p>
+                <p><strong>Displacement:</strong> AB + C → AC + B</p>
+                <p><strong>Redox:</strong> Transfer of electrons occurs</p>
+            </div>
+
+            <div class="card">
+                <h4>🌊 Acids and Bases</h4>
+                <p><strong>pH Scale:</strong> 0-7 (Acidic), 7 (Neutral), 7-14 (Basic)</p>
+                <p><strong>Strong Acids:</strong> HCl, H₂SO₄, HNO₃</p>
+                <p><strong>Strong Bases:</strong> NaOH, KOH, Ca(OH)₂</p>
+                <p><strong>Neutral:</strong> pH = 7 (Pure water)</p>
+            </div>
+
+            <div class="formula-card">
+                <h4>Mole Concept</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Molar Mass:</div>
+                    <p>Sum of atomic masses of all atoms in a molecule</p>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Number of Moles:</div>
+                    <div class="formula-content">n = mass / molar mass</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Avogadro's Number:</div>
+                    <p>1 mole = 6.022 × 10²³ particles</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- BIOLOGY -->
+        <div class="subsection">
+            <h2>Biology Topics</h2>
+            
+            <div class="card">
+                <h4>🔬 Cell Biology</h4>
+                <p><strong>Cell Structure:</strong> Nucleus, Cytoplasm, Organelles</p>
+                <p><strong>Prokaryotic:</strong> No nucleus (Bacteria, Archaea)</p>
+                <p><strong>Eukaryotic:</strong> Has nucleus (Plants, Animals, Fungi)</p>
+                <p><strong>Photosynthesis:</strong> 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂</p>
+            </div>
+
+            <div class="card">
+                <h4>🧬 Genetics</h4>
+                <p><strong>DNA:</strong> Deoxyribonucleic acid - carries genetic information</p>
+                <p><strong>Chromosome:</strong> Structure containing DNA</p>
+                <p><strong>Gene:</strong> Segment of DNA that codes for a protein</p>
+                <p><strong>Mendel's Law:</strong> Inheritance follows predictable patterns</p>
+            </div>
+
+            <div class="card">
+                <h4>❤️ Human Body Systems</h4>
+                <p><strong>Skeletal:</strong> Support and protection</p>
+                <p><strong>Muscular:</strong> Movement</p>
+                <p><strong>Circulatory:</strong> Blood transport</p>
+                <p><strong>Respiratory:</strong> Gas exchange</p>
+                <p><strong>Digestive:</strong> Food processing</p>
+                <p><strong>Nervous:</strong> Control and coordination</p>
+            </div>
+
+            <div class="card">
+                <h4>🌿 Ecology</h4>
+                <p><strong>Ecosystem:</strong> Community of organisms and their environment</p>
+                <p><strong>Food Chain:</strong> Producer → Consumer → Decomposer</p>
+                <p><strong>Biodiversity:</strong> Variety of life in an area</p>
+                <p><strong>Conservation:</strong> Protection of endangered species and habitats</p>
+            </div>
+        </div>
+
+        <!-- ADVANCED PHYSICS FORMULAS -->
+        <div class="subsection">
+            <h2>Advanced Physics (150+ Formulas)</h2>
+            
+            <div class="formula-card">
+                <h4>Mechanics - Kinematics & Dynamics</h4>
+                <div class="formula-section">
+                    <div class="formula-content">v = u + at | s = ut + ½at² | v² = u² + 2as</div>
+                    <div class="formula-content">F = ma | F = dp/dt | Weight W = mg</div>
+                    <div class="formula-content">Friction: f = μN | Impulse: J = FΔt = Δp</div>
+                    <div class="formula-content">Momentum: p = mv | Conservation: p₁ = p₂</div>
+                    <div class="formula-content">Elastic collision: e = (v₂-v₁)/(u₁-u₂) = 1</div>
+                    <div class="formula-content">Inelastic collision: e &lt; 1 | Perfectly inelastic: e = 0</div>
+                    <div class="formula-content">Centripetal Force: F = mv²/r = mω²r</div>
+                    <div class="formula-content">Circular motion: a = v²/r | T = 2πr/v</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Work, Energy & Power</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Work: W = F·s·cosθ | Kinetic Energy: KE = ½mv²</div>
+                    <div class="formula-content">Potential Energy: PE = mgh | Elastic PE = ½kx²</div>
+                    <div class="formula-content">Total Mechanical Energy: E = KE + PE</div>
+                    <div class="formula-content">Power: P = W/t | P = F·v | Efficiency = (Output/Input)×100</div>
+                    <div class="formula-content">Work-Energy Theorem: W = ΔKE</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Gravitation</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Newton's Law: F = GMm/r² | g = GM/R²</div>
+                    <div class="formula-content">Orbital velocity: v = √(GM/r)</div>
+                    <div class="formula-content">Escape velocity: v_e = √(2GM/R) = √(2gR)</div>
+                    <div class="formula-content">Gravitational PE: PE = -GMm/r</div>
+                    <div class="formula-content">Kepler's 3rd Law: T² ∝ r³</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Rotation - Rigid Body Motion</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Angular displacement: θ = s/r | Angular velocity: ω = v/r</div>
+                    <div class="formula-content">Angular acceleration: α = ω/t | Torque: τ = F×r = Iα</div>
+                    <div class="formula-content">Moment of Inertia: I = mr² | Angular momentum: L = Iω</div>
+                    <div class="formula-content">Rotational KE: KE = ½Iω²</div>
+                    <div class="formula-content">Conservation of Angular Momentum: L₁ = L₂</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Simple Harmonic Motion (SHM)</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Displacement: y = A sin(ωt + φ)</div>
+                    <div class="formula-content">Velocity: v = Aω cos(ωt + φ) = ±ω√(A²-y²)</div>
+                    <div class="formula-content">Acceleration: a = -ω²y | Period: T = 2π/ω</div>
+                    <div class="formula-content">Energy: E = ½mω²A² = ½kA²</div>
+                    <div class="formula-content">Pendulum: T = 2π√(l/g) | Spring: T = 2π√(m/k)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Waves & Oscillations</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Wave equation: v = fλ = λ/T</div>
+                    <div class="formula-content">Intensity: I = P/A | I ∝ (Amplitude)²</div>
+                    <div class="formula-content">Doppler Effect: f' = f(v + v_observer)/(v - v_source)</div>
+                    <div class="formula-content">Superposition: y = y₁ + y₂</div>
+                    <div class="formula-content">Standing waves: λ = 2L/n | f = nv/2L</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Heat & Thermodynamics (80+ Formulas)</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Temperature & Heat:</div>
+                    <div class="formula-content">Heat: Q = mcΔT | Specific Heat Capacity: c = Q/(mΔT)</div>
+                    <div class="formula-content">Latent Heat: Q = mL | Linear Expansion: l = l₀(1 + αΔT)</div>
+                    <div class="formula-content">Volume Expansion: V = V₀(1 + γΔT) | γ = 3α</div>
+                    <div class="formula-content">Gas Laws: PV = nRT | P₁V₁/T₁ = P₂V₂/T₂</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Thermodynamics</h4>
+                <div class="formula-section">
+                    <div class="formula-content">First Law: ΔU = Q - W | Internal Energy: U = nC_vT</div>
+                    <div class="formula-content">Work by gas: W = PΔV | Isothermal: W = nRT ln(V₂/V₁)</div>
+                    <div class="formula-content">Adiabatic: PVᵞ = constant | TVᵞ⁻¹ = constant</div>
+                    <div class="formula-content">Efficiency: η = (W/Q_h) × 100% | Carnot: η = 1 - T_c/T_h</div>
+                    <div class="formula-content">Entropy: ΔS = Q/T | Second Law: ΔS_universe > 0</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Electrostatics</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Coulomb's Law: F = kQ₁Q₂/r² = Q₁Q₂/(4πε₀r²)</div>
+                    <div class="formula-content">Electric Field: E = F/q | E = kQ/r²</div>
+                    <div class="formula-content">Electric Potential: V = kQ/r | V = W/q</div>
+                    <div class="formula-content">Potential Difference: V_AB = V_A - V_B = W/q</div>
+                    <div class="formula-content">Capacitor: C = Q/V | C = ε₀A/d</div>
+                    <div class="formula-content">Capacitors: Series 1/C_eq = 1/C₁ + 1/C₂ | Parallel C_eq = C₁ + C₂</div>
+                    <div class="formula-content">Energy stored: U = ½QV = ½CV² = ½Q²/C</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Current & Circuits</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Current: I = Q/t | Drift velocity: v_d = I/(nAe)</div>
+                    <div class="formula-content">Resistance: R = ρl/A | Resistivity: ρ = RA/l</div>
+                    <div class="formula-content">Ohm's Law: V = IR | Power: P = VI = I²R = V²/R</div>
+                    <div class="formula-content">Resistors: Series R_eq = R₁ + R₂ | Parallel 1/R_eq = 1/R₁ + 1/R₂</div>
+                    <div class="formula-content">EMF & Internal Resistance: V = E - Ir</div>
+                    <div class="formula-content">Kirchhoff's Laws: ΣI_in = ΣI_out | ΣV = 0 (loop)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Magnetism</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Magnetic Force: F = BIl = qvB | F = BIl sinθ</div>
+                    <div class="formula-content">Magnetic Field: B = μ₀I/(2πr) | B = μ₀nI (solenoid)</div>
+                    <div class="formula-content">Flux: Φ = BA = BA cosθ | Faraday's Law: E = -dΦ/dt</div>
+                    <div class="formula-content">Lenz's Law: Induced current opposes change</div>
+                    <div class="formula-content">Motional EMF: E = Blv | Transformer: V₁/V₂ = N₁/N₂</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Optics & Light</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Refractive Index: n = c/v | Snell's Law: n₁sinθ₁ = n₂sinθ₂</div>
+                    <div class="formula-content">Critical Angle: sinθ_c = n₂/n₁ | Total Internal Reflection: θ ≥ θ_c</div>
+                    <div class="formula-content">Lens Formula: 1/f = 1/v + 1/u | Magnification: m = v/u = h'/h</div>
+                    <div class="formula-content">Power of Lens: P = 1/f (in diopters) | Lens Maker: 1/f = (n-1)(1/R₁ - 1/R₂)</div>
+                    <div class="formula-content">Double Slit: y = nλD/d | Diffraction: a sinθ = nλ</div>
+                    <div class="formula-content">Young's Modulus: Y = stress/strain = (F/A)/(Δl/l)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Modern Physics</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Photoelectric Effect: hf = KE + Φ | E = hf</div>
+                    <div class="formula-content">De Broglie Wavelength: λ = h/p = h/(mv)</div>
+                    <div class="formula-content">Bohr's Model: E_n = -13.6/n² eV | r_n = 0.53n²/Z Å</div>
+                    <div class="formula-content">Mass-Energy: E = mc²</div>
+                    <div class="formula-content">Half-life: N = N₀(1/2)ⁿ | Activity: A = λN</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHEMISTRY FORMULAS -->
+        <div class="subsection">
+            <h2>Chemistry (200+ Formulas & Concepts)</h2>
+            
+            <div class="formula-card">
+                <h4>Atomic Structure & Bonding</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Atomic Number = Number of Protons = Number of Electrons</div>
+                    <div class="formula-content">Mass Number = Protons + Neutrons</div>
+                    <div class="formula-content">Atomic Mass Unit (amu) = 1/12 of Carbon-12</div>
+                    <div class="formula-content">Molar Mass = Average Atomic Mass (g/mol)</div>
+                    <div class="formula-content">Electronegativity difference: 0-0.4 (Covalent), 0.4-1.7 (Polar Covalent), >1.7 (Ionic)</div>
+                    <div class="formula-content">Oxidation Number Rules: Element = 0, Monatomic ion = Charge, O usually -2, H usually +1</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Mole Concept</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Molar Mass (M) = Mass of 1 mole in grams</div>
+                    <div class="formula-content">Number of moles (n) = mass/M = V/V_m</div>
+                    <div class="formula-content">Avogadro's Number (N_A) = 6.022 × 10²³</div>
+                    <div class="formula-content">Number of particles = n × N_A</div>
+                    <div class="formula-content">Equivalent weight = Atomic weight/Valency</div>
+                    <div class="formula-content">Normality = Equivalent/Liter of solution</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Chemical Equations & Reactions</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Types of Reactions:</div>
+                    <div class="formula-content">Combination: A + B → AB</div>
+                    <div class="formula-content">Decomposition: AB → A + B</div>
+                    <div class="formula-content">Displacement: AB + C → AC + B</div>
+                    <div class="formula-content">Double Displacement: AB + CD → AD + CB</div>
+                    <div class="formula-content">Redox: Involves electron transfer (oxidation-reduction)</div>
+                    <div class="formula-content">Acid-Base: H⁺ + OH⁻ → H₂O</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Stoichiometry</h4>
+                <div class="formula-section">
+                    <div class="formula-content">From balanced equation: mol₁/coeff₁ = mol₂/coeff₂</div>
+                    <div class="formula-content">Limiting reagent = Produces least product</div>
+                    <div class="formula-content">Theoretical yield from limiting reagent</div>
+                    <div class="formula-content">% Yield = (Actual/Theoretical) × 100</div>
+                    <div class="formula-content">% Purity = (Pure substance mass/Total mass) × 100</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Acids & Bases</h4>
+                <div class="formula-section">
+                    <div class="formula-content">pH = -log[H⁺] | pOH = -log[OH⁻]</div>
+                    <div class="formula-content">pH + pOH = 14 (at 25°C)</div>
+                    <div class="formula-content">Strong Acids: HCl, HBr, HI, HNO₃, H₂SO₄, HClO₄</div>
+                    <div class="formula-content">Strong Bases: NaOH, KOH, Ca(OH)₂, Ba(OH)₂</div>
+                    <div class="formula-content">K_w = [H⁺][OH⁻] = 10⁻¹⁴</div>
+                    <div class="formula-content">K_a = [H⁺][A⁻]/[HA] | K_b = [OH⁻][HB⁺]/[B]</div>
+                    <div class="formula-content">Buffer: pH = pK_a + log([A⁻]/[HA])</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Oxidation-Reduction</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Oxidation: Loss of electrons | Reduction: Gain of electrons</div>
+                    <div class="formula-content">Oxidation Number rules: Free element = 0</div>
+                    <div class="formula-content">Oxidizing agent (oxidant) = Substance reduced | Reducing agent (reductant) = Substance oxidized</div>
+                    <div class="formula-content">Balancing redox equations: By ion-electron method or oxidation number method</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Solutions & Concentrations</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Molarity (M) = moles/Liter</div>
+                    <div class="formula-content">Molality (m) = moles/kg of solvent</div>
+                    <div class="formula-content">% w/w = (mass solute/mass solution) × 100</div>
+                    <div class="formula-content">% w/v = (mass solute/volume solution in mL) × 100</div>
+                    <div class="formula-content">% v/v = (volume solute/volume solution) × 100</div>
+                    <div class="formula-content">Normality (N) = Equivalents/Liter</div>
+                    <div class="formula-content">Dilution: M₁V₁ = M₂V₂</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Thermochemistry</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Enthalpy Change: ΔH = H_products - H_reactants</div>
+                    <div class="formula-content">Exothermic: ΔH < 0 (releases heat)</div>
+                    <div class="formula-content">Endothermic: ΔH > 0 (absorbs heat)</div>
+                    <div class="formula-content">Hess's Law: ΔH_reaction = ΣΔH_products - ΣΔH_reactants</div>
+                    <div class="formula-content">Heat of reaction: q = mcΔT</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Chemical Kinetics</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Rate = Δ[Concentration]/Δt = Δc/Δt</div>
+                    <div class="formula-content">Rate Law: Rate = k[A]ᵐ[B]ⁿ</div>
+                    <div class="formula-content">Order of reaction = m + n</div>
+                    <div class="formula-content">First Order: ln[A] = ln[A]₀ - kt | t₁/₂ = 0.693/k</div>
+                    <div class="formula-content">Second Order: 1/[A] = 1/[A]₀ + kt | t₁/₂ = 1/(k[A]₀)</div>
+                    <div class="formula-content">Activation Energy: ln(k₂/k₁) = (E_a/R)(1/T₁ - 1/T₂)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Equilibrium</h4>
+                <div class="formula-section">
+                    <div class="formula-content">K_c = [Products]/[Reactants] (at equilibrium)</div>
+                    <div class="formula-content">K_p = Partial pressures at equilibrium</div>
+                    <div class="formula-content">Q = Ion product (same as K_c expression)</div>
+                    <div class="formula-content">If Q &lt; K: Reaction goes forward | If Q > K: Reaction goes backward</div>
+                    <div class="formula-content">Le Chatelier's Principle: System shifts to counteract changes</div>
+                    <div class="formula-content">K_a × K_b = K_w (for conjugate acid-base pairs)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Electrochemistry</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Oxidation-Reduction at electrodes</div>
+                    <div class="formula-content">Cathode: Reduction occurs (e⁻ gained)</div>
+                    <div class="formula-content">Anode: Oxidation occurs (e⁻ lost)</div>
+                    <div class="formula-content">Faraday's Law: Q = nF | n = Q/(F) moles electrons</div>
+                    <div class="formula-content">Faraday constant F = 96500 C/mol</div>
+                    <div class="formula-content">Standard Cell Potential: E°_cell = E°_cathode - E°_anode</div>
+                    <div class="formula-content">Nernst Equation: E = E° - (0.0592/n) log Q</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Organic Chemistry - Functional Groups</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Alkane: Saturated HC (C-C single bonds)</div>
+                    <div class="formula-content">Alkene: Unsaturated HC (C=C double bond)</div>
+                    <div class="formula-content">Alkyne: Unsaturated HC (C≡C triple bond)</div>
+                    <div class="formula-content">Alcohol: -OH group | Aldehyde: -CHO group</div>
+                    <div class="formula-content">Ketone: C=O (internal) | Carboxylic Acid: -COOH</div>
+                    <div class="formula-content">Ester: -COOR | Ether: R-O-R | Amine: -NH₂</div>
+                    <div class="formula-content">Isomerism: Same molecular formula, different structure</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Polymer Chemistry</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Monomer: Smallest unit | Polymer: Many monomers linked</div>
+                    <div class="formula-content">Addition Polymerization: Direct linking (e.g., Polyethylene)</div>
+                    <div class="formula-content">Condensation Polymerization: With byproduct loss (e.g., Polyester)</div>
+                    <div class="formula-content">Degree of Polymerization: Number of monomer units in chain</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BIOLOGY FORMULAS & CONCEPTS -->
+        <div class="subsection">
+            <h2>Biology (150+ Concepts)</h2>
+            
+            <div class="formula-card">
+                <h4>Cell Biology</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Prokaryotic cell: No nucleus (Bacteria, Archaea)</div>
+                    <div class="formula-content">Eukaryotic cell: Has nucleus (Animals, Plants, Fungi)</div>
+                    <div class="formula-content">Organelles: Nucleus, Mitochondria, Chloroplast, ER, Golgi, Lysosome, Ribosome</div>
+                    <div class="formula-content">Photosynthesis: 6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂</div>
+                    <div class="formula-content">Cellular Respiration: C₆H₁₂O₆ + 6O₂ → 6CO₂ + 6H₂O + Energy (ATP)</div>
+                    <div class="formula-content">Fermentation: Glucose → Lactate (anaerobic)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Genetics & Heredity</h4>
+                <div class="formula-section">
+                    <div class="formula-content">DNA Structure: Double helix with base pairs (A-T, G-C)</div>
+                    <div class="formula-content">Chromosome: Structure carrying DNA</div>
+                    <div class="formula-content">Gene: Segment of DNA coding for protein</div>
+                    <div class="formula-content">Allele: Different forms of gene</div>
+                    <div class="formula-content">Genotype: Genetic makeup | Phenotype: Observable traits</div>
+                    <div class="formula-content">Mendel's Laws: Law of Segregation, Law of Independent Assortment, Law of Dominance</div>
+                    <div class="formula-content">Punnett Square: Tool for predicting offspring</div>
+                    <div class="formula-content">Dihybrid Cross: Two traits (9:3:3:1 ratio)</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Human Anatomy - Body Systems</h4>
+                <div class="formula-section">
+                    <div class="formula-label">Skeletal System:</div>
+                    <div class="formula-content">206 bones in adult human | Functions: Support, Protection, Movement</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Muscular System:</div>
+                    <div class="formula-content">3 types: Skeletal (voluntary), Cardiac (heart), Smooth (involuntary)</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Circulatory System:</div>
+                    <div class="formula-content">Heart pumps blood | Arteries carry away | Veins return</div>
+                    <div class="formula-content">Blood components: RBC, WBC, Platelets, Plasma</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Respiratory System:</div>
+                    <div class="formula-content">Gas exchange in lungs | Diaphragm controls breathing</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Digestive System:</div>
+                    <div class="formula-content">Breaks down food: Mouth → Esophagus → Stomach → Small intestine → Colon</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Nervous System:</div>
+                    <div class="formula-content">Brain, Spinal cord, Nerves | Functions: Control, Coordination</div>
+                </div>
+                <div class="formula-section">
+                    <div class="formula-label">Endocrine System:</div>
+                    <div class="formula-content">Glands produce hormones | Controls growth, metabolism, reproduction</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Plant Physiology</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Photosynthesis: Light-dependent & Light-independent reactions</div>
+                    <div class="formula-content">Transpiration: Water loss from leaves</div>
+                    <div class="formula-content">Translocation: Movement of sugars in phloem</div>
+                    <div class="formula-content">Plant Hormones: Auxin, Gibberellin, Cytokinin, Ethylene, Abscisic acid</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Ecology & Ecosystems</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Ecosystem: Community of organisms + environment</div>
+                    <div class="formula-content">Food Chain: Producer → Consumer → Decomposer</div>
+                    <div class="formula-content">Food Web: Multiple interconnected food chains</div>
+                    <div class="formula-content">Energy Flow: 10% passes each trophic level</div>
+                    <div class="formula-content">Biomes: Tundra, Taiga, Temperate, Desert, Grassland, Tropical</div>
+                    <div class="formula-content">Succession: Ecological change over time</div>
+                    <div class="formula-content">Biodiversity: Variety of organisms</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Evolution & Classification</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Evolution: Change in species over time</div>
+                    <div class="formula-content">Darwin's Theory: Natural selection, Survival of the fittest</div>
+                    <div class="formula-content">Evidence: Fossils, Anatomical, Molecular</div>
+                    <div class="formula-content">Classification: Kingdom → Phylum → Class → Order → Family → Genus → Species</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Reproduction & Development</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Mitosis: Cell division producing identical cells (2n → 2n)</div>
+                    <div class="formula-content">Meiosis: Cell division producing gametes (2n → n)</div>
+                    <div class="formula-content">Fertilization: Sperm + Egg → Zygote</div>
+                    <div class="formula-content">Embryonic stages: Zygote → Morula → Blastula → Gastrula → Organogenesis</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Molecular Biology</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Central Dogma: DNA → RNA → Protein</div>
+                    <div class="formula-content">Transcription: DNA → mRNA (in nucleus)</div>
+                    <div class="formula-content">Translation: mRNA → Protein (in ribosome)</div>
+                    <div class="formula-content">Genetic Code: 64 codons (61 amino acids, 3 stop)</div>
+                    <div class="formula-content">Mutation: Change in DNA sequence</div>
+                </div>
+            </div>
+
+            <div class="formula-card">
+                <h4>Biotechnology & Immunology</h4>
+                <div class="formula-section">
+                    <div class="formula-content">Genetic Engineering: Altering DNA</div>
+                    <div class="formula-content">PCR: Polymerase Chain Reaction (DNA amplification)</div>
+                    <div class="formula-content">Immunity: Innate & Acquired</div>
+                    <div class="formula-content">Antibodies: Proteins fighting antigens</div>
+                    <div class="formula-content">Vaccine: Stimulates immune response without disease</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PERIODIC TABLE -->
+        <div class="subsection">
+            <h2>Periodic Table (50+ Elements)</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h4>Symbol: H - Hydrogen</h4>
+                    <p><strong>Atomic No:</strong> 1 | <strong>Atomic Mass:</strong> 1</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: C - Carbon</h4>
+                    <p><strong>Atomic No:</strong> 6 | <strong>Atomic Mass:</strong> 12</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: N - Nitrogen</h4>
+                    <p><strong>Atomic No:</strong> 7 | <strong>Atomic Mass:</strong> 14</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: O - Oxygen</h4>
+                    <p><strong>Atomic No:</strong> 8 | <strong>Atomic Mass:</strong> 16</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Na - Sodium</h4>
+                    <p><strong>Atomic No:</strong> 11 | <strong>Atomic Mass:</strong> 23</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Mg - Magnesium</h4>
+                    <p><strong>Atomic No:</strong> 12 | <strong>Atomic Mass:</strong> 24</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Al - Aluminum</h4>
+                    <p><strong>Atomic No:</strong> 13 | <strong>Atomic Mass:</strong> 27</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Si - Silicon</h4>
+                    <p><strong>Atomic No:</strong> 14 | <strong>Atomic Mass:</strong> 28</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: P - Phosphorus</h4>
+                    <p><strong>Atomic No:</strong> 15 | <strong>Atomic Mass:</strong> 31</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: S - Sulfur</h4>
+                    <p><strong>Atomic No:</strong> 16 | <strong>Atomic Mass:</strong> 32</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Cl - Chlorine</h4>
+                    <p><strong>Atomic No:</strong> 17 | <strong>Atomic Mass:</strong> 35.5</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: K - Potassium</h4>
+                    <p><strong>Atomic No:</strong> 19 | <strong>Atomic Mass:</strong> 39</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Ca - Calcium</h4>
+                    <p><strong>Atomic No:</strong> 20 | <strong>Atomic Mass:</strong> 40</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Fe - Iron</h4>
+                    <p><strong>Atomic No:</strong> 26 | <strong>Atomic Mass:</strong> 56</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Cu - Copper</h4>
+                    <p><strong>Atomic No:</strong> 29 | <strong>Atomic Mass:</strong> 64</p>
+                </div>
+                <div class="card">
+                    <h4>Symbol: Zn - Zinc</h4>
+                    <p><strong>Atomic No:</strong> 30 | <strong>Atomic Mass:</strong> 65</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>📚 About</h3>
+                <p>Complete science resources for physics, chemistry, and biology.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="multiplication.html">Multiplication Tables</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                    <li><a>Exam Prep</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy Cheat Sheet. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
