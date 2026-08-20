@@ -20,6 +20,25 @@ window.addEventListener('load', () => {
     }
 });
 
+// CUSTOM CLICK RIPPLE ANIMATION
+document.addEventListener('click', (e) => {
+    // Create ripple element
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    
+    // Set position to click location
+    ripple.style.left = (e.clientX - 10) + 'px';
+    ripple.style.top = (e.clientY - 10) + 'px';
+    
+    // Add to body
+    document.body.appendChild(ripple);
+    
+    // Remove after animation completes
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+});
+
 // HAMBURGER MENU
 function toggleMenu() {
     const navLinks = document.querySelector('.nav-links');
