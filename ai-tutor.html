@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yostudy AI Tutor - Learn with AI</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .tutor-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .tutor-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .tutor-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .tutor-header p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .class-selector-tutor {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(106, 17, 203, 0.1), rgba(37, 117, 252, 0.1));
+            border-radius: 15px;
+        }
+
+        .class-btn-tutor {
+            padding: 12px;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .class-btn-tutor:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .class-btn-tutor.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 20px rgba(106, 17, 203, 0.5);
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+            animation: slideInUp 0.6s ease;
+        }
+
+        body.dark-mode .chat-container {
+            background: var(--dark-card);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chat-header .tutor-icon {
+            font-size: 2rem;
+        }
+
+        .chat-header h2 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+
+        .chat-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            display: flex;
+            gap: 10px;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-bubble {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .message.ai .message-bubble {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid var(--primary-color);
+            color: inherit;
+        }
+
+        .message.user .message-bubble {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        body.dark-mode .message.ai .message-bubble {
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid var(--primary-color);
+        }
+
+        .loading-dots {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            height: 20px;
+        }
+
+        .loading-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite;
+        }
+
+        .loading-dots span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .loading-dots span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+        }
+
+        .chat-input-area {
+            border-top: 1px solid #e0e0e0;
+            padding: 15px;
+            display: flex;
+            gap: 10px;
+            background: #fafafa;
+        }
+
+        body.dark-mode .chat-input-area {
+            border-top-color: #333;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-area input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
+        }
+
+        body.dark-mode .chat-input-area input {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .chat-input-area button {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-area button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .chat-input-area button:active {
+            transform: translateY(0);
+        }
+
+        .subject-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .subject-option {
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+            font-weight: 600;
+        }
+
+        body.dark-mode .subject-option {
+            background: var(--dark-card);
+            border-color: #333;
+        }
+
+        .subject-option:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .subject-option.selected {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .api-warning {
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1), rgba(255, 87, 34, 0.1));
+            border: 2px solid #FFC107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        body.dark-mode .api-warning {
+            color: #fff;
+        }
+
+        .api-warning strong {
+            color: #FF6F00;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(33, 150, 243, 0.1));
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .info-box h3 {
+            color: #4CAF50;
+            margin-top: 0;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .info-box li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .info-box li:last-child {
+            border-bottom: none;
+        }
+
+        .placeholder-message {
+            text-align: center;
+            color: #999;
+            padding: 40px 20px;
+        }
+
+        .placeholder-message .placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .tutor-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .chat-container {
+                height: 500px;
+            }
+
+            .message-bubble {
+                max-width: 90%;
+            }
+
+            .subject-selector {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav>
+        <div class="navbar">
+            <a href="index.html" class="logo">
+                <img src="yostudy-logo.png" alt="Yostudy Logo" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Study</a></li>
+                <li><a href="ai-tutor.html">AI Tutor</a></li>
+                <li><a href="ai-tutor.html">AI Tutor</a></li>
+                <li><a href="multiplication.html">Tables</a></li>
+                <li><a href="formulas.html">Formulas</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="calculators.html">Calculators</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT -->
+    <div class="container tutor-container">
+        <!-- HEADER -->
+        <div class="tutor-header">
+            <h1>🤖 Yostudy AI Tutor</h1>
+            <p>Learn from an intelligent AI tutor - Ask any question, get instant answers!</p>
+        </div>
+
+        <!-- API KEY INPUT (Hidden by default, shown if needed) -->
+        <div class="api-warning" id="apiWarning" style="display: none;">
+            <strong>⚠️ API Key Required:</strong> This app needs a Gemini API key. 
+            <a href="https://makersuite.google.com/app/apikey" target="_blank" style="color: #FF6F00; font-weight: bold;">Get your free API key here</a>
+            <input type="password" id="apiKeyInput" placeholder="Paste your Gemini API key here" 
+                style="width: 100%; padding: 10px; margin-top: 10px; border-radius: 5px; border: 1px solid #FFC107;">
+            <button onclick="setApiKey()" style="margin-top: 10px; padding: 10px 20px; background: #FF6F00; color: white; border: none; border-radius: 5px; cursor: pointer;">Set API Key</button>
+        </div>
+
+        <!-- CLASS SELECTOR -->
+        <div>
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">📚 Select Your Class</h3>
+            <div class="class-selector-tutor">
+                <button class="class-btn-tutor active" onclick="selectTutorClass(1)">Class 1</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(2)">Class 2</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(3)">Class 3</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(4)">Class 4</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(5)">Class 5</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(6)">Class 6</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(7)">Class 7</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(8)">Class 8</button>
+                <button class="class-btn-tutor" onclick="selectTutorClass(9)">Class 9</button>
+            </div>
+        </div>
+
+        <!-- SUBJECT SELECTOR -->
+        <div>
+            <h3 style="color: var(--primary-color); margin-bottom: 15px;">📖 Choose Your Subject</h3>
+            <div class="subject-selector" id="subjectSelector"></div>
+        </div>
+
+        <!-- CHAT CONTAINER -->
+        <div class="chat-container">
+            <!-- CHAT HEADER -->
+            <div class="chat-header">
+                <div class="tutor-icon">🤖</div>
+                <div>
+                    <h2>Yostudy Tutor</h2>
+                    <p id="tutorStatus">Ready to help! Ask me anything about <span id="currentSubject">English</span></p>
+                </div>
+            </div>
+
+            <!-- CHAT MESSAGES -->
+            <div class="chat-messages" id="chatMessages">
+                <div class="message ai">
+                    <div class="message-bubble">
+                        👋 Hello! I'm Yostudy Tutor. Select your class and subject above, then ask me any questions. I'm here to help you learn and understand concepts better!
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAT INPUT -->
+            <div class="chat-input-area">
+                <input 
+                    type="text" 
+                    id="messageInput" 
+                    placeholder="Ask me anything about your subject... 📚" 
+                    onkeypress="handleKeyPress(event)"
+                >
+                <button onclick="sendMessage()">Send 📤</button>
+            </div>
+        </div>
+
+        <!-- INFO BOX -->
+        <div class="info-box">
+            <h3>💡 How to Use Yostudy AI Tutor</h3>
+            <ul>
+                <li><strong>Select Your Class:</strong> Choose your class (1-9) to get age-appropriate answers</li>
+                <li><strong>Pick Your Subject:</strong> Choose from English, Math, Science, Social Science, etc.</li>
+                <li><strong>Ask Questions:</strong> Type any question related to your subject</li>
+                <li><strong>Get Instant Help:</strong> Powered by Gemini 3.5 Flash-Lite AI</li>
+                <li><strong>Learn Concepts:</strong> Get detailed explanations with examples</li>
+                <li><strong>Practice:</strong> Ask follow-up questions to deepen your understanding</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <img src="yostudy-logo.png" alt="Yostudy Logo" style="height: 60px; width: auto; margin-bottom: 15px;">
+                <p style="font-weight: bold; color: #6366f1;">Study Smart, Achieve More</p>
+                <p>Comprehensive learning platform with AI Tutor for classes 1-9.</p>
+            </div>
+            <div class="footer-section">
+                <h3>📖 Resources</h3>
+                <ul>
+                    <li><a href="study.html">Study Notes</a></li>
+                    <li><a href="ai-tutor.html">AI Tutor</a></li>
+                    <li><a href="formulas.html">Formulas</a></li>
+                    <li><a href="calculators.html">Calculators</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>🎯 Features</h3>
+                <ul>
+                    <li><a>AI Tutor</a></li>
+                    <li><a>Dark Mode</a></li>
+                    <li><a>Search Function</a></li>
+                    <li><a>Quick Revision</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>📞 Support</h3>
+                <ul>
+                    <li><a>Contact Us</a></li>
+                    <li><a>Feedback</a></li>
+                    <li><a>Suggestions</a></li>
+                    <li><a>Report Issue</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Yostudy - Study Smart, Achieve More | Powered by Gemini AI 🤖</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Current session data
+        let currentClass = 1;
+        let currentSubject = 'English';
+        let apiKey = localStorage.getItem('geminiApiKey');
+        
+        // Try to get API key from:
+        // 1. Vercel environment variable (window.GEMINI_API_KEY set via vercel.json)
+        // 2. URL parameter (?key=xxx)
+        // 3. localStorage (user pasted it before)
+        // 4. Or user will paste it in UI
+        
+        if (!apiKey) {
+            // Try window variable (if set by backend)
+            if (typeof window.GEMINI_API_KEY !== 'undefined') {
+                apiKey = window.GEMINI_API_KEY;
+            }
+            // Try URL parameter
+            else if (new URLSearchParams(window.location.search).get('key')) {
+                apiKey = new URLSearchParams(window.location.search).get('key');
+                localStorage.setItem('geminiApiKey', apiKey);
+            }
+        }
+
+        // API Configuration
+        const USE_VERCEL_BACKEND = true; // Set to true to use Vercel backend
+        const VERCEL_API_URL = '/api/tutor'; // Vercel backend endpoint
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+
+        // Subject mapping for each class
+        const classSubjects = {
+            1: ['English', 'Mathematics', 'General Knowledge', 'Art', 'Science'],
+            2: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            3: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            4: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            5: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            6: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            7: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            8: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'],
+            9: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies']
+        };
+
+        // Initialize
+        window.addEventListener('load', () => {
+            if (!apiKey && !USE_VERCEL_BACKEND) {
+                document.getElementById('apiWarning').style.display = 'block';
+            }
+            selectTutorClass(1);
+        });
+
+        function selectTutorClass(classNum) {
+            currentClass = classNum;
+            
+            // Update active button
+            document.querySelectorAll('.class-btn-tutor').forEach((btn, idx) => {
+                btn.classList.toggle('active', idx + 1 === classNum);
+            });
+
+            // Update subjects
+            updateSubjects();
+        }
+
+        function updateSubjects() {
+            const subjects = classSubjects[currentClass];
+            const selector = document.getElementById('subjectSelector');
+            
+            selector.innerHTML = subjects.map(subject => 
+                `<div class="subject-option ${subject === currentSubject ? 'selected' : ''}" onclick="selectSubject('${subject}')">${subject}</div>`
+            ).join('');
+
+            // Select first subject by default
+            if (!subjects.includes(currentSubject)) {
+                currentSubject = subjects[0];
+                updateSubjects();
+            } else {
+                document.getElementById('currentSubject').textContent = currentSubject;
+            }
+        }
+
+        function selectSubject(subject) {
+            currentSubject = subject;
+            document.getElementById('currentSubject').textContent = subject;
+            
+            // Update selected state
+            document.querySelectorAll('.subject-option').forEach(opt => {
+                opt.classList.toggle('selected', opt.textContent === subject);
+            });
+
+            // Update status
+            document.getElementById('tutorStatus').textContent = `Ready to help! Ask me anything about ${subject}`;
+        }
+
+        function setApiKey() {
+            const key = document.getElementById('apiKeyInput').value.trim();
+            if (!key) {
+                alert('Please paste your Gemini API key');
+                return;
+            }
+            localStorage.setItem('geminiApiKey', key);
+            apiKey = key;
+            document.getElementById('apiWarning').style.display = 'none';
+            alert('✅ API Key saved! You can now start asking questions.');
+        }
+
+        async function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+
+            if (!message) return;
+
+            // Check if we have API key
+            if (!apiKey && !USE_VERCEL_BACKEND) {
+                alert('⚠️ Please set your Gemini API key first');
+                document.getElementById('apiWarning').style.display = 'block';
+                return;
+            }
+
+            // Add user message
+            addMessage(message, 'user');
+            input.value = '';
+
+            // Show loading
+            showLoading();
+
+            try {
+                if (USE_VERCEL_BACKEND) {
+                    // Use Vercel backend (secure, API key on server)
+                    await sendViaVercelBackend(message);
+                } else {
+                    // Use direct Gemini API (fallback if Vercel not available)
+                    await sendViaGeminiAPI(message);
+                }
+            } catch (error) {
+                removeLoading();
+                console.error('Error:', error);
+                addMessage(`❌ Error: ${error.message}\n\nPlease check:\n1. API key is valid\n2. Internet connection\n3. Vercel deployment (if using backend)`, 'ai');
+            }
+        }
+
+        async function sendViaVercelBackend(message) {
+            try {
+                const response = await fetch(VERCEL_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message: message,
+                        classNum: currentClass,
+                        subject: currentSubject,
+                        // Include API key if user provided it (fallback)
+                        apiKey: apiKey || undefined
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(`API Error: ${response.status} - ${errorData.error || 'Unknown error'}`);
+                }
+
+                const data = await response.json();
+                const aiResponse = data.response || 'Sorry, I could not generate a response.';
+                
+                removeLoading();
+                addMessage(aiResponse, 'ai');
+            } catch (error) {
+                removeLoading();
+                throw error;
+            }
+        }
+
+        async function sendViaGeminiAPI(message) {
+            if (!apiKey) {
+                throw new Error('No API key available. Please set your Gemini API key.');
+            }
+
+            try {
+                const prompt = `You are Yostudy Tutor, an expert teacher for Class ${currentClass} students. 
+Your student is studying ${currentSubject}. 
+Answer their question clearly and simply, appropriate for a Class ${currentClass} student.
+Use examples when possible.
+Keep the answer concise (2-3 sentences for younger classes, up to 5 sentences for older classes).
+
+Student's Question: "${message}"
+
+Provide a helpful, educational answer:`;
+
+                const url = new URL(GEMINI_API_URL);
+                url.searchParams.append('key', apiKey);
+                
+                const response = await fetch(url.toString(), {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            topK: 40,
+                            topP: 0.95,
+                            maxOutputTokens: 500,
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Gemini API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                const aiResponse = data.candidates?.[0]?.content?.parts?.[0]?.text || 'Sorry, I could not generate a response.';
+                
+                removeLoading();
+                addMessage(aiResponse, 'ai');
+            } catch (error) {
+                removeLoading();
+                throw error;
+            }
+        }
+
+        function addMessage(text, sender) {
+            const messagesDiv = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            messageDiv.innerHTML = `<div class="message-bubble">${text}</div>`;
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function showLoading() {
+            const messagesDiv = document.getElementById('chatMessages');
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message ai';
+            loadingDiv.id = 'loading';
+            loadingDiv.innerHTML = `<div class="message-bubble"><div class="loading-dots"><span></span><span></span><span></span></div></div>`;
+            messagesDiv.appendChild(loadingDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function removeLoading() {
+            const loading = document.getElementById('loading');
+            if (loading) loading.remove();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
