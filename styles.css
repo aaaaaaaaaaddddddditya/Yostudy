@@ -25,15 +25,15 @@ body {
     color: var(--light-text);
     transition: all 0.3s ease;
     overflow-x: hidden;
-    /* Light mode cursor */
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 4 L2 28 L8 20 L14 30 L18 29 L12 19 L22 19 Q28 19 28 13 Q28 7 22 7 L8 7 Q4 7 2 4 Z" fill="%236366f1" stroke="%23ffffff" stroke-width="1"/></svg>') 4 4, auto;
+    /* Light mode cursor - Custom cursor */
+    cursor: url('custom-cursor.png') 10 10, auto;
 }
 
 body.dark-mode {
     background-color: var(--dark-bg);
     color: var(--dark-text);
-    /* Dark mode cursor */
-    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M2 4 L2 28 L8 20 L14 30 L18 29 L12 19 L22 19 Q28 19 28 13 Q28 7 22 7 L8 7 Q4 7 2 4 Z" fill="%23ec4899" stroke="%231e293b" stroke-width="1"/></svg>') 4 4, auto;
+    /* Dark mode cursor - Same custom cursor */
+    cursor: url('custom-cursor.png') 10 10, auto;
 }
 
 /* Clickable elements cursor pointer */
