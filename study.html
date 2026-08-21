@@ -13,21 +13,17 @@
         }
 
         :root {
-            --primary: #5B21B6;
-            --secondary: #EC4899;
-            --accent: #FFD700;
-            --dark-bg: #0F172A;
-            --light-bg: #F8FAFC;
-            --gradient: linear-gradient(135deg, #5B21B6 0%, #8B5CF6 50%, #EC4899 100%);
+            --primary: #1E40AF;
+            --secondary: #7C3AED;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
+            background-color: #f8fafc;
         }
 
         body.dark-mode {
-            background-color: var(--dark-bg);
+            background-color: #0f172a;
         }
 
         /* NAVBAR */
@@ -56,10 +52,7 @@
             text-decoration: none;
             font-size: 24px;
             font-weight: 800;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
         }
 
         .nav-links {
@@ -72,7 +65,6 @@
             text-decoration: none;
             color: #333;
             font-weight: 500;
-            transition: color 0.3s;
         }
 
         body.dark-mode .nav-links a {
@@ -88,12 +80,11 @@
             border: none;
             font-size: 20px;
             cursor: pointer;
-            padding: 8px;
         }
 
         /* HERO */
         .hero {
-            background: var(--gradient);
+            background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 50%, #8B5CF6 100%);
             color: white;
             padding: 60px 20px;
             text-align: center;
@@ -124,7 +115,7 @@
         }
 
         body.dark-mode .section-title {
-            color: #a78bfa;
+            color: #60A5FA;
         }
 
         /* CLASS SELECTOR */
@@ -150,18 +141,13 @@
 
         body.dark-mode .class-btn {
             background: #1e293b;
-            color: #a78bfa;
-            border-color: #a78bfa;
+            color: #60A5FA;
+            border-color: #60A5FA;
         }
 
         .class-btn.active {
             background: var(--primary);
             color: white;
-            box-shadow: 0 10px 30px rgba(91, 33, 182, 0.3);
-        }
-
-        body.dark-mode .class-btn.active {
-            background: #a78bfa;
         }
 
         .class-btn:hover {
@@ -188,12 +174,10 @@
 
         body.dark-mode .subject-card {
             background: #1e293b;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .subject-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(91,33,182,0.2);
             border-top: 4px solid var(--primary);
         }
 
@@ -217,10 +201,6 @@
             font-size: 0.9em;
         }
 
-        body.dark-mode .subject-card p {
-            color: #94a3b8;
-        }
-
         /* CONTENT SECTION */
         .content-section {
             background: white;
@@ -240,7 +220,7 @@
         }
 
         body.dark-mode .content-section h2 {
-            color: #a78bfa;
+            color: #60A5FA;
         }
 
         .content-list {
@@ -250,7 +230,7 @@
         }
 
         .content-item {
-            background: var(--light-bg);
+            background: #f0f9ff;
             padding: 15px;
             border-radius: 8px;
             border-left: 4px solid var(--primary);
@@ -258,7 +238,6 @@
 
         body.dark-mode .content-item {
             background: #0f172a;
-            border-left-color: #a78bfa;
         }
 
         .content-item strong {
@@ -266,7 +245,7 @@
         }
 
         body.dark-mode .content-item strong {
-            color: #a78bfa;
+            color: #60A5FA;
         }
 
         /* FOOTER */
@@ -290,10 +269,6 @@
                 font-size: 1.5em;
             }
 
-            .class-selector {
-                gap: 8px;
-            }
-
             .class-btn {
                 padding: 10px 20px;
                 font-size: 0.9em;
@@ -305,10 +280,10 @@
     <!-- NAVBAR -->
     <nav>
         <div class="navbar">
-            <a href="index-new.html" class="logo">✨ Yostudy</a>
+            <a href="index.html" class="logo">☀️ Yostudy</a>
             <ul class="nav-links">
-                <li><a href="index-new.html">Home</a></li>
-                <li><a href="study-new.html">Subjects</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="study.html">Subjects</a></li>
                 <li><a href="calculators-hub.html">Calculators</a></li>
                 <li><a href="news.html">News</a></li>
                 <li><a href="download-zone.html">Learn</a></li>
@@ -319,7 +294,7 @@
 
     <!-- HERO -->
     <section class="hero">
-        <h1>📚 Learning by Class & Subject</h1>
+        <h1>📚 Subjects by Class</h1>
         <p>Choose your class and explore all subjects with complete study materials</p>
     </section>
 
@@ -340,38 +315,30 @@
 
         <!-- SUBJECTS -->
         <h2 class="section-title" id="classTitle">Class 1 Subjects</h2>
-        <div class="subjects-grid" id="subjectsGrid">
-            <!-- Subjects will load here -->
-        </div>
+        <div class="subjects-grid" id="subjectsGrid"></div>
 
         <!-- LEARNING TRICKS -->
         <div class="content-section">
-            <h2>💡 Learning Tricks for Class <span id="trickClass">1</span></h2>
-            <div class="content-list" id="tricksList">
-                <!-- Tricks will load here -->
-            </div>
+            <h2>💡 Learning Tricks</h2>
+            <div class="content-list" id="tricksList"></div>
         </div>
 
         <!-- FORMULAS -->
         <div class="content-section">
             <h2>📐 Important Formulas</h2>
-            <div class="content-list" id="formulasList">
-                <!-- Formulas will load here -->
-            </div>
+            <div class="content-list" id="formulasList"></div>
         </div>
 
         <!-- RESOURCES -->
         <div class="content-section">
             <h2>📊 Recommended Resources</h2>
-            <div class="content-list" id="resourcesList">
-                <!-- Resources will load here -->
-            </div>
+            <div class="content-list" id="resourcesList"></div>
         </div>
     </div>
 
     <!-- FOOTER -->
     <footer>
-        <p>✨ Yostudy - Study Smart, Achieve More! 📚</p>
+        <p>Yostudy - Study Smart, Achieve More! 📚</p>
     </footer>
 
     <script>
@@ -391,7 +358,7 @@
             1: ['Count with your fingers', 'Learn colors with objects', 'Practice writing letters daily', 'Use flashcards for words'],
             2: ['Build number sense', 'Read short stories', 'Practice addition with toys', 'Learn simple sentences'],
             3: ['Master place values', 'Read chapter books', 'Practice multiplication', 'Write short paragraphs'],
-            4: ['Learn fractions basics', 'Improve reading comprehension', 'Practice word problems', 'Write stories and essays'],
+            4: ['Learn fractions basics', 'Improve reading comprehension', 'Practice word problems', 'Write stories'],
             5: ['Master percentages', 'Improve writing skills', 'Learn prime numbers', 'Practice problem-solving'],
             6: ['Learn algebraic basics', 'Master geometry concepts', 'Improve essay writing', 'Practice logical reasoning'],
             7: ['Master equations', 'Learn trigonometry basics', 'Understand chemical reactions', 'Practice critical thinking'],
@@ -401,27 +368,23 @@
 
         const formulas = {
             1: ['2 + 2 = 4', '5 - 3 = 2', '3 × 2 = 6', '10 ÷ 5 = 2'],
-            2: ['Simple Addition up to 100', 'Simple Subtraction', 'Basic Multiplication', 'Division Basics'],
-            3: ['Place Value System', 'Basic Fractions (1/2, 1/4)', 'Area = Length × Width', 'Perimeter Formula'],
-            4: ['Fraction Addition', 'Decimal Concepts', 'Triangle Area = (B×H)/2', 'Circle Circumference = 2πr'],
-            5: ['Percentage Formula', 'Ratio and Proportion', 'Average = Sum/Count', 'Speed = Distance/Time'],
+            2: ['Simple Addition', 'Simple Subtraction', 'Basic Multiplication', 'Division Basics'],
+            3: ['Area = L × W', 'Perimeter = 2(L+W)', 'Circle Circumference', 'Triangle Area'],
+            4: ['Fraction Addition', 'Decimal Concepts', 'Area = (B×H)/2', 'Circle Circumference = 2πr'],
+            5: ['Percentage Formula', 'Ratio and Proportion', 'Average = Sum/Count', 'Speed = D/T'],
             6: ['Algebraic Expressions', 'Linear Equations', 'Pythagoras Theorem', 'Polygon Angles'],
-            7: ['Quadratic Equations', 'Trigonometric Ratios', 'Compound Interest Formula', 'Volume = L×W×H'],
-            8: ['Logarithmic Properties', 'Advanced Trigonometry', 'Circles Theorems', 'Statistics Formulas'],
-            9: ['Calculus Basics', 'Binomial Theorem', 'Probability Formulas', 'Complex Number Operations']
+            7: ['Quadratic Equations', 'Trigonometric Ratios', 'Compound Interest', 'Volume = L×W×H'],
+            8: ['Logarithmic Properties', 'Advanced Trigonometry', 'Circle Theorems', 'Statistics Formulas'],
+            9: ['Calculus Basics', 'Binomial Theorem', 'Probability Formulas', 'Complex Numbers']
         };
 
         function selectClass(classNum) {
-            // Update active button
             document.querySelectorAll('.class-btn').forEach((btn, idx) => {
                 btn.classList.toggle('active', idx + 1 === classNum);
             });
 
-            // Update content
             document.getElementById('classTitle').textContent = `Class ${classNum} Subjects`;
-            document.getElementById('trickClass').textContent = classNum;
 
-            // Display subjects
             const subjectsGrid = document.getElementById('subjectsGrid');
             subjectsGrid.innerHTML = classSubjects[classNum].map(subject => `
                 <div class="subject-card">
@@ -431,29 +394,22 @@
                 </div>
             `).join('');
 
-            // Display tricks
             const tricksList = document.getElementById('tricksList');
             tricksList.innerHTML = tricks[classNum].map(trick => `
-                <div class="content-item">
-                    <strong>💡</strong> ${trick}
-                </div>
+                <div class="content-item"><strong>💡</strong> ${trick}</div>
             `).join('');
 
-            // Display formulas
             const formulasList = document.getElementById('formulasList');
             formulasList.innerHTML = formulas[classNum].map(formula => `
-                <div class="content-item">
-                    <strong>📐</strong> ${formula}
-                </div>
+                <div class="content-item"><strong>📐</strong> ${formula}</div>
             `).join('');
 
-            // Display resources
             const resourcesList = document.getElementById('resourcesList');
             resourcesList.innerHTML = [
                 `<div class="content-item"><strong>📚</strong> Study Notes - Class ${classNum}</div>`,
-                `<div class="content-item"><strong>📝</strong> Practice Questions - ${classNum} Questions</div>`,
-                `<div class="content-item"><strong>📊</strong> Sample Papers - Full Length</div>`,
-                `<div class="content-item"><strong>🎥</strong> Video Tutorials - ${classNum} Videos</div>`
+                `<div class="content-item"><strong>📝</strong> Practice Questions</div>`,
+                `<div class="content-item"><strong>📊</strong> Sample Papers</div>`,
+                `<div class="content-item"><strong>🎥</strong> Video Tutorials</div>`
             ].join('');
         }
 
@@ -462,12 +418,10 @@
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
-        // Load theme
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
         }
 
-        // Initialize
         selectClass(1);
     </script>
 </body>

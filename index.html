@@ -16,19 +16,16 @@
             --primary: #1E40AF;
             --secondary: #7C3AED;
             --accent: #FFD700;
-            --dark-bg: #0F172A;
-            --light-bg: #F8FAFC;
-            --gradient: linear-gradient(135deg, #1E40AF 0%, #4F46E5 50%, #7C3AED 100%);
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-bg);
+            background-color: #f8fafc;
             overflow-x: hidden;
         }
 
         body.dark-mode {
-            background-color: var(--dark-bg);
+            background-color: #0f172a;
         }
 
         /* NAVBAR */
@@ -55,17 +52,9 @@
 
         .logo {
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
             font-size: 24px;
             font-weight: 800;
             color: var(--primary);
-        }
-
-        .logo img {
-            height: 40px;
-            width: 40px;
         }
 
         .nav-links {
@@ -96,31 +85,6 @@
             font-size: 20px;
             cursor: pointer;
             padding: 8px;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .theme-toggle:hover {
-            background: rgba(0,0,0,0.1);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        body.dark-mode .hamburger span {
-            background: #f1f5f9;
         }
 
         /* HERO SECTION */
@@ -182,7 +146,6 @@
             border: 1px solid rgba(255,255,255,0.3);
             font-size: 14px;
             margin-bottom: 30px;
-            animation: slideDown 0.6s ease;
         }
 
         .hero h1 {
@@ -190,7 +153,6 @@
             font-weight: 800;
             margin-bottom: 20px;
             line-height: 1.1;
-            animation: fadeInUp 0.8s ease 0.2s backwards;
         }
 
         .hero h1 .white-text {
@@ -209,7 +171,6 @@
             margin-bottom: 50px;
             line-height: 1.6;
             opacity: 0.95;
-            animation: fadeInUp 0.8s ease 0.4s backwards;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -220,7 +181,6 @@
             gap: 20px;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease 0.6s backwards;
         }
 
         .btn {
@@ -238,12 +198,10 @@
         .btn-primary {
             background: #00D4FF;
             color: #1E3A8A;
-            box-shadow: 0 10px 30px rgba(0,212,255,0.3);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,212,255,0.4);
         }
 
         .btn-secondary {
@@ -276,17 +234,14 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: center;
             transition: all 0.3s;
-            animation: fadeInUp 0.8s ease;
         }
 
         body.dark-mode .feature-card {
             background: #1e293b;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .feature-icon {
@@ -306,7 +261,6 @@
 
         .feature-card p {
             color: #666;
-            line-height: 1.6;
         }
 
         body.dark-mode .feature-card p {
@@ -351,12 +305,10 @@
 
         body.dark-mode .category-card {
             background: #1e293b;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .category-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(30,58,138,0.2);
             border-top: 4px solid var(--primary);
         }
 
@@ -378,10 +330,6 @@
         .category-card p {
             color: #999;
             font-size: 0.9em;
-        }
-
-        body.dark-mode .category-card p {
-            color: #94a3b8;
         }
 
         /* STATS SECTION */
@@ -423,54 +371,7 @@
             background: #0f172a;
         }
 
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-content img {
-            height: 50px;
-            margin-bottom: 15px;
-        }
-
-        .footer-content p {
-            margin: 10px 0;
-            opacity: 0.8;
-        }
-
-        /* ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
             .hero h1 {
                 font-size: 2.5em;
             }
@@ -499,23 +400,15 @@
     <!-- NAVBAR -->
     <nav>
         <div class="navbar">
-            <a href="index.html" class="logo">
-                ☀️ Yostudy
-            </a>
+            <a href="index.html" class="logo">☀️ Yostudy</a>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="study.html">Subjects</a></li>
                 <li><a href="calculators-hub.html">Calculators</a></li>
                 <li><a href="news.html">News</a></li>
                 <li><a href="download-zone.html">Learn</a></li>
-                <li><a href="#">My Bookmarks</a></li>
             </ul>
             <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
-            <div class="hamburger" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </nav>
 
@@ -546,22 +439,22 @@
         <div class="feature-card">
             <div class="feature-icon">📚</div>
             <h3>Comprehensive Curriculum</h3>
-            <p>Covers Classes 1-9 with all subjects including Science, Maths, English & more</p>
+            <p>Covers Classes 1-9 with all subjects</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">🧮</div>
             <h3>200+ Calculators</h3>
-            <p>Interactive calculators for Math, Physics, Chemistry and more subjects</p>
+            <p>Interactive calculators for all subjects</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">📊</div>
             <h3>500+ Formulas</h3>
-            <p>Complete collection of important formulas organized by topic and class</p>
+            <p>Complete collection of formulas</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">📥</div>
             <h3>Study Materials</h3>
-            <p>Download notes, worksheets, PDFs and study guides for each subject</p>
+            <p>Download notes, worksheets, PDFs</p>
         </div>
     </div>
 
@@ -573,37 +466,32 @@
             <div class="category-card" onclick="location.href='study.html'">
                 <div class="category-icon">📝</div>
                 <h3>English</h3>
-                <p>Grammar, Literature & Communication</p>
+                <p>Grammar & Literature</p>
             </div>
-            
             <div class="category-card" onclick="location.href='study.html'">
                 <div class="category-icon">🔢</div>
                 <h3>Mathematics</h3>
-                <p>Algebra, Geometry & Arithmetic</p>
+                <p>Algebra & Geometry</p>
             </div>
-            
             <div class="category-card" onclick="location.href='science.html'">
                 <div class="category-icon">🔬</div>
                 <h3>Science</h3>
-                <p>Physics, Chemistry & Biology</p>
+                <p>Physics & Chemistry</p>
             </div>
-            
             <div class="category-card" onclick="location.href='study.html'">
                 <div class="category-icon">🌍</div>
                 <h3>Social Studies</h3>
-                <p>History, Geography & Civics</p>
+                <p>History & Geography</p>
             </div>
-            
             <div class="category-card" onclick="location.href='study.html'">
                 <div class="category-icon">🎨</div>
                 <h3>Art & Craft</h3>
-                <p>Creative Expression & Skills</p>
+                <p>Creative Skills</p>
             </div>
-            
             <div class="category-card" onclick="location.href='study.html'">
                 <div class="category-icon">💻</div>
                 <h3>Technology</h3>
-                <p>Coding, Digital Skills & Innovation</p>
+                <p>Coding & Digital Skills</p>
             </div>
         </div>
     </section>
@@ -632,24 +520,15 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <p>Yostudy - Study Smart, Achieve More! 📚</p>
-            <p>&copy; 2026 Yostudy. All rights reserved.</p>
-        </div>
+        <p>Yostudy - Study Smart, Achieve More! 📚</p>
     </footer>
 
-    <script src="script.js"></script>
     <script>
         function toggleTheme() {
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
         }
 
-        function toggleMenu() {
-            console.log('Menu toggled');
-        }
-
-        // Load theme preference
         if (localStorage.getItem('theme') === 'dark') {
             document.body.classList.add('dark-mode');
         }
